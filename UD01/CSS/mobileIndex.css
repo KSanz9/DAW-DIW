@@ -1,0 +1,24 @@
+@media (min-width: 481px) and (max-width: 767px) {
+  
+    
+  }
+  
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .series{
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin: 0px;
+    list-style-type: none;
+    display: inline;
+    padding-right: 5px;
+    }
+   
+    
+}
+  
+  .series ul li{
+    list-style:none;
+}
+
