@@ -28,7 +28,15 @@ nav ul li{
     display: inline-block; 
 }
 
+@media (max-width:1200px){
+.navegacion{
+    display: inline-block; 
+    width: 150px;
+    margin: 0px 30px 100px 0px;
+    list-style:none;
+}
 
+}
 /* N/ON/T*/
 a[rel='alternate']:after{
     content: " Brexit";
