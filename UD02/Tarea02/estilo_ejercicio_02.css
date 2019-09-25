@@ -1,0 +1,61 @@
+h1{
+    text-align: center;
+    margin-bottom: 20px; 
+}
+body{
+    background: lightgrey;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+
+}
+
+nav ul li{
+    font-size: 140%;
+    list-style:none;
+    border: 0px; 
+    display: inline-block; 
+    margin-left: 20%;
+    margin-bottom: 20%;
+
+}
+.navegacion a{
+    color:black;
+    text-decoration:none;
+    list-style:none;
+    
+
+}
+.navegacion{
+    display: inline-block; 
+}
+
+
+/* N/ON/T*/
+a[rel='alternate']:after{
+    content: " Brexit";
+}
+a[rel='next']:before{
+    content: url(icons/next.png);
+    
+}
+
+a[rel='tag']:before{
+    content: url(icons/store.png);
+    
+}
+
+/* Comentario */
+a[rel='bookmark']:before{
+    content: url(icons/star.png);
+    
+}a[rel='help']:before{
+    content: url(icons/pdf.png);
+    
+}a[rel='search']:before{
+    content: url(icons/search.png);
+    
+}
+
+a[rel='nofollow']:before{
+    content: url(icons/security.png);
+    
+}
