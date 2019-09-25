@@ -1,0 +1,17 @@
+
+.imagen{
+    display:block;
+    margin:auto;
+}
+@media (min-width:600px){
+.menu ul li{
+    float: left;
+    list-style:none;
+    padding: 50px;
+} 
+
+}
+
+.menu ul li{
+    list-style:none;
+}
