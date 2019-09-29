@@ -1,0 +1,25 @@
+h1{
+    font-family: Verdana, sans-serif;
+}
+
+h2::first-letter{
+    color: red;
+    }
+
+    h1 + h2 {
+    color: green;
+}
+
+li:nth-child(3){
+    color: yellow;
+}
+ul li{
+    list-style: none;
+}
+li:nth-child(odd):hover::after{
+content: "Alabado sea el monstruo espagueti"; 
+}
+li:nth-child(even):hover::before{
+    content: "Satan!"; 
+ }
+    
