@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulario</title>
+    <style>
+        article {
+            background: lightgray;
+        }
+        article nav ul li{
+            list-style:none;
+        }
+      body{
+          position: center;
+      }
+    
+    </style>
+
+    <script type="text/javascript">
+    arr = new Array() ;
+    var clave1;
+
+    function comprobarNombre(nombre){
+        if (/^[^0-9]*[a-z][A-Z]*[^0-9]*[a-z][A-Z]*$[^0-9]*/.test(nombre)) {
+            this.arr[0]=true;
+        } else {
+            this.arr[0]=false;
+        }
+    }
+    function comprobarApellido(nombre){
+        if (/^[^0-9]*[a-z][A-Z]*[^0-9]*[a-z][A-Z]*$[^0-9]*/.test(nombre)) {
+            this.arr[1]=true;
+        } else {
+            this.arr[1]=false;
+        }
+    }
+
+    //^[^0-9]*[a-z][A-Z]*[^0-9]*[a-z][A-Z]*$[^0-9]* --->validar nombre
+
+    function comprobaremail(mail) { 
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail)) {
+            this.arr[2]=true;
+        } else {
+            this.arr[2]=false;
+        }
+       }
+
+    function comprobarDNI(dni) { 
+        if (/^\d{8}[a-zA-Z]$/.test(dni)) {
+            this.arr[3]=true;
+        } else {
+            this.arr[3]=false;
+        } 
+     }
+
+     function comprobarDNI(dni) { 
+        if (/^\d{8}[a-zA-Z]$/.test(dni)) {
+            var n = dni.substr(0,8);
+            var c = dni.substr(8,1);
+            this.arr[3]= (c.toUpperCase() == 'TRWAGMYFPDXBNJZSQVHLCKET'.charAt(n%23));;
+        } else {
+            this.arr[3]=false;
+        } 
+     }
+     
+     function comprobarPassword(pssd){
+         clave1=pssd;
+         if (/^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/.test(pssd)) {
+            this.arr[4]=true;
+        } else {
+            this.arr[4]=false;
+        } 
+     }
+     function comprobarPassword2(pssd){
+         if (clave1==pssd) {
+            this.arr[5]=true;
+        } else {
+            this.arr[5]=false;
+        } 
+     }
+
+     function comprobarIP(ipaddress) {
+        if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress)){
+            this.arr[6]=true;
+          }else{
+            this.arr[6]=false;
+        }
+        function comprobarResultados(){
+            for (let index = 0; index < arr; index++) {
+                if (arr[i]==false) {
+                    alert("Algunos de los campos estan mal formados");
+                }else{
+                    alert("Formulario rellenado correctamente")
+                }
+                
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <article>
+        <h1>Formulario Total</h1>
+        <form action="fvalido">
+        <nav>
+            <ul>
+                <li>Nombre: <input type="text" onblur="comprobarNombre(this)" name="nombre" size="40" required></li>
+                <li>Apellidos: <input type="text" onblur="comprobarApellido(this)" name="apellidos" size="40" required></li>
+                <li>e-mail: <input type="text" onblur="comprobaremail(this)" name="email" size="40" required></li>
+                <li>DNI: <input type="text" onblur="comprobarDNI(this)" name="dni" size="40" required></li>
+                <li>Password: <input type="password" onblur="comprobarPassword(this)" name="contraseña" size="40" required></li>
+                <li>Repetir password: <input type="password" onblur="comprobarPassword2(this)"  name="contraseña2" size="40" required></li>
+                <li>IP Equipo: <input type="text"  onblur="comprobarIP(this)"  name="ip" size="40" required></li>
+            </ul>
+            <input type="button" onclick="comprobarResultados()" value="Enviar">
+        </form>
+        </nav>
+    </article>
+</body>
+
+</html>
