@@ -1,0 +1,39 @@
+form{
+font-family: 'Grenzed';
+}
+
+input[type='text'], input[type='number'], input[type='submit']{
+    background-color: bisque;
+}
+
+input[type='text']:invalid{
+background-color: red;
+}
+input[type='number']:out-of-range{
+    background-color: red;
+
+}
+form fieldset div p a{
+    color:black;
+    text-decoration:none;
+}
+form fieldset div select{
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 10px;
+}
+form fieldset div input[type='submit']{
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0px 3px 1px lightsalmon;  
+}
+
+input:target{
+    color: white;
+    background-color: blue ;
+    
+}
+input[type='checkbox']:checked:before{
+    content: url("cthulhu.svg");
+}
+
