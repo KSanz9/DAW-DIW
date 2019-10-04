@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        @import url("dom.css");
+    </style>
+
+    <script type="text/javascript" src="dom.js"></script>
+
+    <title>DOM</title>
+</head>
+
+<body>
+
+    <div id="cajas">
+        <div id="Roja" class="caja" onclick="perdersombra(this)" onmouseout="noCirculo(this)" onmouseover="circulos(this)" ondblclick="sombraInterior()">
+        </div>
+
+        <div id="Azul" class="caja">
+
+        </div>
+
+        <div id="Verde" class="caja">
+
+        </div>
+
+        <div id="Negra" class="caja">
+
+        </div>
+    </div>
+    <br>
+    <div id="botones">
+        <button class="eliminarCajaRoja" onclick="eliminarCaja(this)" type="button">Eliminar</button>
+        <button class="eliminarCajaAzul" type="button">Eliminar</button>
+        <button class="eliminarCajaVerde" type="button">Eliminar</button>
+        <button class="eliminarCajaNegra" type="button">Eliminar</button>
+    </div>
+</body>
+
+</html>
