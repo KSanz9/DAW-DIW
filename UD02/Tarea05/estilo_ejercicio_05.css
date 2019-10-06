@@ -13,6 +13,14 @@
         font-family: 'Courier New', Courier, monospace;
         padding-left: 5%;
     }
+    .activo:before{
+        background-image:url(cthulhu.svg);  
+        width: 65px;
+        height: 60px;
+        background-size: 70px 60px;
+        position: absolute;
+        content: ""; 
+    }
 }
 
 
@@ -29,6 +37,7 @@
         font-family: 'Courier New', Courier, monospace;
         padding-left: 5%;
     }
+    
 }
 
 header {
