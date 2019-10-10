@@ -28,7 +28,11 @@ h1 {
 }
 
 #SealOfApproval {
-    display: flex;
-    content: url("cthulhu_approval.gif");
-    flex-wrap: wrap-reverse;
+    background-image: url("cthulhu_approval.gif");
+    background-size: 150px;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    left: 93.5%;
+    top: 85.5%;
 }
