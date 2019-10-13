@@ -1,5 +1,6 @@
 :root{
     --sombra_de_lista:  3px 4px 5px black; /* sombra negra para la lista */
+    --sombra_de_img:  3px 4px 5px green; /* sombra negra para las img */
 }
 
 
@@ -47,4 +48,6 @@ footer{
     font-size: 15px;
 }
 
-    
+:target{/*Coge la dirreccion que en ese momento se este clickando*/
+    box-shadow: var(--sombra_de_img);
+}
