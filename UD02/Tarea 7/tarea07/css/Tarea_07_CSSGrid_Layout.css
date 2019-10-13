@@ -3,7 +3,6 @@
     --sombra_de_img:  3px 4px 5px green; /* sombra negra para las img */
 }
 
-
 .pagina{
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -42,12 +41,12 @@ nav ul li{
     font-size: 23px;
     box-shadow: var(--sombra_de_lista);
 }
+img:target{/*Coge la dirreccion que en ese momento se este clickando*/
+    box-shadow: var(--sombra_de_img);
+}
 footer{
     grid-area: footer;
     text-align: center;
     font-size: 15px;
 }
 
-:target{/*Coge la dirreccion que en ese momento se este clickando*/
-    box-shadow: var(--sombra_de_img);
-}
