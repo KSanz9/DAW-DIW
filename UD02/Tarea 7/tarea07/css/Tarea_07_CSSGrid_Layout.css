@@ -1,3 +1,8 @@
+:root{
+    --sombra_de_lista:  3px 4px 5px black; /* sombra negra para la lista */
+}
+
+
 .pagina{
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -12,17 +17,17 @@ header{
     text-align: center;
 }
 h1{
-    font-size: 25x;
+    font-size: 35px;
     padding-bottom: 50px;
 }
 main{
     grid-area: main;
     display: grid;
-    grid-template-columns:1fr 1fr 1fr; /*Ponemos 3 columnas dentro de este grid para que coja cada vez 3 imagenes*/
-    grid-row-gap: 23px;
-    margin-left: -90px;
+    grid-template-columns: 1fr 1fr 1fr; /*Ponemos 3 columnas dentro de este grid para que coja cada vez 3 imagenes*/
+    grid-row-gap: 36px;
 
 }
+
 nav ul{
     list-style: none;
     grid-area: nav;
@@ -34,9 +39,12 @@ nav ul li{
     height: auto;
     margin-bottom: 10px;
     font-size: 23px;
+    box-shadow: var(--sombra_de_lista);
 }
 footer{
     grid-area: footer;
+    text-align: center;
+    font-size: 15px;
 }
 
     
