@@ -1,21 +1,42 @@
 .pagina{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-rows: auto;
+    /*con esto le marcaremos en que lugar se definira el header, nav, main y footer*/
     grid-template-areas: "header header header header"
      "nav  main main main"
      "footer footer footer footer";
 }
 header{
     grid-area: header;
+    text-align: center;
 }
-main .gallery__img{
+h1{
+    font-size: 25x;
+    padding-bottom: 50px;
+}
+main{
     grid-area: main;
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr; /*Ponemos 3 columnas dentro de este grid para que coja cada vez 3 imagenes*/
+    grid-row-gap: 23px;
+    margin-left: -90px;
+
 }
 nav ul{
+    list-style: none;
     grid-area: nav;
+    
 }
-
+nav ul li{
+    border: 1px solid black;
+    width: 180px;
+    height: auto;
+    margin-bottom: 10px;
+    font-size: 23px;
+}
 footer{
     grid-area: footer;
 }
+
+    
