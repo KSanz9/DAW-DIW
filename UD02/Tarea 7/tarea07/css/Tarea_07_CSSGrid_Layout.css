@@ -1,0 +1,21 @@
+.pagina{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "header header header header"
+     "nav  main main main"
+     "footer footer footer footer";
+}
+header{
+    grid-area: header;
+}
+main .gallery__img{
+    grid-area: main;
+}
+nav ul{
+    grid-area: nav;
+}
+
+footer{
+    grid-area: footer;
+}
