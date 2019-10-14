@@ -1,13 +1,21 @@
 body {
+    background-color: yellow;
+}
+
+#mapa {
+    display: grid;
+    grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+}
+
+.camino {
+    width: 100px;
+    height: 100px;
     background-color: black;
 }
 
-#zonaDeJuego {
-    background-color: yellowgreen;
-}
-
-.mapa {
-    display: grid;
-    grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(12, 1fr);
+.muro {
+    width: 100px;
+    height: 100px;
+    background-color: grey;
 }
