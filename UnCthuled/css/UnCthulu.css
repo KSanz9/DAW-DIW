@@ -1,0 +1,13 @@
+body {
+    background-color: black;
+}
+
+#zonaDeJuego {
+    background-color: yellowgreen;
+}
+
+.mapa {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+}
