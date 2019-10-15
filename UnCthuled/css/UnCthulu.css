@@ -4,8 +4,8 @@
     --Fondo_Gris: grey;
     --Chtulu: url("../img/Cthulhu.png");
     --Explorador: url("../img/Jugador.png");
-    --Explorador_Derecha: url("img/jugador_corriendo_R.png");
-    --Explorador_Izquierda: url("img/jugador_corriendo_L.png");
+    --Explorador_Derecha: url("../img/jugador_corriendo_R.png");
+    --Explorador_Izquierda: url("../img/jugador_corriendo_L.png");
 }
 
 body {
@@ -34,6 +34,16 @@ body {
 
 .jugador {
     background-image: var(--Explorador) !important;
+    background-size: 100px;
+}
+
+.jugador_Derecha {
+    background-image: var(--Explorador_Derecha) !important;
+    background-size: 100px;
+}
+
+.jugador_Izquierda {
+    background-image: var(--Explorador_Izquierda) !important;
     background-size: 100px;
 }
 

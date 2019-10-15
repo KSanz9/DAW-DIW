@@ -1,9 +1,10 @@
-//posición inicial muñeco
-
 var mapa = new Array(14);
 for (let i = 0; i < mapa.length; i++) {
     mapa[i] = new Array(21);
 }
+//Inicio del personaje
+var horizontal = 8;
+var vertical = 0;
 
 function matrizMapa() {
 
@@ -42,11 +43,9 @@ function cargarPersonaje() {
     //Random del enemigo
     var XRandom = Math.floor(Math.random() * 14) + 1;
     var YRandom = Math.floor(Math.random() * 21);
-    //Inicio del personaje
-    var horizontal = 0;
-    var vertical = 8;
 
-    mapa[horizontal][vertical].classList.add("jugador");
+
+    mapa[vertical][horizontal].classList.add("jugador");
     //while (mapa[XRandom][YRandom] != document.getElementByClassName("muro")) {
     mapa[XRandom][YRandom].classList.add("chtulu");
     //}
@@ -61,20 +60,50 @@ function moverPersonaje(evento) {
     if (evento.key == "ArrowUp") {
         MoverArriba();
     }
-    if (evento.key == "ArrowRigth") {
+    if (evento.key == "ArrowRight") {
         MoverDerecha();
     }
-    if (evento.key == "ArrowLefth") {
+    if (evento.key == "ArrowLeft") {
         MoverIzquierda();
     }
 }
 
 function MoverAbajo() {
-
+    mapa[vertical][horizontal].classList.remove("jugador");
+    mapa[vertical][horizontal].classList.remove("jugador_Derecha");
+    mapa[vertical][horizontal].classList.remove("jugador_Izquierda");
+    vertical++;
+    mapa[vertical][horizontal].classList.add("jugador");
 }
+
+function MoverArriba() {
+    mapa[vertical][horizontal].classList.remove("jugador");
+    mapa[vertical][horizontal].classList.remove("jugador_Derecha");
+    mapa[vertical][horizontal].classList.remove("jugador_Izquierda");
+    vertical--;
+    mapa[vertical][horizontal].classList.add("jugador");
+}
+
+function MoverDerecha() {
+    mapa[vertical][horizontal].classList.remove("jugador");
+    mapa[vertical][horizontal].classList.remove("jugador_Derecha");
+    mapa[vertical][horizontal].classList.remove("jugador_Izquierda");
+
+    horizontal++;
+    mapa[vertical][horizontal].classList.add("jugador_Derecha");
+}
+
+function MoverIzquierda() {
+    mapa[vertical][horizontal].classList.remove("jugador");
+    mapa[vertical][horizontal].classList.remove("jugador_Derecha");
+    mapa[vertical][horizontal].classList.remove("jugador_Izquierda");
+    horizontal--;
+    mapa[vertical][horizontal].classList.add("jugador_Izquierda");
+}
+
 window.onload = function() {
 
     matrizMapa();
     cargarPersonaje();
-    moverPersonaje();
+    document.addEventListener("keydown", moverPersonaje);
 }
