@@ -1,5 +1,15 @@
+:root {
+    --Fondo_Amarrilo: yellow;
+    --Fondo_Negro: black;
+    --Fondo_Gris: grey;
+    --Chtulu: url("../img/Cthulhu.png");
+    --Explorador: url("../img/Jugador.png");
+    --Explorador_Derecha: url("img/jugador_corriendo_R.png");
+    --Explorador_Izquierda: url("img/jugador_corriendo_L.png");
+}
+
 body {
-    background-color: yellow;
+    background-color: var(--Fondo_Amarrilo);
 }
 
 #mapa {
@@ -9,13 +19,25 @@ body {
 }
 
 .camino {
-    width: 100px;
     height: 100px;
-    background-color: black;
+    background-color: var(--Fondo_Negro);
 }
 
 .muro {
-    width: 100px;
-    height: 100px;
-    background-color: grey;
+    height: 100%;
+    background-color: var(--Fondo_Gris);
+}
+
+.inicio {
+    background-color: var(--Fondo_Amarrilo);
+}
+
+.jugador {
+    background-image: var(--Explorador) !important;
+    background-size: 100px;
+}
+
+.chtulu {
+    background-image: var(--Chtulu) !important;
+    background-size: 115px;
 }
