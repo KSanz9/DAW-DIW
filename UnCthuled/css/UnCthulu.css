@@ -6,6 +6,7 @@
     --Explorador: url("../img/Jugador.png");
     --Explorador_Derecha: url("../img/jugador_corriendo_R.png");
     --Explorador_Izquierda: url("../img/jugador_corriendo_L.png");
+    --pisadas_Tintin_Arriba: url("../img/pisadas.png");
 }
 
 body {
@@ -33,21 +34,26 @@ body {
 }
 
 .jugador {
-    background-image: var(--Explorador) !important;
-    background-size: 100px;
+    background-image: var(--Explorador);
+    background-size: 100% 100%;
 }
 
 .jugador_Derecha {
-    background-image: var(--Explorador_Derecha) !important;
-    background-size: 100px;
+    background-image: var(--Explorador_Derecha);
+    background-size: 100% 100%;
 }
 
 .jugador_Izquierda {
-    background-image: var(--Explorador_Izquierda) !important;
-    background-size: 100px;
+    background-image: var(--Explorador_Izquierda);
+    background-size: 100% 100%;
 }
 
 .chtulu {
-    background-image: var(--Chtulu) !important;
-    background-size: 115px;
+    background-image: var(--Chtulu);
+    background-size: 100% 100%;
+    
+}
+.pisada {
+    background-image: var(--pisadas_Tintin_Arriba);
+    background-size: 100% 100%;
 }

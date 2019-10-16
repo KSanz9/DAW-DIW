@@ -3,13 +3,12 @@ for (let i = 0; i < mapa.length; i++) {
     mapa[i] = new Array(21);
 }
 //Inicio del personaje
-var horizontal = 8;
-var vertical = 0;
+var X = 0;
+var Y = 8;
 
+var momiaX;
+var momiaY;
 function matrizMapa() {
-
-
-
 
     for (let i = 0; i < mapa.length; i++) {
         for (let j = 0; j < mapa[i].length; j++) {
@@ -21,7 +20,7 @@ function matrizMapa() {
 
             }
 
-            if (i == 1 || j == 0 || i == 5 || j == 4 || i == 9 || j == 8 || i == 13 || j == 12 || i == 17 || j == 16 || i == 21 || j == 20) {
+            if (i == 1 || j == 0 || i == 4 || j == 4 || i == 7 || j == 8 || i == 10 || j == 12 || i == 13 || j == 16 || i == 14 || j == 20) {
                 console.log("se");
                 newDiv.classList.add("camino");
 
@@ -41,13 +40,25 @@ function matrizMapa() {
 
 function cargarPersonaje() {
     //Random del enemigo
-    var XRandom = Math.floor(Math.random() * 14) + 1;
-    var YRandom = Math.floor(Math.random() * 21);
+    mapa[X][Y].classList.add("jugador");
+    var chtulhu = false;
 
 
-    mapa[vertical][horizontal].classList.add("jugador");
+  
+
+    while(!chtulhu){
+        var XRandom = Math.floor(Math.random() * 13) + 1;
+        var YRandom = Math.floor(Math.random() * 20);
+    
+        if(mapa[XRandom][YRandom].classList.contains("camino")){
+            mapa[XRandom][YRandom].classList.add("chtulu");
+            momiaX = XRandom;
+            momiaY = YRandom;
+            chtulhu = true;
+        }
+    }
     //while (mapa[XRandom][YRandom] != document.getElementByClassName("muro")) {
-    mapa[XRandom][YRandom].classList.add("chtulu");
+   
     //}
 
 
@@ -69,41 +80,185 @@ function moverPersonaje(evento) {
 }
 
 function MoverAbajo() {
-    mapa[vertical][horizontal].classList.remove("jugador");
-    mapa[vertical][horizontal].classList.remove("jugador_Derecha");
-    mapa[vertical][horizontal].classList.remove("jugador_Izquierda");
-    vertical++;
-    mapa[vertical][horizontal].classList.add("jugador");
+    if (X != 13) {
+
+        if (! mapa[X+1][Y].classList.contains("muro")){
+            if (mapa[X+1][Y].classList.contains("pisada") && mapa[X+1][Y].classList.contains("chtulu")) {
+                mapa[X+1][Y].classList.remove("pisada");
+                mapa[X+1][Y].classList.remove("chtulu");
+
+                
+            }else if(mapa[X +1][Y].classList.contains("pisada")){
+                mapa[X +1][Y].classList.remove("pisada");
+
+            }
+        mapa[X][Y].classList.remove("jugador");
+        mapa[X][Y].classList.remove("jugador_Derecha");
+        mapa[X][Y].classList.remove("jugador_Izquierda");
+        if (X !=0) {
+            mapa[X][Y].classList.add("pisada");
+
+        }
+       
+        X++;
+       
+        mapa[X][Y].classList.add("jugador");
+
+        }
+    }
 }
 
 function MoverArriba() {
-    mapa[vertical][horizontal].classList.remove("jugador");
-    mapa[vertical][horizontal].classList.remove("jugador_Derecha");
-    mapa[vertical][horizontal].classList.remove("jugador_Izquierda");
-    vertical--;
-    mapa[vertical][horizontal].classList.add("jugador");
+    if (X - 1 != 0) {
+        if (! mapa[X-1][Y].classList.contains("muro")){
+            if (mapa[X -1][Y].classList.contains("pisada") && mapa[X-1][Y].classList.contains("chtulu")) {
+                mapa[X -1][Y].classList.remove("pisada");
+                mapa[X -1][Y].classList.remove("chtulu");
+
+                
+            }else if(mapa[X -1][Y].classList.contains("pisada")){
+                mapa[X -1][Y].classList.remove("pisada");
+
+            }
+        mapa[X][Y].classList.remove("jugador");
+        mapa[X][Y].classList.remove("jugador_Derecha");
+        mapa[X][Y].classList.remove("jugador_Izquierda");
+        mapa[X][Y].classList.add("pisada");
+        X--;
+       
+         mapa[X][Y].classList.add("jugador");
+
+        }
+    }
 }
 
 function MoverDerecha() {
-    mapa[vertical][horizontal].classList.remove("jugador");
-    mapa[vertical][horizontal].classList.remove("jugador_Derecha");
-    mapa[vertical][horizontal].classList.remove("jugador_Izquierda");
+    if (Y != 20) {
+        if (! mapa[X][Y+1].classList.contains("muro")){
+            if (mapa[X][Y +1].classList.contains("pisada") && mapa[X][Y+1].classList.contains("chtulu")) {
+                mapa[X][Y +1].classList.remove("pisada");
+                mapa[X][Y +1].classList.remove("chtulu");
 
-    horizontal++;
-    mapa[vertical][horizontal].classList.add("jugador_Derecha");
+                
+            }else if(mapa[X][Y +1].classList.contains("pisada")){
+                mapa[X][Y +1].classList.remove("pisada");
+
+            }
+            mapa[X][Y].classList.remove("jugador");
+            mapa[X][Y].classList.remove("jugador_Derecha");
+            mapa[X][Y].classList.remove("jugador_Izquierda");
+            mapa[X][Y].classList.add("pisada");
+
+            Y++;
+           
+            mapa[X][Y].classList.add("jugador_Derecha");
+        }
+    }
 }
 
 function MoverIzquierda() {
-    mapa[vertical][horizontal].classList.remove("jugador");
-    mapa[vertical][horizontal].classList.remove("jugador_Derecha");
-    mapa[vertical][horizontal].classList.remove("jugador_Izquierda");
-    horizontal--;
-    mapa[vertical][horizontal].classList.add("jugador_Izquierda");
+    if (Y != 0) {
+
+        if (! mapa[X][Y-1].classList.contains("muro")){
+            if (mapa[X][Y -1].classList.contains("pisada") && mapa[X][Y -1].classList.contains("chtulu")) {
+                mapa[X][Y -1].classList.remove("pisada");
+                mapa[X][Y -1].classList.remove("chtulu");
+   
+            }else if(mapa[X][Y -1].classList.contains("pisada")){
+                mapa[X][Y -1].classList.remove("pisada");
+
+            }
+
+         mapa[X][Y].classList.remove("jugador");
+         mapa[X][Y].classList.remove("jugador_Derecha");
+         mapa[X][Y].classList.remove("jugador_Izquierda");
+         mapa[X][Y].classList.add("pisada");
+       
+         Y--;
+       
+         mapa[X][Y].classList.add("jugador_Izquierda");
+        }
+    }
 }
+
+
+
+function moverEnemigo(){
+    movimientoRandom = Math.floor(Math.random() * 4);
+    movimientoHecho = false
+    while(!movimientoHecho){
+        switch (movimientoRandom) {
+            case 0:
+                //arriba
+                if (XRandom - 1 != 0) {
+                if (! mapa[XRandom - 1][YRandom].classList.contains("muro")) {
+                    
+                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    
+                    XRandom--;
+                    
+                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    
+                    movimientoHecho = true;
+                }
+            }
+                break;
+            case 1:
+                //abajo
+                if (XRandom != 13) {
+                if (! mapa[XRandom + 1][YRandom].classList.contains("muro")) {
+                    
+                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    
+                    XRandom++;
+                    
+                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    
+                    movimientoHecho = true;
+                }
+            }
+                
+                break;
+            case 2:
+                //derecha
+                if (YRandom != 20) {
+                if (! mapa[XRandom][YRandom + 1].classList.contains("muro")) {
+                    
+                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    
+                    YRandom++;
+                    
+                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    
+                    movimientoHecho = true;
+                }
+            }
+                
+                break;        
+            case 3:
+                //izquierda   
+                if (YRandom != 0) {
+ 
+                if (! mapa[XRandom][YRandom - 1].classList.contains("muro")) {
+                    
+                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    
+                    YRandom--;
+                    
+                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    
+                    movimientoHecho = true;
+                }
+            }
+                break;
+        }
+    }
+} 
 
 window.onload = function() {
 
     matrizMapa();
     cargarPersonaje();
     document.addEventListener("keydown", moverPersonaje);
+    setInterval(moverEnemigo,1000);
 }
