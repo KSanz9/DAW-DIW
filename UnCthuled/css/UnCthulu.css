@@ -33,8 +33,15 @@ body {
     background-color: var(--Fondo_Amarrilo);
 }
 
+.pisada {
+    background-image: var(--pisadas_Tintin_Arriba);
+    background-size: 100% 100%;
+}
+.CeldaCompleta{
+    background-color: green;
+}
 .jugador {
-    background-image: var(--Explorador);
+    background-image: var(--Explorador); 
     background-size: 100% 100%;
 }
 
@@ -52,8 +59,4 @@ body {
     background-image: var(--Chtulu);
     background-size: 100% 100%;
     
-}
-.pisada {
-    background-image: var(--pisadas_Tintin_Arriba);
-    background-size: 100% 100%;
 }

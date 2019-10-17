@@ -2,6 +2,14 @@ var mapa = new Array(14);
 for (let i = 0; i < mapa.length; i++) {
     mapa[i] = new Array(21);
 }
+
+//muros
+var Pilar1 = new Array(2);
+for (let i = 0; i < Pilar1.length; i++) {
+    Pilar1[i] = new Array(3);
+
+}
+//
 //Inicio del personaje
 var X = 0;
 var Y = 8;
@@ -44,16 +52,14 @@ function cargarPersonaje() {
     var chtulhu = false;
 
 
-  
 
-    while(!chtulhu){
+    while (!chtulhu) {
         var XRandom = Math.floor(Math.random() * 13) + 1;
         var YRandom = Math.floor(Math.random() * 20);
 
-        XRandom=1;
-        YRandom=1;
-    
-        if(mapa[XRandom][YRandom].classList.contains("camino")){
+
+
+        if (mapa[XRandom][YRandom].classList.contains("camino")) {
             mapa[XRandom][YRandom].classList.add("chtulu");
             momiaX = XRandom;
             momiaY = YRandom;
@@ -61,12 +67,46 @@ function cargarPersonaje() {
         }
     }
     //while (mapa[XRandom][YRandom] != document.getElementByClassName("muro")) {
-   
+
     //}
 
 
 }
 
+
+function comprobarMuro() {
+    rellenarPilar1();
+    pintado1 = false;
+    while (!pintado1) {
+        var contador = 0;
+
+        for (let index = 0; index < Pilar1.length; index++) {
+            for (let jindex = 0; jindex < Pilar1[index].length; jindex++) {
+                if (Pilar1[index+1][jindex].classList.contains("pisada")||Pilar1[index-1][jindex].classList.contains("pisada")|| Pilar1[index][jindex+1].classList.contains("pisada")||Pilar1[index][jindex - 1].classList.contains("pisada")) {
+                    contador++;
+                }
+            }
+        }
+
+        if (contador == 6) {
+            for (let index = 0; index < Pilar1.length; index++) {
+                for (let jindex = 0; jindex < Pilar1[index].length; jindex++) {
+                   Pilar1[index][jindex].classList.add("CeldaCompleta")
+                }
+        }
+        pintado1=true;
+    }
+}
+}
+function rellenarPilar1() {
+
+    Pilar1[0][0] = mapa[2][1];
+    Pilar1[0][1] = mapa[2][2];
+    Pilar1[0][2] = mapa[2][3];
+    Pilar1[1][0] = mapa[3][1];
+    Pilar1[1][1] = mapa[3][2];
+    Pilar1[1][2] = mapa[3][3];
+}
 function moverPersonaje(evento) {
     if (evento.key == "ArrowDown") {
         MoverAbajo();
@@ -85,27 +125,19 @@ function moverPersonaje(evento) {
 function MoverAbajo() {
     if (X != 13) {
 
-        if (! mapa[X+1][Y].classList.contains("muro")){
-            if (mapa[X+1][Y].classList.contains("pisada") && mapa[X+1][Y].classList.contains("chtulu")) {
-                mapa[X+1][Y].classList.remove("pisada");
-                mapa[X+1][Y].classList.remove("chtulu");
+        if (!mapa[X + 1][Y].classList.contains("muro")) {
 
-                
-            }else if(mapa[X +1][Y].classList.contains("pisada")){
-                mapa[X +1][Y].classList.remove("pisada");
+            mapa[X][Y].classList.remove("jugador");
+            mapa[X][Y].classList.remove("jugador_Derecha");
+            mapa[X][Y].classList.remove("jugador_Izquierda");
+            if (X != 0) {
+                mapa[X][Y].classList.add("pisada");
 
             }
-        mapa[X][Y].classList.remove("jugador");
-        mapa[X][Y].classList.remove("jugador_Derecha");
-        mapa[X][Y].classList.remove("jugador_Izquierda");
-        if (X !=0) {
-            mapa[X][Y].classList.add("pisada");
 
-        }
-       
-        X++;
-       
-        mapa[X][Y].classList.add("jugador");
+            X++;
+
+            mapa[X][Y].classList.add("jugador");
 
         }
     }
@@ -113,23 +145,15 @@ function MoverAbajo() {
 
 function MoverArriba() {
     if (X - 1 != 0) {
-        if (! mapa[X-1][Y].classList.contains("muro")){
-            if (mapa[X -1][Y].classList.contains("pisada") && mapa[X-1][Y].classList.contains("chtulu")) {
-                mapa[X -1][Y].classList.remove("pisada");
-                mapa[X -1][Y].classList.remove("chtulu");
+        if (!mapa[X - 1][Y].classList.contains("muro")) {
 
-                
-            }else if(mapa[X -1][Y].classList.contains("pisada")){
-                mapa[X -1][Y].classList.remove("pisada");
+            mapa[X][Y].classList.remove("jugador");
+            mapa[X][Y].classList.remove("jugador_Derecha");
+            mapa[X][Y].classList.remove("jugador_Izquierda");
+            mapa[X][Y].classList.add("pisada");
+            X--;
 
-            }
-        mapa[X][Y].classList.remove("jugador");
-        mapa[X][Y].classList.remove("jugador_Derecha");
-        mapa[X][Y].classList.remove("jugador_Izquierda");
-        mapa[X][Y].classList.add("pisada");
-        X--;
-       
-         mapa[X][Y].classList.add("jugador");
+            mapa[X][Y].classList.add("jugador");
 
         }
     }
@@ -137,23 +161,15 @@ function MoverArriba() {
 
 function MoverDerecha() {
     if (Y != 20) {
-        if (! mapa[X][Y+1].classList.contains("muro")){
-            if (mapa[X][Y +1].classList.contains("pisada") && mapa[X][Y+1].classList.contains("chtulu")) {
-                mapa[X][Y +1].classList.remove("pisada");
-                mapa[X][Y +1].classList.remove("chtulu");
+        if (!mapa[X][Y + 1].classList.contains("muro")) {
 
-                
-            }else if(mapa[X][Y +1].classList.contains("pisada")){
-                mapa[X][Y +1].classList.remove("pisada");
-
-            }
             mapa[X][Y].classList.remove("jugador");
             mapa[X][Y].classList.remove("jugador_Derecha");
             mapa[X][Y].classList.remove("jugador_Izquierda");
             mapa[X][Y].classList.add("pisada");
 
             Y++;
-           
+
             mapa[X][Y].classList.add("jugador_Derecha");
         }
     }
@@ -162,107 +178,103 @@ function MoverDerecha() {
 function MoverIzquierda() {
     if (Y != 0) {
 
-        if (! mapa[X][Y-1].classList.contains("muro")){
-            if (mapa[X][Y -1].classList.contains("pisada") && mapa[X][Y -1].classList.contains("chtulu")) {
-                mapa[X][Y -1].classList.remove("pisada");
-                mapa[X][Y -1].classList.remove("chtulu");
-   
-            }else if(mapa[X][Y -1].classList.contains("pisada")){
-                mapa[X][Y -1].classList.remove("pisada");
+        if (!mapa[X][Y - 1].classList.contains("muro")) {
 
-            }
 
-         mapa[X][Y].classList.remove("jugador");
-         mapa[X][Y].classList.remove("jugador_Derecha");
-         mapa[X][Y].classList.remove("jugador_Izquierda");
-         mapa[X][Y].classList.add("pisada");
-       
-         Y--;
-       
-         mapa[X][Y].classList.add("jugador_Izquierda");
+            mapa[X][Y].classList.remove("jugador");
+            mapa[X][Y].classList.remove("jugador_Derecha");
+            mapa[X][Y].classList.remove("jugador_Izquierda");
+            mapa[X][Y].classList.add("pisada");
+
+            Y--;
+
+            mapa[X][Y].classList.add("jugador_Izquierda");
         }
     }
 }
 
 
 
-function moverEnemigo(){
-   
+function moverEnemigo() {
+
     movimientoHecho = false;
-    while(!movimientoHecho){
+    while (!movimientoHecho) {
         movimientoRandom = Math.floor(Math.random() * 4);
         switch (movimientoRandom) {
             case 0:
                 //arriba
                 if (momiaX - 1 != 0) {
-                if (! mapa[momiaX - 1][momiaY].classList.contains("muro")) {
-                    
-                    mapa[momiaX][momiaY].classList.remove("chtulu");
-                    console.log("Arriba");
-                    momiaX--;
-                    
-                    mapa[momiaX][momiaY].classList.add("chtulu");
-                    
-                    movimientoHecho = true;
+                    if (!mapa[momiaX - 1][momiaY].classList.contains("muro")) {
+
+                        mapa[momiaX][momiaY].classList.remove("chtulu");
+                        console.log("Arriba");
+                        momiaX--;
+
+                        mapa[momiaX][momiaY].classList.add("chtulu");
+
+                        movimientoHecho = true;
+                    }
                 }
-            }
                 break;
             case 1:
                 //abajo
                 if (momiaX != 13) {
-                if (! mapa[momiaX + 1][momiaY].classList.contains("muro")) {
-                    
-                    mapa[momiaX][momiaY].classList.remove("chtulu");
-                    console.log("Abajo");
-                    momiaX++;
-                    
-                    mapa[momiaX][momiaY].classList.add("chtulu");
-                    
-                    movimientoHecho = true;
+                    if (!mapa[momiaX + 1][momiaY].classList.contains("muro")) {
+
+                        mapa[momiaX][momiaY].classList.remove("chtulu");
+                        console.log("Abajo");
+                        momiaX++;
+
+                        mapa[momiaX][momiaY].classList.add("chtulu");
+
+                        movimientoHecho = true;
+                    }
                 }
-            }
-                
+
                 break;
             case 2:
                 //derecha
                 if (momiaY != 20) {
-                if (! mapa[momiaX][momiaY + 1].classList.contains("muro")) {
-                    
-                    mapa[momiaX][momiaY].classList.remove("chtulu");
-                    console.log("Derecha");
-                    momiaY++;
-                    
-                    mapa[momiaX][momiaY].classList.add("chtulu");
-                    
-                    movimientoHecho = true;
+                    if (!mapa[momiaX][momiaY + 1].classList.contains("muro")) {
+
+                        mapa[momiaX][momiaY].classList.remove("chtulu");
+                        console.log("Derecha");
+                        momiaY++;
+
+                        mapa[momiaX][momiaY].classList.add("chtulu");
+
+                        movimientoHecho = true;
+                    }
                 }
-            }
-                
-                break;        
+
+                break;
             case 3:
                 //izquierda   
                 if (momiaY != 0) {
- 
-                if (! mapa[momiaX][momiaY - 1].classList.contains("muro")) {
-                    
-                    mapa[momiaX][momiaY].classList.remove("chtulu");
-                    console.log("Izquierda");
-                    momiaY--;
-                    
-                    mapa[momiaX][momiaY].classList.add("chtulu");
-                    
-                    movimientoHecho = true;
+
+                    if (!mapa[momiaX][momiaY - 1].classList.contains("muro")) {
+
+                        mapa[momiaX][momiaY].classList.remove("chtulu");
+                        console.log("Izquierda");
+                        momiaY--;
+
+                        mapa[momiaX][momiaY].classList.add("chtulu");
+
+                        movimientoHecho = true;
+                    }
                 }
-            }
                 break;
         }
     }
-} 
+}
 
-window.onload = function() {
+
+
+window.onload = function () {
 
     matrizMapa();
     cargarPersonaje();
     document.addEventListener("keydown", moverPersonaje);
-    setInterval(moverEnemigo,300);
+    setInterval(comprobarMuro,100);
+    setInterval(moverEnemigo, 300);
 }
