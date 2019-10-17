@@ -49,6 +49,9 @@ function cargarPersonaje() {
     while(!chtulhu){
         var XRandom = Math.floor(Math.random() * 13) + 1;
         var YRandom = Math.floor(Math.random() * 20);
+
+        XRandom=1;
+        YRandom=1;
     
         if(mapa[XRandom][YRandom].classList.contains("camino")){
             mapa[XRandom][YRandom].classList.add("chtulu");
@@ -184,20 +187,21 @@ function MoverIzquierda() {
 
 
 function moverEnemigo(){
-    movimientoRandom = Math.floor(Math.random() * 4);
-    movimientoHecho = false
+   
+    movimientoHecho = false;
     while(!movimientoHecho){
+        movimientoRandom = Math.floor(Math.random() * 4);
         switch (movimientoRandom) {
             case 0:
                 //arriba
-                if (XRandom - 1 != 0) {
-                if (! mapa[XRandom - 1][YRandom].classList.contains("muro")) {
+                if (momiaX - 1 != 0) {
+                if (! mapa[momiaX - 1][momiaY].classList.contains("muro")) {
                     
-                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    mapa[momiaX][momiaY].classList.remove("chtulu");
+                    console.log("Arriba");
+                    momiaX--;
                     
-                    XRandom--;
-                    
-                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    mapa[momiaX][momiaY].classList.add("chtulu");
                     
                     movimientoHecho = true;
                 }
@@ -205,14 +209,14 @@ function moverEnemigo(){
                 break;
             case 1:
                 //abajo
-                if (XRandom != 13) {
-                if (! mapa[XRandom + 1][YRandom].classList.contains("muro")) {
+                if (momiaX != 13) {
+                if (! mapa[momiaX + 1][momiaY].classList.contains("muro")) {
                     
-                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    mapa[momiaX][momiaY].classList.remove("chtulu");
+                    console.log("Abajo");
+                    momiaX++;
                     
-                    XRandom++;
-                    
-                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    mapa[momiaX][momiaY].classList.add("chtulu");
                     
                     movimientoHecho = true;
                 }
@@ -221,14 +225,14 @@ function moverEnemigo(){
                 break;
             case 2:
                 //derecha
-                if (YRandom != 20) {
-                if (! mapa[XRandom][YRandom + 1].classList.contains("muro")) {
+                if (momiaY != 20) {
+                if (! mapa[momiaX][momiaY + 1].classList.contains("muro")) {
                     
-                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    mapa[momiaX][momiaY].classList.remove("chtulu");
+                    console.log("Derecha");
+                    momiaY++;
                     
-                    YRandom++;
-                    
-                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    mapa[momiaX][momiaY].classList.add("chtulu");
                     
                     movimientoHecho = true;
                 }
@@ -237,15 +241,15 @@ function moverEnemigo(){
                 break;        
             case 3:
                 //izquierda   
-                if (YRandom != 0) {
+                if (momiaY != 0) {
  
-                if (! mapa[XRandom][YRandom - 1].classList.contains("muro")) {
+                if (! mapa[momiaX][momiaY - 1].classList.contains("muro")) {
                     
-                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    mapa[momiaX][momiaY].classList.remove("chtulu");
+                    console.log("Izquierda");
+                    momiaY--;
                     
-                    YRandom--;
-                    
-                    mapa[XRandom][YRandom].classList.add("chtulu");
+                    mapa[momiaX][momiaY].classList.add("chtulu");
                     
                     movimientoHecho = true;
                 }
@@ -260,5 +264,5 @@ window.onload = function() {
     matrizMapa();
     cargarPersonaje();
     document.addEventListener("keydown", moverPersonaje);
-    setInterval(moverEnemigo,1000);
+    setInterval(moverEnemigo,300);
 }
