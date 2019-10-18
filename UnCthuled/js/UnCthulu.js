@@ -4,9 +4,9 @@ for (let i = 0; i < mapa.length; i++) {
 }
 
 //muros
-var Pilar1 = new Array(2);
+var Pilar1 = new Array(4);
 for (let i = 0; i < Pilar1.length; i++) {
-    Pilar1[i] = new Array(3);
+    Pilar1[i] = new Array(5);
 
 }
 //
@@ -25,11 +25,9 @@ function matrizMapa() {
 
             if (i == 0 && j != 8) {
                 newDiv.classList.add("inicio");
-
             }
 
             if (i == 1 || j == 0 || i == 4 || j == 4 || i == 7 || j == 8 || i == 10 || j == 12 || i == 13 || j == 16 || i == 14 || j == 20) {
-                console.log("se");
                 newDiv.classList.add("camino");
 
             } else {
@@ -73,41 +71,104 @@ function cargarPersonaje() {
 
 }
 
-
 function comprobarMuro() {
     rellenarPilar1();
     pintado1 = false;
-    while (!pintado1) {
-        var contador = 0;
-
+        var contador1 = 0;
+///////////////////////////////////////////////////////////////////////////////
         for (let index = 0; index < Pilar1.length; index++) {
             for (let jindex = 0; jindex < Pilar1[index].length; jindex++) {
-                if (Pilar1[index+1][jindex].classList.contains("pisada")||Pilar1[index-1][jindex].classList.contains("pisada")|| Pilar1[index][jindex+1].classList.contains("pisada")||Pilar1[index][jindex - 1].classList.contains("pisada")) {
-                    contador++;
+                if (Pilar1[index][jindex].classList.contains("pisada")||Pilar1[index][jindex].classList.contains("pisada")|| Pilar1[index][jindex].classList.contains("pisada")||Pilar1[index][jindex].classList.contains("pisada")) {
+                    contador1++;
                 }
             }
         }
-
-        if (contador == 6) {
+        if (contador1 == 13) {
             for (let index = 0; index < Pilar1.length; index++) {
                 for (let jindex = 0; jindex < Pilar1[index].length; jindex++) {
-                   Pilar1[index][jindex].classList.add("CeldaCompleta")
+                   if (Pilar1[index][jindex].classList.contains("muro")){
+                    Pilar1[index][jindex].classList.add("pintado")
+                    }
                 }
+            }              
         }
-        pintado1=true;
+       
+//////////////////////////////////////////////////////////////////////////////////
+    
+}
+
+/*
+function comprobarMuro(x,y) {
+    for(let i = 0; i < 6; i++) {
+        if (mapa[x][y].className.indexOf("muro") >= 0) {
+
+        }
     }
 }
-}
-function rellenarPilar1() {
 
-    Pilar1[0][0] = mapa[2][1];
-    Pilar1[0][1] = mapa[2][2];
-    Pilar1[0][2] = mapa[2][3];
-    Pilar1[1][0] = mapa[3][1];
-    Pilar1[1][1] = mapa[3][2];
-    Pilar1[1][2] = mapa[3][3];
+*/
+
+
+function  marcarCamino() {
+    if (X+1 < mapa.length && mapa[X+1][Y].className.indexOf("muro") >= 0)  {
+        mapa[X+1][Y].classList.add("x");
+        cambiarMuro(X+1,Y);
+    }
+        
+    if (X-1 >= 0 && mapa[X-1][Y].className.indexOf("muro") >= 0) {
+        mapa[X-1][Y].classList.add("x");
+        cambiarMuro(X-1,Y);
+    }
+    if (Y+1 < mapa[Y].length && mapa[X][Y+1].className.indexOf("muro") >= 0) {
+        mapa[X][Y+1].classList.add("x");
+        cambiarMuro(X,Y+1);
+    }
+    if (Y-1 >= 0 && mapa[X][Y-1].className.indexOf("muro") >= 0) {
+        mapa[X][Y-1].classList.add("x");
+        cambiarMuro(X,Y-1);
+    }
+}
+
+function cambiarMuro(x,y) {
+    //Pasamos la posición del muro
+    inicialX = x;
+    inicialY = y;
+    contador = 0;
+    fuera = false;
+
+    for (let i = 0; i < 6 && !fuera; i++) {
+        
+        //comprobamos izquierda
+        if (mapa[x][y-1].classList.contains("muro") && mapa[x][y-1].classList.contains("x")) {
+            y--;
+            contador++;
+        }
+        //comprobamos derecha
+        //comprobamos arriba
+        //comprobamos abajo
+    }
+    if (contador == 6) {
+        pintarMuro(inicalX,inicialY);
+    }
+    
+}
+
+
+function pintarMuro(x,y) {
+
+}
+
+
+function rellenarPilar1() { 
+   for (let i = 0; i < Pilar1.length; i++) {
+       for (let j = 0; j < Pilar1[i].length; j++) {
+           Pilar1[i][j] = mapa[i+1][j];
+       }
+   }
+   
 }
 function moverPersonaje(evento) {
+
     if (evento.key == "ArrowDown") {
         MoverAbajo();
     }
@@ -120,6 +181,7 @@ function moverPersonaje(evento) {
     if (evento.key == "ArrowLeft") {
         MoverIzquierda();
     }
+    marcarCamino();
 }
 
 function MoverAbajo() {
@@ -275,6 +337,8 @@ window.onload = function () {
     matrizMapa();
     cargarPersonaje();
     document.addEventListener("keydown", moverPersonaje);
-    setInterval(comprobarMuro,100);
-    setInterval(moverEnemigo, 300);
+   
+
+     setInterval(comprobarMuro,100);
+  //  setInterval(moverEnemigo, 300);
 }
