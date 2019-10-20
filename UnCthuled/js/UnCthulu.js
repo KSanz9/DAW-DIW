@@ -70,7 +70,7 @@ function cargarPersonaje() {
 
 
 }
-
+/*
 function comprobarMuro() {
     rellenarPilar1();
     pintado1 = false;
@@ -96,17 +96,8 @@ function comprobarMuro() {
 //////////////////////////////////////////////////////////////////////////////////
     
 }
-
-/*
-function comprobarMuro(x,y) {
-    for(let i = 0; i < 6; i++) {
-        if (mapa[x][y].className.indexOf("muro") >= 0) {
-
-        }
-    }
-}
-
 */
+
 
 
 function  marcarCamino() {
@@ -115,11 +106,11 @@ function  marcarCamino() {
         cambiarMuro(X+1,Y);
     }
         
-    if (X-1 >= 0 && mapa[X-1][Y].className.indexOf("muro") >= 0) {
+    if (X-1 > 0 && mapa[X-1][Y].className.indexOf("muro") >= 0) {
         mapa[X-1][Y].classList.add("x");
         cambiarMuro(X-1,Y);
     }
-    if (Y+1 < mapa[Y].length && mapa[X][Y+1].className.indexOf("muro") >= 0) {
+    if (Y+1 < 20 && mapa[X][Y+1].className.indexOf("muro") >= 0) {
         mapa[X][Y+1].classList.add("x");
         cambiarMuro(X,Y+1);
     }
@@ -135,7 +126,6 @@ function cambiarMuro(x,y) {
     inicialY = y;
     contador = 0;
     fuera = false;
-
     for (let i = 0; i < 6 && !fuera; i++) {
         
         //comprobamos izquierda
@@ -144,29 +134,64 @@ function cambiarMuro(x,y) {
             contador++;
         }
         //comprobamos derecha
+        if (mapa[x][y+1].classList.contains("muro") && mapa[x][y+1].classList.contains("x")) {
+            y++;
+            contador++;
+        }
         //comprobamos arriba
+        if(mapa[x-1]!= 0){
+        if (mapa[x-1][y].classList.contains("muro") && mapa[x-1][y].classList.contains("x")) {
+            x--;
+            contador++;
+        }
+    }
         //comprobamos abajo
+
+         if (mapa[x+1][y].classList.contains("muro") && mapa[x+1][y].classList.contains("x")) {
+            x++;
+            contador++;
+        }
     }
     if (contador == 6) {
-        pintarMuro(inicalX,inicialY);
+     pintarMuro(inicalX,inicialY);
     }
-    
 }
+    
+
 
 
 function pintarMuro(x,y) {
 
+ //comprobamos izquierda
+ if (mapa[x][y-1].classList.contains("muro") && mapa[x][y-1].classList.contains("x")) {
+    mapa[x][y-1].classList.add("pintado");
+    y--;
+
+}
+//comprobamos derecha
+if (mapa[x][y+1].classList.contains("muro") && mapa[x][y+1].classList.contains("x")) {
+    mapa[x][y+1].classList.add("pintado");
+    y++;
+
+}
+//comprobamos arriba
+if (mapa[x-1][y].classList.contains("muro") && mapa[x-1][y].classList.contains("x")) {
+    mapa[x-1][y].classList.add("pintado");
+    x--;
+
+}
+
+//comprobamos abajo
+
+ if (mapa[x+1][y].classList.contains("muro") && mapa[x+1][y].classList.contains("x")) {
+    mapa[x+1][y].classList.add("pintado");
+    x++;
+
+}
+
 }
 
 
-function rellenarPilar1() { 
-   for (let i = 0; i < Pilar1.length; i++) {
-       for (let j = 0; j < Pilar1[i].length; j++) {
-           Pilar1[i][j] = mapa[i+1][j];
-       }
-   }
-   
-}
 function moverPersonaje(evento) {
 
     if (evento.key == "ArrowDown") {
@@ -337,8 +362,5 @@ window.onload = function () {
     matrizMapa();
     cargarPersonaje();
     document.addEventListener("keydown", moverPersonaje);
-   
-
-     setInterval(comprobarMuro,100);
-  //  setInterval(moverEnemigo, 300);
+        setInterval(moverEnemigo, 300);
 }
