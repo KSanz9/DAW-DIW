@@ -151,10 +151,12 @@ function cambiarMuro(x,y) {
             x++;
             contador++;
         }
+        if (contador == 6) {
+            pintarMuro(inicialX,inicialY);
+            fuera = true;
+           }
     }
-    if (contador == 6) {
-     pintarMuro(inicalX,inicialY);
-    }
+   
 }
     
 
