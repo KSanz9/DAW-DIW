@@ -42,6 +42,13 @@ function matrizMapa() {
     console.table(mapa);
 }
 
+function objetosMapa(){
+    var Objetos = new Array("Llave", "Urna", "Pergamino", "Momia", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada");
+
+
+
+}
+
 function cargarPersonaje() {
     //Random del enemigo
     mapa[X][Y].classList.add("jugador");
@@ -62,9 +69,7 @@ function cargarPersonaje() {
             chtulhu = true;
         }
     }
-    //while (mapa[XRandom][YRandom] != document.getElementByClassName("muro")) {
-
-    //}
+   
 
 
 }
@@ -124,12 +129,15 @@ function cambiarMuro(x,y) {
     inicialX = x;
     inicialY = y;
     console.log(" [ X : " +x+"] [ Y: "+y+"]" );
+   
     
+
+
        if( mapa[inicialX][inicialY].classList.contains("muro")){
 
             if(mapa[inicialX][inicialY-1].classList.contains("muro")){
 
-                if (mapa[inicialX][inicialY-2].classList.contains("muro")) { 
+                if (mapa[inicialX][inicialY-2].classList.contains("muro")) {
 
                     if(mapa[inicialX-1][inicialY-2].classList.contains("muro")){
 
@@ -140,6 +148,13 @@ function cambiarMuro(x,y) {
                         pintarMuro(inicialX,inicialY-2);
 
                     }   
+                }else{
+                    if (mapa[inicialX-1][inicialY-1].classList.contains("muro")) {
+                        pintarMuro(inicialX-1,inicialY-1);
+                    }else{
+                        pintarMuro(inicialX,inicialY-1);
+
+                    }
                 }
 
             }else{
@@ -166,38 +181,30 @@ function cambiarMuro(x,y) {
 
 
 function pintarMuro(x,y) {
-    iniX = x;
-    iniY = y;
-    var Pilar = new Array(2);
-    for (let i = 0; i < Pilar.length; i++) {
-        Pilar[i] = new Array(3);
-    }
-    var p_pintar = true;
-    for (let index = 0; index < Pilar.length; index++, iniX++) {
-        for (let jindex = 0; jindex < Pilar[index].length; jindex++, iniY++) {
-            Pilar[index][jindex] = mapa[iniX][iniY];
+    
+    iniX = x-1;
+    iniY = y-1;
+
+    contador = 0;
+    for (let x = 0; x <= 3; x++) {
+        for (let y = 0; y <= 4; y++){
+            if (mapa[iniX+x][iniY+y].classList.contains("pisada")) contador++;
         }
     }
 
-    for (let index = 0; index < Pilar.length; index++) {
-        for (let jindex = 0; jindex < Pilar[index].length; jindex++) {
-            if(Pilar[index][jindex].classList.contains("borde_Pisado") && p_pintar){
-                Pilar[index][jindex].classList.add("pintado");
-            }else{
-                p_pintar = false;
+
+    if(contador == 14) {
+        for (let index = 0; index < 2; index++) {
+            for (let jindex = 0; jindex < 3; jindex++) {
+                mapa[x + index][y + jindex].classList.add("pintado");
             }
         }
     }
 
 
 
+
 }
-
-
-
-
-
-
 
 function moverPersonaje(evento) {
 
@@ -224,12 +231,13 @@ function MoverAbajo() {
             mapa[X][Y].classList.remove("jugador");
             mapa[X][Y].classList.remove("jugador_Derecha");
             mapa[X][Y].classList.remove("jugador_Izquierda");
+           
+
+            X++;
             if (X != 0) {
                 mapa[X][Y].classList.add("pisada");
 
             }
-
-            X++;
 
             mapa[X][Y].classList.add("jugador");
 
@@ -244,9 +252,9 @@ function MoverArriba() {
             mapa[X][Y].classList.remove("jugador");
             mapa[X][Y].classList.remove("jugador_Derecha");
             mapa[X][Y].classList.remove("jugador_Izquierda");
-            mapa[X][Y].classList.add("pisada");
+            
             X--;
-
+            mapa[X][Y].classList.add("pisada");
             mapa[X][Y].classList.add("jugador");
 
         }
@@ -260,9 +268,9 @@ function MoverDerecha() {
             mapa[X][Y].classList.remove("jugador");
             mapa[X][Y].classList.remove("jugador_Derecha");
             mapa[X][Y].classList.remove("jugador_Izquierda");
-            mapa[X][Y].classList.add("pisada");
 
             Y++;
+            mapa[X][Y].classList.add("pisada");
 
             mapa[X][Y].classList.add("jugador_Derecha");
         }
@@ -278,9 +286,9 @@ function MoverIzquierda() {
             mapa[X][Y].classList.remove("jugador");
             mapa[X][Y].classList.remove("jugador_Derecha");
             mapa[X][Y].classList.remove("jugador_Izquierda");
-            mapa[X][Y].classList.add("pisada");
 
             Y--;
+            mapa[X][Y].classList.add("pisada");
 
             mapa[X][Y].classList.add("jugador_Izquierda");
         }
@@ -301,7 +309,6 @@ function moverEnemigo() {
                     if (!mapa[momiaX - 1][momiaY].classList.contains("muro")) {
 
                         mapa[momiaX][momiaY].classList.remove("chtulu");
-                        console.log("Arriba");
                         momiaX--;
 
                         mapa[momiaX][momiaY].classList.add("chtulu");
@@ -316,7 +323,6 @@ function moverEnemigo() {
                     if (!mapa[momiaX + 1][momiaY].classList.contains("muro")) {
 
                         mapa[momiaX][momiaY].classList.remove("chtulu");
-                        console.log("Abajo");
                         momiaX++;
 
                         mapa[momiaX][momiaY].classList.add("chtulu");
@@ -332,7 +338,6 @@ function moverEnemigo() {
                     if (!mapa[momiaX][momiaY + 1].classList.contains("muro")) {
 
                         mapa[momiaX][momiaY].classList.remove("chtulu");
-                        console.log("Derecha");
                         momiaY++;
 
                         mapa[momiaX][momiaY].classList.add("chtulu");
@@ -349,7 +354,6 @@ function moverEnemigo() {
                     if (!mapa[momiaX][momiaY - 1].classList.contains("muro")) {
 
                         mapa[momiaX][momiaY].classList.remove("chtulu");
-                        console.log("Izquierda");
                         momiaY--;
 
                         mapa[momiaX][momiaY].classList.add("chtulu");
@@ -367,8 +371,9 @@ function moverEnemigo() {
 window.onload = function () {
 
     matrizMapa();
+    objetosMapa();
     cargarPersonaje();
     document.addEventListener("keydown", moverPersonaje);
-        //setInterval(moverEnemigo, 300);
-        console.log("La momia se mueve");
+    setInterval(moverEnemigo, 300);
+    console.log("La momia se mueve");
 }
