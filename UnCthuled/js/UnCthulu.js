@@ -10,6 +10,24 @@ var Y = 8;
 
 var momiaX;
 var momiaY;
+
+
+
+//vidas
+var vidas = 4;
+
+var vida = new Array()
+vida = document.getElementsByClassName("life");
+
+//Objetos de los pilares
+    var Objetos = new Array("Llave", "Urna", "Pergamino", "Momia", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada");
+    var Llave = false;
+    var Urna = false;
+    var Pergamino = false;
+    var Momia = false;
+
+
+
 function matrizMapa() {
 
     for (let i = 0; i < mapa.length; i++) {
@@ -22,7 +40,10 @@ function matrizMapa() {
             }
 
             if (i == 1 || j == 0 || i == 4 || j == 4 || i == 7 || j == 8 || i == 10 || j == 12 || i == 13 || j == 16 || i == 14 || j == 20) {
-                newDiv.classList.add("camino");
+                if (i !=0 || j == 8) {
+                    newDiv.classList.add("camino");
+                }
+                
 
             } else {
                 if (i == 0) {
@@ -43,10 +64,9 @@ function matrizMapa() {
 }
 
 function objetosMapa(){
-    var Objetos = new Array("Llave", "Urna", "Pergamino", "Momia", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada");
-
-
-
+    var aleatorio = Math.floor(Math.random()*(Objetos.length));
+    return Objetos.splice(aleatorio, 1);
+    
 }
 
 function cargarPersonaje() {
@@ -73,34 +93,12 @@ function cargarPersonaje() {
 
 
 }
-/*
-function comprobarMuro() {
-    rellenarPilar1();
-    pintado1 = false;
-        var contador1 = 0;
-///////////////////////////////////////////////////////////////////////////////
-        for (let index = 0; index < Pilar1.length; index++) {
-            for (let jindex = 0; jindex < Pilar1[index].length; jindex++) {
-                if (Pilar1[index][jindex].classList.contains("pisada")||Pilar1[index][jindex].classList.contains("pisada")|| Pilar1[index][jindex].classList.contains("pisada")||Pilar1[index][jindex].classList.contains("pisada")) {
-                    contador1++;
-                }
-            }
-        }
-        if (contador1 == 13) {
-            for (let index = 0; index < Pilar1.length; index++) {
-                for (let jindex = 0; jindex < Pilar1[index].length; jindex++) {
-                   if (Pilar1[index][jindex].classList.contains("muro")){
-                    Pilar1[index][jindex].classList.add("pintado")
-                    }
-                }
-            }              
-        }
-       
-//////////////////////////////////////////////////////////////////////////////////
-    
-}
-*/
+function crearEnemigo(xenrmigo, yenemigo){
 
+    mapa[xenrmigo][yenemigo].classList.add("chtulu");
+
+
+}
 
 
 function  marcarCamino() {
@@ -202,7 +200,35 @@ function pintarMuro(x,y) {
     }
 
 
+    for (let index = 0; index < 2; index++) {
+        for (let jindex = 0; jindex < 3; jindex++) {
+            if(mapa[x + index][y + jindex].classList.contains("pintado")){
+                if (index ==1 && jindex == 1 && !mapa[x + index][y + jindex].classList.contains("Nada") && !mapa[x + index][y + jindex].classList.contains("Llave") && !mapa[x + index][y + jindex].classList.contains("Urna") && !mapa[x + index][y + jindex].classList.contains("Pergamino")) {
+                    var objeto = objetosMapa();
+                    mapa[x + index][y + jindex].classList.add(objeto);
 
+                    if (mapa[x + index][y + jindex].classList.contains("Llave")) {
+                        Llave = true;
+                    }
+
+                    if (mapa[x + index][y + jindex].classList.contains("Urna")) {
+                        Urna = true;
+                    }
+
+                    if (mapa[x + index][y + jindex].classList.contains("Pergamino")) {
+                        Pergamino = true;
+                    }
+
+                    if (mapa[x + index][y + jindex].classList.contains("Momia")) {
+                        var enemigoX = x+index +1;
+                        var enemigoY = y + jindex;
+                        crearEnemigo(enemigoX, enemigoY);
+                    }
+
+                }
+            }
+        }
+    }
 
 }
 
@@ -262,6 +288,7 @@ function MoverArriba() {
 }
 
 function MoverDerecha() {
+    if(X != 0){ 
     if (Y != 20) {
         if (!mapa[X][Y + 1].classList.contains("muro")) {
 
@@ -276,8 +303,10 @@ function MoverDerecha() {
         }
     }
 }
+}
 
 function MoverIzquierda() {
+    if(X != 0){ 
     if (Y != 0) {
 
         if (!mapa[X][Y - 1].classList.contains("muro")) {
@@ -294,7 +323,7 @@ function MoverIzquierda() {
         }
     }
 }
-
+}
 
 
 function moverEnemigo() {
@@ -368,11 +397,11 @@ function moverEnemigo() {
 
 
 
-window.onload = function () {
 
+window.onload = function () {
     matrizMapa();
-    objetosMapa();
     cargarPersonaje();
+    matarPersonaje();
     document.addEventListener("keydown", moverPersonaje);
     setInterval(moverEnemigo, 300);
     console.log("La momia se mueve");
