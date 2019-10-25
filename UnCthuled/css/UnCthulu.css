@@ -97,6 +97,11 @@ body{
     background-size: 100% 100%;
 }
 
+.Momia{
+    background-image: url("../img/N_Momia.png");
+    background-size: 100% 100%;
+}
+
 #Vidas{
     display: grid;
     grid-template-columns: repeat(5, 1fr);

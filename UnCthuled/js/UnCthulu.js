@@ -8,10 +8,6 @@ for (let i = 0; i < mapa.length; i++) {
 var X = 0;
 var Y = 8;
 
-var momiaX;
-var momiaY;
-
-
 
 //vidas
 var vidas = 4;
@@ -72,10 +68,24 @@ function objetosMapa(){
 function cargarPersonaje() {
     //Random del enemigo
     mapa[X][Y].classList.add("jugador");
+    
+   
+
+
+}
+
+function  cargarChtulhu(xenrmigo, yenemigo) {
     var chtulhu = false;
 
+//momia creada desde el principio
+    var momiaX;
+    var momiaY;
+//momia que sale en pilar
+    var momiaX2 = xenrmigo;
+    var momiaY2 = yenemigo;
 
 
+if (Momia == false) {
     while (!chtulhu) {
         var XRandom = Math.floor(Math.random() * 13) + 1;
         var YRandom = Math.floor(Math.random() * 20);
@@ -89,14 +99,12 @@ function cargarPersonaje() {
             chtulhu = true;
         }
     }
-   
+    setInterval(moverEnemigo, 300, momiaX, momiaY);
 
-
+}else{
+    mapa[momiaX2][momiaY2].classList.add("chtulu");
+    setInterval(moverEnemigo, 300, momiaX2, momiaY2);
 }
-function crearEnemigo(xenrmigo, yenemigo){
-
-    mapa[xenrmigo][yenemigo].classList.add("chtulu");
-
 
 }
 
@@ -126,10 +134,6 @@ function cambiarMuro(x,y) {
     //Pasamos la posición del muro
     inicialX = x;
     inicialY = y;
-    console.log(" [ X : " +x+"] [ Y: "+y+"]" );
-   
-    
-
 
        if( mapa[inicialX][inicialY].classList.contains("muro")){
 
@@ -222,7 +226,7 @@ function pintarMuro(x,y) {
                     if (mapa[x + index][y + jindex].classList.contains("Momia")) {
                         var enemigoX = x+index +1;
                         var enemigoY = y + jindex;
-                        crearEnemigo(enemigoX, enemigoY);
+                        cargarChtulhu(enemigoX, enemigoY);
                     }
 
                 }
@@ -272,6 +276,38 @@ function MoverAbajo() {
 }
 
 function MoverArriba() {
+    if (Llave == true && Urna == true ) {
+        if (X- 1 == 0 && Y == 8) {
+            if (!mapa[X - 1][Y].classList.contains("muro")) {
+
+                mapa[X][Y].classList.remove("jugador");
+                mapa[X][Y].classList.remove("jugador_Derecha");
+                mapa[X][Y].classList.remove("jugador_Izquierda");
+                
+                X--;
+                mapa[X][Y].classList.add("pisada");
+                mapa[X][Y].classList.add("jugador");
+                terminarPartida();
+    
+            }
+        }else{
+            if (X - 1 != 0) {
+                if (!mapa[X - 1][Y].classList.contains("muro")) {
+        
+                    mapa[X][Y].classList.remove("jugador");
+                    mapa[X][Y].classList.remove("jugador_Derecha");
+                    mapa[X][Y].classList.remove("jugador_Izquierda");
+                    
+                    X--;
+                    mapa[X][Y].classList.add("pisada");
+                    mapa[X][Y].classList.add("jugador");
+        
+                }
+            }
+        }
+
+       
+    } else { 
     if (X - 1 != 0) {
         if (!mapa[X - 1][Y].classList.contains("muro")) {
 
@@ -285,6 +321,7 @@ function MoverArriba() {
 
         }
     }
+}
 }
 
 function MoverDerecha() {
@@ -326,8 +363,8 @@ function MoverIzquierda() {
 }
 
 
-function moverEnemigo() {
-
+function moverEnemigo(momiaX, momiaY) {
+console.log("Hola");
     movimientoHecho = false;
     while (!movimientoHecho) {
         movimientoRandom = Math.floor(Math.random() * 4);
@@ -394,15 +431,31 @@ function moverEnemigo() {
         }
     }
 }
+/*
+function matarPersonaje(){
+    for (let index = 0; index < mapa.length; index++) {
+       for (let jindex = 0; jindex < mapa[index].length; jindex++) {
+         if (mapa[index][jindex].contains("chtulu") && mapa[index][jindex].contains("jugador") || mapa[index][jindex].contains("jugador_Derecha") || mapa[index][jindex].contains("jugador_Izquierda")){
+            if(Pergamino == true){
+                remove.classList("chtulu");
+            }else{
+                quitarVida();
+            }
 
-
-
+         }
+       }
+        
+    }
+}
+*/
+function terminarPartida(){
+    alert("Has sobrevivido a Chtulhu")
+}
 
 window.onload = function () {
     matrizMapa();
     cargarPersonaje();
-    matarPersonaje();
+    cargarChtulhu(0, 0);
+    //matarPersonaje();
     document.addEventListener("keydown", moverPersonaje);
-    setInterval(moverEnemigo, 300);
-    console.log("La momia se mueve");
 }
