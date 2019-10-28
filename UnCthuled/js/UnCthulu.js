@@ -3,17 +3,20 @@ for (let i = 0; i < mapa.length; i++) {
     mapa[i] = new Array(21);
 }
 
+class Malote{
+    posicionX = 0;
+    posicionY = 0;
+}
+
+var malos = new Array();
+
+
 //
 //Inicio del personaje
 var X = 0;
 var Y = 8;
+let arribaveces=0;
 
-//momia creada desde el principio
-    var momiaX;
-    var momiaY;
-//momia que sale en pilar
-    var momiaX2;
-    var momiaY2;
 
 
 
@@ -96,16 +99,23 @@ if (Momia == false) {
 
         if (mapa[XRandom][YRandom].classList.contains("camino")) {
             mapa[XRandom][YRandom].classList.add("chtulu");
-            momiaX = XRandom;
-            momiaY = YRandom;
+            M1 = new Malote();
+            M1.posicionX = XRandom;
+            M1.posicionY = YRandom
+            var momia = malos.push('momia');
             chtulhu = true;
         }
     }
-    setInterval(moverEnemigo, 300, momiaX, momiaY);
+    setInterval(moverEnemigo, 300, M1);
 
 }else{
-    mapa[momiaX2][momiaY2].classList.add("chtulu");
-    setInterval(moverEnemigo, 300, momiaX2, momiaY2);
+    mapa[xenrmigo][yenemigo].classList.add("chtulu");
+    M2 = new Malote();
+    M2.posicionX = xenrmigo;
+    M2.posicionY = yenemigo;
+    var momia2 = malos.push('momia2');
+
+    setInterval(moverEnemigo, 300, M2);
 }
 
 }
@@ -365,21 +375,22 @@ function MoverIzquierda() {
 }
 
 
-function moverEnemigo(momiaX, momiaY) {
-console.log("Hola");
+function moverEnemigo(M) {
+       
     movimientoHecho = false;
     while (!movimientoHecho) {
         movimientoRandom = Math.floor(Math.random() * 4);
         switch (movimientoRandom) {
             case 0:
+              //  console.log("arriba" + arribaveces++)
                 //arriba
-                if (momiaX - 1 != 0) {
-                    if (!mapa[momiaX - 1][momiaY].classList.contains("muro")) {
+                if (M.posicionX - 1 != 0) {
+                    if (!mapa[M.posicionX - 1][M.posicionY].classList.contains("muro")) {
 
-                        mapa[momiaX][momiaY].classList.remove("chtulu");
-                        momiaX--;
+                        mapa[M.posicionX][M.posicionY].classList.remove("chtulu");
+                        M.posicionX--;
 
-                        mapa[momiaX][momiaY].classList.add("chtulu");
+                        mapa[M.posicionX][M.posicionY].classList.add("chtulu");
 
                         movimientoHecho = true;
                     }
@@ -387,13 +398,13 @@ console.log("Hola");
                 break;
             case 1:
                 //abajo
-                if (momiaX != 13) {
-                    if (!mapa[momiaX + 1][momiaY].classList.contains("muro")) {
+                if (M.posicionX != 13) {
+                    if (!mapa[M.posicionX + 1][M.posicionY].classList.contains("muro")) {
 
-                        mapa[momiaX][momiaY].classList.remove("chtulu");
-                        momiaX++;
+                        mapa[M.posicionX][M.posicionY].classList.remove("chtulu");
+                        M.posicionX++;
 
-                        mapa[momiaX][momiaY].classList.add("chtulu");
+                        mapa[M.posicionX][M.posicionY].classList.add("chtulu");
 
                         movimientoHecho = true;
                     }
@@ -402,13 +413,13 @@ console.log("Hola");
                 break;
             case 2:
                 //derecha
-                if (momiaY != 20) {
-                    if (!mapa[momiaX][momiaY + 1].classList.contains("muro")) {
+                if (M.posicionY != 20) {
+                    if (!mapa[M.posicionX][M.posicionY + 1].classList.contains("muro")) {
 
-                        mapa[momiaX][momiaY].classList.remove("chtulu");
-                        momiaY++;
+                        mapa[M.posicionX][M.posicionY].classList.remove("chtulu");
+                        M.posicionY++;
 
-                        mapa[momiaX][momiaY].classList.add("chtulu");
+                        mapa[M.posicionX][M.posicionY].classList.add("chtulu");
 
                         movimientoHecho = true;
                     }
@@ -417,14 +428,14 @@ console.log("Hola");
                 break;
             case 3:
                 //izquierda   
-                if (momiaY != 0) {
+                if (M.posicionY != 0) {
 
-                    if (!mapa[momiaX][momiaY - 1].classList.contains("muro")) {
+                    if (!mapa[M.posicionX][M.posicionY - 1].classList.contains("muro")) {
 
-                        mapa[momiaX][momiaY].classList.remove("chtulu");
-                        momiaY--;
+                        mapa[M.posicionX][M.posicionY].classList.remove("chtulu");
+                        Malote.posicionY--;
 
-                        mapa[momiaX][momiaY].classList.add("chtulu");
+                        mapa[M.posicionX][M.posicionY].classList.add("chtulu");
 
                         movimientoHecho = true;
                     }
@@ -432,6 +443,7 @@ console.log("Hola");
                 break;
         }
     }
+
 }
 /*
 function matarPersonaje(){
