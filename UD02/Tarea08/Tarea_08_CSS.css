@@ -1,0 +1,32 @@
+:root{
+    --Blanco: white;
+}
+
+
+body{
+    background-image: url("img/Bard.jpg");
+  
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    background-attachment: fixed;
+
+    display: flex;
+    height: 700px;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+
+.sound{
+    border: 3px solid var(--Blanco);
+    text-align: center;
+}
+
+h3{
+    color: var(--Blanco);
+}
+p{
+   color: var(--Blanco);
+}
