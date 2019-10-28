@@ -8,6 +8,14 @@ for (let i = 0; i < mapa.length; i++) {
 var X = 0;
 var Y = 8;
 
+//momia creada desde el principio
+    var momiaX;
+    var momiaY;
+//momia que sale en pilar
+    var momiaX2 = xenrmigo;
+    var momiaY2 = yenemigo;
+
+
 
 //vidas
 var vidas = 4;
@@ -77,12 +85,6 @@ function cargarPersonaje() {
 function  cargarChtulhu(xenrmigo, yenemigo) {
     var chtulhu = false;
 
-//momia creada desde el principio
-    var momiaX;
-    var momiaY;
-//momia que sale en pilar
-    var momiaX2 = xenrmigo;
-    var momiaY2 = yenemigo;
 
 
 if (Momia == false) {
