@@ -12,8 +12,8 @@ var Y = 8;
     var momiaX;
     var momiaY;
 //momia que sale en pilar
-    var momiaX2 = xenrmigo;
-    var momiaY2 = yenemigo;
+    var momiaX2;
+    var momiaY2;
 
 
 
