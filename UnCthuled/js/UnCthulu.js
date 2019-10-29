@@ -6,6 +6,11 @@ for (let i = 0; i < mapa.length; i++) {
 class Malote{
     posicionX = 0;
     posicionY = 0;
+
+    constructor(x,y) {
+        this.posicionX = x;
+        this.posicionY = y;
+    }
 }
 
 var malos = new Array();
@@ -15,10 +20,10 @@ var malos = new Array();
 //Inicio del personaje
 var X = 0;
 var Y = 8;
-let arribaveces=0;
 
 
 
+var nivel = 1;
 
 //vidas
 var vidas = 4;
@@ -85,42 +90,79 @@ function cargarPersonaje() {
 
 }
 
-function  cargarChtulhu(xenrmigo, yenemigo) {
+function  cargarChtulhu(xenemigo, yenemigo) {
     var chtulhu = false;
 
+    if (!Momia) {
+        while (!chtulhu) {
+            var XRandom = Math.floor(Math.random() * 13) + 1;
+            var YRandom = Math.floor(Math.random() * 20);
 
-
-if (Momia == false) {
-    while (!chtulhu) {
-        var XRandom = Math.floor(Math.random() * 13) + 1;
-        var YRandom = Math.floor(Math.random() * 20);
-
-
-
-        if (mapa[XRandom][YRandom].classList.contains("camino")) {
-            mapa[XRandom][YRandom].classList.add("chtulu");
-            M1 = new Malote();
-            M1.posicionX = XRandom;
-            M1.posicionY = YRandom
-            var momia = malos.push('momia');
-            chtulhu = true;
+            if (mapa[XRandom][YRandom].classList.contains("camino")) {
+                mapa[XRandom][YRandom].classList.add("chtulu");
+                M1 = new Malote(XRandom,YRandom);
+                // M1.posicionX = XRandom;
+                // M1.posicionY = YRandom
+                var momia = malos.push(M1);
+                setInterval(matarPersonaje, 100,M1);
+                chtulhu = true;
+            }
         }
+        Momia = true;
+        
+
+        //setInterval(moverEnemigo, 300, M1);
+
+    }else{
+
+
+        console.log()
+        mapa[xenemigo][yenemigo].classList.add("chtulu");
+        M2 = new Malote(xenemigo,yenemigo);
+        M2.posicionX = xenemigo;
+        M2.posicionY = yenemigo;
+
+        console.log(M2.posicionX + " : " + M2.posicionY);
+        var momia2 = malos.push(M2);
+       setInterval(matarPersonaje, 100,M2);
+        //setInterval(moverEnemigo, 300, M2);
     }
-    setInterval(moverEnemigo, 300, M1);
-
-}else{
-    mapa[xenrmigo][yenemigo].classList.add("chtulu");
-    M2 = new Malote();
-    M2.posicionX = xenrmigo;
-    M2.posicionY = yenemigo;
-    var momia2 = malos.push('momia2');
-
-    setInterval(moverEnemigo, 300, M2);
 }
 
+function matarPersonaje(M) {
+    for (let index = 0; index < mapa.length; index++) {
+    for (let jindex = 0; jindex < mapa[index].length; jindex++) {
+
+        if (mapa[index][jindex].classList.contains("judador") ||
+        mapa[index][jindex].classList.contains("judador_Derecha") ||
+        mapa[index][jindex].classList.contains("judador_Izquierda") &&
+        mapa[index][jindex].classList.contains("chtulu")) {
+
+            console.log("pene");
+            if (Pergamino) {
+                delete M;
+            } else {
+                vidas--;
+                console.log(vidas);
+                perderVida();
+
+        }
+        }        
+    
 }
+    }
 
+    if (vidas == 0) {
+        loseGame();
+    }
 
+}
+function perderVida(){
+    var quitar = vida.pop();    
+}
+function loseGame() {
+    alert("Has sucumbido a Chtulu");
+}
 function  marcarCamino() {
     
     if (X+1 < mapa.length && mapa[X+1][Y].classList.contains("muro"))  {
@@ -219,7 +261,11 @@ function pintarMuro(x,y) {
     for (let index = 0; index < 2; index++) {
         for (let jindex = 0; jindex < 3; jindex++) {
             if(mapa[x + index][y + jindex].classList.contains("pintado")){
-                if (index ==1 && jindex == 1 && !mapa[x + index][y + jindex].classList.contains("Nada") && !mapa[x + index][y + jindex].classList.contains("Llave") && !mapa[x + index][y + jindex].classList.contains("Urna") && !mapa[x + index][y + jindex].classList.contains("Pergamino")) {
+                if (index ==1 && jindex == 1 && !mapa[x + index][y + jindex].classList.contains("Nada") && 
+                !mapa[x + index][y + jindex].classList.contains("Llave") && 
+                !mapa[x + index][y + jindex].classList.contains("Urna") && 
+                !mapa[x + index][y + jindex].classList.contains("Pergamino")&&
+                !mapa[x + index][y + jindex].classList.contains("Momia")) {
                     var objeto = objetosMapa();
                     mapa[x + index][y + jindex].classList.add(objeto);
 
@@ -238,6 +284,7 @@ function pintarMuro(x,y) {
                     if (mapa[x + index][y + jindex].classList.contains("Momia")) {
                         var enemigoX = x+index +1;
                         var enemigoY = y + jindex;
+
                         cargarChtulhu(enemigoX, enemigoY);
                     }
 
@@ -369,6 +416,7 @@ function MoverIzquierda() {
             mapa[X][Y].classList.add("pisada");
 
             mapa[X][Y].classList.add("jugador_Izquierda");
+            
         }
     }
 }
@@ -391,7 +439,7 @@ function moverEnemigo(M) {
                         M.posicionX--;
 
                         mapa[M.posicionX][M.posicionY].classList.add("chtulu");
-
+                     
                         movimientoHecho = true;
                     }
                 }
@@ -405,7 +453,7 @@ function moverEnemigo(M) {
                         M.posicionX++;
 
                         mapa[M.posicionX][M.posicionY].classList.add("chtulu");
-
+                       
                         movimientoHecho = true;
                     }
                 }
@@ -420,7 +468,7 @@ function moverEnemigo(M) {
                         M.posicionY++;
 
                         mapa[M.posicionX][M.posicionY].classList.add("chtulu");
-
+                       
                         movimientoHecho = true;
                     }
                 }
@@ -436,7 +484,7 @@ function moverEnemigo(M) {
                         Malote.posicionY--;
 
                         mapa[M.posicionX][M.posicionY].classList.add("chtulu");
-
+                       
                         movimientoHecho = true;
                     }
                 }
@@ -445,31 +493,53 @@ function moverEnemigo(M) {
     }
 
 }
-/*
-function matarPersonaje(){
-    for (let index = 0; index < mapa.length; index++) {
-       for (let jindex = 0; jindex < mapa[index].length; jindex++) {
-         if (mapa[index][jindex].contains("chtulu") && mapa[index][jindex].contains("jugador") || mapa[index][jindex].contains("jugador_Derecha") || mapa[index][jindex].contains("jugador_Izquierda")){
-            if(Pergamino == true){
-                remove.classList("chtulu");
-            }else{
-                quitarVida();
-            }
 
-         }
-       }
-        
-    }
-}
-*/
+
+
 function terminarPartida(){
-    alert("Has sobrevivido a Chtulhu")
+    alert("Has sobrevivido a Chtulhu");
+    nivel++;
+    alert("Cargando nivel "+nivel);
+    reiniciarJuego();
 }
+
+function reiniciarJuego(){
+
+    document.getElementById("mapa").innerHTML = "";
+
+    reiniciarVariables();
+    matrizMapa();
+    cargarPersonaje();
+    cargarChtulhu(0, 0);
+    document.addEventListener("keydown", moverPersonaje);
+    document.getElementById('Level').innerHTML='Nivel '+ this.nivel;
+
+}
+function reiniciarVariables(){
+     
+    mapa = new Array(14);
+    for (let i = 0; i < mapa.length; i++) {
+        mapa[i] = new Array(21);
+    }  
+    malos = new Array(); 
+    //
+    //Inicio del personaje
+    X = 0;
+    Y = 8;
+    //Objetos de los pilares
+    Objetos = new Array("Llave", "Urna", "Pergamino", "Momia", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada");
+    Llave = false;
+    Urna = false;
+    Pergamino = false;
+    Momia = false;
+
+}
+
 
 window.onload = function () {
     matrizMapa();
     cargarPersonaje();
     cargarChtulhu(0, 0);
-    //matarPersonaje();
     document.addEventListener("keydown", moverPersonaje);
+    document.getElementById('Level').innerHTML='Nivel '+ this.nivel;
 }
