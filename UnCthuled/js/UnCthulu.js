@@ -13,6 +13,17 @@ class Malote{
     }
 }
 
+class Explorador{
+    posicionX = 0;
+    posicionY = 0;
+
+    constructor(x,y) {
+        this.posicionX = x;
+        this.posicionY = y;
+    }
+}
+
+
 var malos = new Array();
 
 
@@ -21,6 +32,7 @@ var malos = new Array();
 var X = 0;
 var Y = 8;
 
+j1 = new Explorador(X,Y);
 
 
 var nivel = 1;
@@ -28,7 +40,7 @@ var nivel = 1;
 //vidas
 var vidas = 4;
 
-var vida = new Array()
+var vida = new Array();
 vida = document.getElementsByClassName("life");
 
 //Objetos de los pilares
@@ -82,7 +94,9 @@ function objetosMapa(){
 }
 
 function cargarPersonaje() {
-    //Random del enemigo
+    
+   
+
     mapa[X][Y].classList.add("jugador");
     
    
@@ -101,17 +115,15 @@ function  cargarChtulhu(xenemigo, yenemigo) {
             if (mapa[XRandom][YRandom].classList.contains("camino")) {
                 mapa[XRandom][YRandom].classList.add("chtulu");
                 M1 = new Malote(XRandom,YRandom);
-                // M1.posicionX = XRandom;
-                // M1.posicionY = YRandom
                 var momia = malos.push(M1);
-                setInterval(matarPersonaje, 100,M1);
                 chtulhu = true;
             }
         }
         Momia = true;
         
 
-        //setInterval(moverEnemigo, 300, M1);
+        setInterval(moverEnemigo, 300, M1);
+        matarPersonaje(j1,M1);
 
     }else{
 
@@ -119,39 +131,24 @@ function  cargarChtulhu(xenemigo, yenemigo) {
         console.log()
         mapa[xenemigo][yenemigo].classList.add("chtulu");
         M2 = new Malote(xenemigo,yenemigo);
-        M2.posicionX = xenemigo;
-        M2.posicionY = yenemigo;
-
-        console.log(M2.posicionX + " : " + M2.posicionY);
         var momia2 = malos.push(M2);
-       setInterval(matarPersonaje, 100,M2);
-        //setInterval(moverEnemigo, 300, M2);
+        setInterval(moverEnemigo, 300, M2);
+        matarPersonaje(j1,M2);
     }
 }
 
-function matarPersonaje(M) {
-    for (let index = 0; index < mapa.length; index++) {
-    for (let jindex = 0; jindex < mapa[index].length; jindex++) {
-
-        if (mapa[index][jindex].classList.contains("judador") ||
-        mapa[index][jindex].classList.contains("judador_Derecha") ||
-        mapa[index][jindex].classList.contains("judador_Izquierda") &&
-        mapa[index][jindex].classList.contains("chtulu")) {
-
-            console.log("pene");
-            if (Pergamino) {
-                delete M;
-            } else {
-                vidas--;
-                console.log(vidas);
-                perderVida();
-
+function matarPersonaje(j1,M) {
+        if (j1.posicionX == M.posicionX && j1.posicionY == M.posicionY) {
+            
+        if (Pergamino) {
+            delete M;
+        } else {
+            vidas--;
+            delete M;
+            perderVida();
         }
-        }        
-    
-}
     }
-
+    
     if (vidas == 0) {
         loseGame();
     }
@@ -165,22 +162,22 @@ function loseGame() {
 }
 function  marcarCamino() {
     
-    if (X+1 < mapa.length && mapa[X+1][Y].classList.contains("muro"))  {
-        mapa[X+1][Y].classList.add("borde_Pisado");
-        cambiarMuro(X+1,Y);
+    if (j1.posicionX+1 < mapa.length && mapa[j1.posicionX+1][j1.posicionY].classList.contains("muro"))  {
+        mapa[j1.posicionX+1][j1.posicionY].classList.add("borde_Pisado");
+        cambiarMuro(j1.posicionX+1,j1.posicionY);
     }
         
-    if (X-1 > 0 && mapa[X-1][Y].classList.contains("muro") ){
-        mapa[X-1][Y].classList.add("borde_Pisado");
-        cambiarMuro(X-1,Y);
+    if (j1.posicionX-1 > 0 && mapa[j1.posicionX-1][j1.posicionY].classList.contains("muro") ){
+        mapa[j1.posicionX-1][j1.posicionY].classList.add("borde_Pisado");
+        cambiarMuro(j1.posicionX-1,j1.posicionY);
     }
-    if (Y+1 < 20 && mapa[X][Y+1].classList.contains("muro") ) {
-        mapa[X][Y+1].classList.add("borde_Pisado");
-        cambiarMuro(X,Y+1);
+    if (j1.posicionY+1 < 20 && mapa[j1.posicionX][j1.posicionY+1].classList.contains("muro") ) {
+        mapa[j1.posicionX][j1.posicionY+1].classList.add("borde_Pisado");
+        cambiarMuro(j1.posicionX,j1.posicionY+1);
     }
-    if (Y-1 >= 0 && mapa[X][Y-1].classList.contains("muro") ) {
-        mapa[X][Y-1].classList.add("borde_Pisado");
-        cambiarMuro(X,Y-1);
+    if (j1.posicionY-1 >= 0 && mapa[j1.posicionX][j1.posicionY-1].classList.contains("muro") ) {
+        mapa[j1.posicionX][j1.posicionY-1].classList.add("borde_Pisado");
+        cambiarMuro(j1.posicionX,j1.posicionY-1);
     }
 }
 
@@ -298,68 +295,68 @@ function pintarMuro(x,y) {
 function moverPersonaje(evento) {
 
     if (evento.key == "ArrowDown") {
-        MoverAbajo();
+        MoverAbajo(j1);
     }
     if (evento.key == "ArrowUp") {
-        MoverArriba();
+        MoverArriba(j1);
     }
     if (evento.key == "ArrowRight") {
-        MoverDerecha();
+        MoverDerecha(j1);
     }
     if (evento.key == "ArrowLeft") {
-        MoverIzquierda();
+        MoverIzquierda(j1);
     }
     marcarCamino();
 }
 
-function MoverAbajo() {
-    if (X != 13) {
+function MoverAbajo(j1) {
+    if (j1.posicionX != 13) {
 
-        if (!mapa[X + 1][Y].classList.contains("muro")) {
+        if (!mapa[j1.posicionX + 1][j1.posicionY].classList.contains("muro")) {
 
-            mapa[X][Y].classList.remove("jugador");
-            mapa[X][Y].classList.remove("jugador_Derecha");
-            mapa[X][Y].classList.remove("jugador_Izquierda");
+            mapa[j1.posicionX][j1.posicionY].classList.remove("jugador");
+            mapa[j1.posicionX][j1.posicionY].classList.remove("jugador_Derecha");
+            mapa[j1.posicionX][j1.posicionY].classList.remove("jugador_Izquierda");
            
 
-            X++;
-            if (X != 0) {
-                mapa[X][Y].classList.add("pisada");
+            j1.posicionX++;
+            if (j1.posicionX != 0) {
+                mapa[j1.posicionX][j1.posicionY].classList.add("pisada");
 
             }
 
-            mapa[X][Y].classList.add("jugador");
+            mapa[j1.posicionX][j1.posicionY].classList.add("jugador");
 
         }
     }
 }
 
-function MoverArriba() {
+function MoverArriba(j1) {
     if (Llave == true && Urna == true ) {
-        if (X- 1 == 0 && Y == 8) {
-            if (!mapa[X - 1][Y].classList.contains("muro")) {
+        if (j1.posicionX- 1 == 0 && j1.posicionY == 8) {
+            if (!mapa[j1.posicionX - 1][j1.posicionY].classList.contains("muro")) {
 
-                mapa[X][Y].classList.remove("jugador");
-                mapa[X][Y].classList.remove("jugador_Derecha");
-                mapa[X][Y].classList.remove("jugador_Izquierda");
+                mapa[j1.posicionX][j1.posicionY].classList.remove("jugador");
+                mapa[j1.posicionX][j1.posicionY].classList.remove("jugador_Derecha");
+                mapa[j1.posicionX][j1.posicionY].classList.remove("jugador_Izquierda");
                 
-                X--;
-                mapa[X][Y].classList.add("pisada");
-                mapa[X][Y].classList.add("jugador");
+                j1.posicionX--;
+                mapa[j1.posicionX][j1.posicionY].classList.add("pisada");
+                mapa[j1.posicionX][j1.posicionY].classList.add("jugador");
                 terminarPartida();
     
             }
         }else{
-            if (X - 1 != 0) {
-                if (!mapa[X - 1][Y].classList.contains("muro")) {
+            if (j1.posicionX - 1 != 0) {
+                if (!mapa[j1.posicionX - 1][j1.posicionY].classList.contains("muro")) {
         
-                    mapa[X][Y].classList.remove("jugador");
-                    mapa[X][Y].classList.remove("jugador_Derecha");
-                    mapa[X][Y].classList.remove("jugador_Izquierda");
+                    mapa[j1.posicionX][j1.posicionY].classList.remove("jugador");
+                    mapa[j1.posicionX][j1.posicionY].classList.remove("jugador_Derecha");
+                    mapa[j1.posicionX][j1.posicionY].classList.remove("jugador_Izquierda");
                     
-                    X--;
-                    mapa[X][Y].classList.add("pisada");
-                    mapa[X][Y].classList.add("jugador");
+                    j1.posicionX--;
+                    mapa[j1.posicionX][j1.posicionY].classList.add("pisada");
+                    mapa[j1.posicionX][j1.posicionY].classList.add("jugador");
         
                 }
             }
@@ -367,55 +364,55 @@ function MoverArriba() {
 
        
     } else { 
-    if (X - 1 != 0) {
-        if (!mapa[X - 1][Y].classList.contains("muro")) {
+    if (j1.posicionX - 1 != 0) {
+        if (!mapa[j1.posicionX - 1][j1.posicionY].classList.contains("muro")) {
 
-            mapa[X][Y].classList.remove("jugador");
-            mapa[X][Y].classList.remove("jugador_Derecha");
-            mapa[X][Y].classList.remove("jugador_Izquierda");
+            mapa[j1.posicionX][j1.posicionY].classList.remove("jugador");
+            mapa[j1.posicionX][j1.posicionY].classList.remove("jugador_Derecha");
+            mapa[j1.posicionX][j1.posicionY].classList.remove("jugador_Izquierda");
             
-            X--;
-            mapa[X][Y].classList.add("pisada");
-            mapa[X][Y].classList.add("jugador");
+            j1.posicionX--;
+            mapa[j1.posicionX][j1.posicionY].classList.add("pisada");
+            mapa[j1.posicionX][j1.posicionY].classList.add("jugador");
 
         }
     }
 }
 }
 
-function MoverDerecha() {
-    if(X != 0){ 
+function MoverDerecha(j1) {
+    if(j1.posicionX != 0){ 
     if (Y != 20) {
-        if (!mapa[X][Y + 1].classList.contains("muro")) {
+        if (!mapa[j1.posicionX][j1.posicionY + 1].classList.contains("muro")) {
 
-            mapa[X][Y].classList.remove("jugador");
-            mapa[X][Y].classList.remove("jugador_Derecha");
-            mapa[X][Y].classList.remove("jugador_Izquierda");
+            mapa[j1.posicionX][j1.posicionY].classList.remove("jugador");
+            mapa[j1.posicionX][j1.posicionY].classList.remove("jugador_Derecha");
+            mapa[j1.posicionX][j1.posicionY].classList.remove("jugador_Izquierda");
 
-            Y++;
-            mapa[X][Y].classList.add("pisada");
+            j1.posicionY++;
+            mapa[j1.posicionX][j1.posicionY].classList.add("pisada");
 
-            mapa[X][Y].classList.add("jugador_Derecha");
+            mapa[j1.posicionX][j1.posicionY].classList.add("jugador_Derecha");
         }
     }
 }
 }
 
-function MoverIzquierda() {
-    if(X != 0){ 
-    if (Y != 0) {
+function MoverIzquierda(j1) {
+    if(j1.posicionX != 0){ 
+    if (j1.posicionY != 0) {
 
-        if (!mapa[X][Y - 1].classList.contains("muro")) {
+        if (!mapa[j1.posicionX][j1.posicionY - 1].classList.contains("muro")) {
 
 
-            mapa[X][Y].classList.remove("jugador");
-            mapa[X][Y].classList.remove("jugador_Derecha");
-            mapa[X][Y].classList.remove("jugador_Izquierda");
+            mapa[j1.posicionX][j1.posicionY].classList.remove("jugador");
+            mapa[j1.posicionX][j1.posicionY].classList.remove("jugador_Derecha");
+            mapa[j1.posicionX][j1.posicionY].classList.remove("jugador_Izquierda");
 
-            Y--;
-            mapa[X][Y].classList.add("pisada");
+            j1.posicionY--;
+            mapa[j1.posicionX][j1.posicionY].classList.add("pisada");
 
-            mapa[X][Y].classList.add("jugador_Izquierda");
+            mapa[j1.posicionX][j1.posicionY].classList.add("jugador_Izquierda");
             
         }
     }
@@ -481,8 +478,7 @@ function moverEnemigo(M) {
                     if (!mapa[M.posicionX][M.posicionY - 1].classList.contains("muro")) {
 
                         mapa[M.posicionX][M.posicionY].classList.remove("chtulu");
-                        Malote.posicionY--;
-
+                        M.posicionY--;
                         mapa[M.posicionX][M.posicionY].classList.add("chtulu");
                        
                         movimientoHecho = true;
@@ -524,8 +520,7 @@ function reiniciarVariables(){
     malos = new Array(); 
     //
     //Inicio del personaje
-    X = 0;
-    Y = 8;
+    j1 = new Explorador(X,Y);
     //Objetos de los pilares
     Objetos = new Array("Llave", "Urna", "Pergamino", "Momia", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada");
     Llave = false;
