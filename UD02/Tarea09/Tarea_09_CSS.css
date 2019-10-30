@@ -4,29 +4,33 @@
 
 
 body{
-    background-image: url("img/Bard.jpg");
+    background-image: url("img/aurelion.jpg");
   
     background-repeat: no-repeat;
     background-size: 100vw 100vh;
     background-attachment: fixed;
 
-    display: flex;
-    height: 700px;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-evenly;
 }
 
+.keys{
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    width: 100%;
+    padding-top: 250px;
+}
 
-
-.sound{
+.key{
     border: 3px solid var(--Blanco);
     text-align: center;
+    width: 100px;
+    height: 100px;
 }
 
-h3{
+kbd{
     color: var(--Blanco);
+    font-size: 30px;
 }
-p{
+span{
    color: var(--Blanco);
 }

@@ -1,3 +1,4 @@
+@media (max-width:700px){
 h1{
     font-family: Verdana, sans-serif;
 }
@@ -23,3 +24,4 @@ li:nth-child(even):hover::before{
     content: "Satan!"; 
  }
     
+}
