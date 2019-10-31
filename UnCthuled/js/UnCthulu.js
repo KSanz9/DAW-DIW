@@ -17,13 +17,14 @@ class Explorador{
     posicionX = 0;
     posicionY = 0;
 
-    constructor(x,y) {
+    constructor(x,y,Numero) {
         this.posicionX = x;
         this.posicionY = y;
+        var setMomia = Numero;
     }
 }
 
-
+var velocidad=300;
 var malos = new Array();
 
 
@@ -40,8 +41,6 @@ var nivel = 1;
 //vidas
 var vidas = 4;
 
-var vida = new Array();
-vida = document.getElementsByClassName("life");
 
 //Objetos de los pilares
     var Objetos = new Array("Llave", "Urna", "Pergamino", "Momia", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada", "Nada");
@@ -114,7 +113,7 @@ function  cargarChtulhu(xenemigo, yenemigo) {
 
             if (mapa[XRandom][YRandom].classList.contains("camino")) {
                 mapa[XRandom][YRandom].classList.add("chtulu");
-                M1 = new Malote(XRandom,YRandom);
+                M1 = new Malote(XRandom,YRandom, 0);
                 var momia = malos.push(M1);
                 chtulhu = true;
             }
@@ -122,40 +121,46 @@ function  cargarChtulhu(xenemigo, yenemigo) {
         Momia = true;
         
 
-        setInterval(moverEnemigo, 300, M1);
-        matarPersonaje(j1,M1);
+        M1.setMomia=setInterval(moverEnemigo, velocidad, M1);
 
     }else{
 
 
         console.log()
         mapa[xenemigo][yenemigo].classList.add("chtulu");
-        M2 = new Malote(xenemigo,yenemigo);
+        M2 = new Malote(xenemigo,yenemigo, 0);
         var momia2 = malos.push(M2);
-        setInterval(moverEnemigo, 300, M2);
-        matarPersonaje(j1,M2);
+        M2.setMomia=setInterval(moverEnemigo, velocidad, M2);
     }
 }
 
-function matarPersonaje(j1,M) {
-        if (j1.posicionX == M.posicionX && j1.posicionY == M.posicionY) {
-            
+function matarPersonaje(M) {
+    if (j1.posicionX == M.posicionX && j1.posicionY == M.posicionY) {
+            console.log("coinciden");
         if (Pergamino) {
+            clearInterval(M.setMomia);
+            mapa[M.posicionX][M.posicionY].classList.remove("chtulu");
             delete M;
+
+            actualizarScore(100);
+
         } else {
             vidas--;
+            clearInterval(M.setMomia);
+            mapa[M.posicionX][M.posicionY].classList.remove("chtulu");
             delete M;
             perderVida();
         }
     }
-    
+
     if (vidas == 0) {
+        delete j1;
         loseGame();
     }
 
 }
 function perderVida(){
-    var quitar = vida.pop();    
+    document.getElementById("Vidas").removeChild(document.getElementsByClassName("life")[0]);
 }
 function loseGame() {
     alert("Has sucumbido a Chtulu");
@@ -263,6 +268,7 @@ function pintarMuro(x,y) {
                 !mapa[x + index][y + jindex].classList.contains("Urna") && 
                 !mapa[x + index][y + jindex].classList.contains("Pergamino")&&
                 !mapa[x + index][y + jindex].classList.contains("Momia")) {
+                    actualizarScore(50);
                     var objeto = objetosMapa();
                     mapa[x + index][y + jindex].classList.add(objeto);
 
@@ -421,7 +427,7 @@ function MoverIzquierda(j1) {
 
 
 function moverEnemigo(M) {
-       
+
     movimientoHecho = false;
     while (!movimientoHecho) {
         movimientoRandom = Math.floor(Math.random() * 4);
@@ -487,6 +493,7 @@ function moverEnemigo(M) {
                 break;
         }
     }
+    matarPersonaje(M);
 
 }
 
@@ -512,7 +519,7 @@ function reiniciarJuego(){
 
 }
 function reiniciarVariables(){
-     
+    velocidad-=50;
     mapa = new Array(14);
     for (let i = 0; i < mapa.length; i++) {
         mapa[i] = new Array(21);
@@ -530,11 +537,17 @@ function reiniciarVariables(){
 
 }
 
+var puntosactuales =0;
+function actualizarScore(puntos) {
+    puntosactuales+=puntos;
+    document.getElementById("Score").innerText = "SCORE: "+puntosactuales;
+}
 
 window.onload = function () {
     matrizMapa();
     cargarPersonaje();
     cargarChtulhu(0, 0);
+    actualizarScore(0000);
     document.addEventListener("keydown", moverPersonaje);
     document.getElementById('Level').innerHTML='Nivel '+ this.nivel;
 }
