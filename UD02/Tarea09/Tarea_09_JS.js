@@ -1,29 +1,28 @@
-    const keys = document.querySelectorAll(".key");
+const keys = document.querySelectorAll(".key");
 
-    keys.forEach( key => key.addEventListener('transitionend', removeTransition));
+keys.forEach( element => element.addEventListener("transitionend", removeTransition));
 
 function playSound(key){
-    console.log(key);
-    let audio = document.querySelector(`audio[data-key="${key.keyCode}"]`);
-    
-    if (!audio) {
-        return;
-    }
+const audio = document.querySelector(`audio[data-key="${key.keyCode}"]`);
 
-    audio.currentTime = 0;
-    audio.play();
+if (!audio) {
+    return;
+}
 
-    let Sound = document.querySelector(`.key[data-key="${key.keyCode}"]`);
-    Sound.classList.add("Transmisionado");
+audio.currentTime = 0;
+audio.play();
+
+const Sound = document.querySelector(`.key[data-key="${key.keyCode}"]`);
+Sound.classList.add("Transmisionado");
 }
 
 function removeTransition(e){
-    console.log("HOLA");
-    this.classList.remove("Transmisionado");
+e.target.classList.remove("Transmisionado");
 }
+//Por alguna razon no me quita la Transition, preguntar a angel.
 
 
 window.onload = function () {
-    document.onkeypress = playSound;
+document.onkeypress = playSound;
 
 }
