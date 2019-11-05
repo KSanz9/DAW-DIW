@@ -1,0 +1,38 @@
+#zonaDeJuego{
+    text-decoration: black;
+    font-family: fantasy;
+    font-size: 20px;
+    text-align: center;
+    margin: auto;
+}
+
+
+#mapa {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    
+    
+    width: 600px;
+    height: 600px;
+    margin: auto;
+}
+
+.play{
+    height: 200px;
+    width: 200px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    margin: 10px;
+
+}
+
+.circulo {
+    background-image: url("../img/Circle.png"); 
+    background-size: 100% 100%;
+}
+.x{
+    background-image: url("../img/X.png"); 
+    background-size: 100% 100%;
+}
