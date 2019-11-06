@@ -1,0 +1,40 @@
+.caja{
+    width: 80px;
+    height: 80px;
+    background-image: url("../cthulhu.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: 1s;
+}
+
+
+.transicionar{
+    transition: 1s;
+    transform: translateX(1300px);
+}
+
+.linear{
+
+    transition-timing-function: linear;
+}
+
+
+.ease-in{
+
+    transition-timing-function: ease-in;
+}
+
+.ease-out{
+
+    transition-timing-function: ease-out;
+}
+
+.ease{
+
+    transition-timing-function: ease;
+}
+
+.ease-in-out{
+
+    transition-timing-function: ease-in-out;
+}
