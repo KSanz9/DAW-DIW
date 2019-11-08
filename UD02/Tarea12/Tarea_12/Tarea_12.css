@@ -11,11 +11,7 @@ container{
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-gap: 10px;
-    /* 
- 
-    ^(;,;)^ : Fragmento perdido
-
-   */
+  
 }
 
 button{
@@ -26,25 +22,20 @@ button{
 box{
     background-color: #1e0;
     border:3px solid #AABBAA;
-    /* 
- 
-    ^(;,;)^ : Fragmento perdido
-
-   */
     border-radius: 10px;
+    transition: 1s;
+
 }
 
 .evoluciona{
     background-color: #e10;
-    /* 
- 
-    ^(;,;)^ : Fragmento perdido
-
-   */
+    transition: 1s;
+    transform: translateX(132px);
 }
 
 .desevoluciona{
     background-color: #10e;
+    translate: 1s;
         /* 
  
     ^(;,;)^ : Fragmento perdido
@@ -54,6 +45,10 @@ box{
 
 .ultimate{
     background-color: #441155;
+    background-image: url("../cthulhu.svg");
+    background-size: 100% 100%;
+    translate: 1s;
+
     /* 
  
     ^(;,;)^ : Fragmento perdido
@@ -62,6 +57,9 @@ box{
 }
 
 .ultimate:hover{
+    transition: 1s;
+    transform: scale(1.1,1.1);
+    
     /* 
  
     ^(;,;)^ : Fragmento perdido

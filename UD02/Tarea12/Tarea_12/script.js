@@ -22,6 +22,8 @@ function crearCaja(event){
 
     padre.appendChild(hijo);
 
+    var evolucion = false;
+
     hijo.addEventListener('click', digievolucion)
 
     contadorCajas++
@@ -30,7 +32,17 @@ function crearCaja(event){
 }
 
 function digievolucion(event){
-
+    if(this.classList.contains("desevoluciona")){
+        this.classList.add("ultimate");
+    }else{
+        if (this.classList.contains("evoluciona")) {
+            this.classList.add("desevoluciona");
+            this.classList.remove("evoluciona");
+           
+        }else{
+            this.classList.add("evoluciona");
+        }
+    }
     
 
 
