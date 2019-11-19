@@ -51,7 +51,8 @@ var MovimientoOponente = false;
 
 
 function ganar(marca){
-    var contador = 0;
+    var contadorC = 0;
+    var contadorX = 0;
     
     //linea
     for (let i = 0; index < mapa.length; i++) {
@@ -64,18 +65,6 @@ function ganar(marca){
         ganador();
     }
 
-    var contador = 0;
-    
-    
-    for (let i = 0; index < mapa.length; i++) {
-        if(mapa[i][i].classList.contains(marca)){
-            contador++;
-        }
-
-    }
-    if (contador == 3) {
-        ganador();
-    }
 
 
     

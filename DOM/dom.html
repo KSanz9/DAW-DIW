@@ -17,27 +17,27 @@
 <body>
 
     <div id="cajas">
-        <div id="Roja" class="caja" onclick="perdersombra(this)" onmouseout="noCirculo(this)" onmouseover="circulos(this)" ondblclick="sombraInterior()">
+        <div id="Roja" class="caja" onmousedown="perdersombra(this)" onmouseup="recuperarsombra(this)" onmouseout="noCirculo(this)" onmouseover="circulos(this)" ondblclick="sombraInterior(this)">
         </div>
 
-        <div id="Azul" class="caja">
-
-        </div>
-
-        <div id="Verde" class="caja">
+        <div id="Azul" class="caja" onmousedown="perdersombra(this)" onmouseup="recuperarsombra(this)" onmouseout="noCirculo(this)" onmouseover="circulos(this)" ondblclick="sombraInterior(this)">
 
         </div>
 
-        <div id="Negra" class="caja">
+        <div id="Verde" class="caja" onmousedown="perdersombra(this)" onmouseup="recuperarsombra(this)" onmouseout="noCirculo(this)" onmouseover="circulos(this)" ondblclick="sombraInterior(this)">
+
+        </div>
+
+        <div id="Negra" class="caja" onmousedown="perdersombra(this)" onmouseup="recuperarsombra(this)" onmouseout="noCirculo(this)" onmouseover="circulos(this)" ondblclick="sombraInterior(this)">
 
         </div>
     </div>
     <br>
     <div id="botones">
-        <button class="eliminarCajaRoja" onclick="eliminarCaja(this)" type="button">Eliminar</button>
-        <button class="eliminarCajaAzul" type="button">Eliminar</button>
-        <button class="eliminarCajaVerde" type="button">Eliminar</button>
-        <button class="eliminarCajaNegra" type="button">Eliminar</button>
+        <button class="eliminarCajaRoja" onclick="eliminarCaja(this,'Roja')" type="button">Eliminar</button>
+        <button class="eliminarCajaAzul" onclick="eliminarCaja(this,'Azul')" type="button">Eliminar</button>
+        <button class="eliminarCajaVerde" onclick="eliminarCaja(this,'Verde')" type="button">Eliminar</button>
+        <button class="eliminarCajaNegra" onclick="eliminarCaja(this,'Negra')" type="button">Eliminar</button>
     </div>
 </body>
 

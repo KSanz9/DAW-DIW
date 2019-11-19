@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Botones practica</title>
+</head>
+<body>
+    
+    <content>
+
+    </content>
+    <br>
+    <result>
+
+    </result>
+
+
+
+    <script>
+    
+    window.onload = init;
+
+    function init(){
+        document.addEventListener("keydown", insertarNumeroKey);
+        for (let i = 0; i < 10; i++) {
+            let boton = document.createElement("button");
+            document.querySelector("content").appendChild(boton);
+            boton.value = i;
+            boton.innerText = i;
+
+            boton.addEventListener("click",insertarNumero);
+        }
+    }
+
+    function insertarNumero(){
+        document.querySelector("result").innerText += this.innerText;
+    }
+
+    function insertarNumeroKey(event){
+        document.querySelector("result").innerText += event.key;
+
+    }
+    
+    </script>
+</body>
+</html>

@@ -17,7 +17,6 @@ function removeTransition(e){
     console.log("angel");
     e.target.classList.remove("transmisionado");
 }
-//Por alguna razon no me quita la Transition, preguntar a angel.
 
 
 window.onload = function () {

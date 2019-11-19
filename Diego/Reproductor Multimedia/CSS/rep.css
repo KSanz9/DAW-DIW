@@ -1,0 +1,52 @@
+body{
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    grid-gap: 10px;
+}
+
+
+#reproduciendo, #video{
+    position:relative;
+    width: 700px;
+    height: 300px;
+
+}
+
+#botones{  
+    position:absolute;
+    bottom:0;
+    display: grid;
+    grid-template-columns: repeat(6, 35px);
+    background-color: rgba(17, 1, 1, 0.5); 
+}
+
+#stop{
+    width: 30px;
+    height: 30px;
+    background-image: url("../iconosReproductor/Stop.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+#prev{
+    width: 30px;
+    height: 30px;
+    background-image: url("../iconosReproductor/Prev.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+
+#play{
+    width: 30px;
+    height: 30px;
+    background-image: url("../iconosReproductor/Play.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+#next{
+    width: 30px;
+    height: 30px;
+    background-image: url("../iconosReproductor/Next.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
