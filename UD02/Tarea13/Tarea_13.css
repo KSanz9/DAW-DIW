@@ -1,0 +1,120 @@
+body{
+    background-color:grey;
+    padding: 3rem;
+}
+
+container{
+    margin: 1rem;
+    width: 650px;
+    height: 650px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 10px;
+  
+}
+
+button{
+    border: 3px solid darkgrey;
+}
+
+
+box{
+    background-color: #1e0;
+    border:3px solid #AABBAA;
+    border-radius: 10px;
+    transition: 1s;
+
+}
+
+.evoluciona{
+    background-color: #e10;
+    transition: 1s;
+    transform: translateX(132px);
+}
+
+.desevoluciona{
+    background-color: #10e;
+    translate: 1s;
+    
+}
+
+.ultimate{
+    background-color: #441155;
+    background-image: url("../cthulhu.svg");
+    background-size: 100% 100%;
+    translate: 1s;
+
+}
+/*
+.ultimate:hover{
+    transition: 1s;
+    transform: scale(1.1,1.1);
+   
+}*/
+
+/*Llamada a la animacion*/
+.movimientoGiro {
+    animation-name: ordenGirar;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.movimientoV {
+    position: relative;
+    animation-name: ordenV;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+/* Animations */
+
+@keyframes ordenGirar {
+
+    0% {
+        transform: rotate(0);
+
+    }
+    100% {
+
+        transform: rotate(360deg);
+    }
+
+}
+
+
+@keyframes ordenV {
+
+    from {
+
+        top: 0px;
+        left: 0px;
+    }
+
+    25% {
+
+        top: 30px;
+        left: 30px;
+
+    }
+    50% {
+
+        top: 0px;
+        left: 60px;
+    }
+    75% {
+
+        top: 30px;
+        left: 30px;
+
+    }
+    to {
+
+        top: 0px;
+        left: 0px;
+
+    }
+
+}
