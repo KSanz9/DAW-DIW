@@ -1,25 +1,40 @@
 body{
     display: grid;
     grid-template-columns: repeat(2, 2fr);
-    grid-gap: 10px;
+    grid-gap: 1000px;
 }
 
 
-#reproduciendo, #video{
+#reproduciendo{
+    top: 150px;
     position:relative;
-    width: 700px;
-    height: 300px;
+    width: 711px;
+    height: 400px;
+    background-color: black;
+}
 
+#video{
+    height: 100%;
 }
 
 #botones{  
     position:absolute;
     bottom:0;
+    padding:10px;
     display: grid;
-    grid-template-columns: repeat(6, 35px);
+    grid-template-columns: repeat(8, 35px);
     background-color: rgba(17, 1, 1, 0.5); 
+    width: calc(100% - 20px);
+    
 }
-
+.visible {
+    opacity: 1;
+    transition: opacity .3s;
+}
+.invisible {
+    opacity: 0;
+    transition: opacity .3s;
+}
 #stop{
     width: 30px;
     height: 30px;
@@ -49,4 +64,28 @@ body{
     background-image: url("../iconosReproductor/Next.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
+}
+#volUp{
+    width: 30px;
+    height: 30px;
+    margin-left: 440px;
+    background-image: url("../iconosReproductor/volumen.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat; 
+}
+#volDown{
+    width: 30px;
+    height: 30px;
+    margin-left: 445px;
+    background-image: url("../iconosReproductor/volumen-.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat; 
+}
+#muteVol{
+    width: 30px;
+    height: 30px;
+    margin-left: 450px;
+    background-image: url("../iconosReproductor/mute.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat; 
 }

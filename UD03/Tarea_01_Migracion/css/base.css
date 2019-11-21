@@ -99,6 +99,7 @@ steps{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 30px;
+    
     /* 
      * Fragmentos perdidos 
      * ^(;,;)^
@@ -115,13 +116,15 @@ steplabel{
 * with a transition.
 */
 steps * {
-    /* 
-     * Fragmentos perdidos 
-     * ^(;,;)^
-     */
+    transition: 1s;  
+    opacity: 0;
 }
 
 .estabaEscondido{
+    
+    opacity: 1;
+      
+    
    
     /* 
      * Fragmentos perdidos 
