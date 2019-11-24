@@ -3,163 +3,176 @@ CSS Base for the Miskatonic Herald
 */
 
 @font-face {
-  font-family: neon;
-  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
-}
-
-/*
-* CSS for body
-*/
-
-body{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height:100vh;
-    
-    /*background-color:#323232;*/
-    background-image:url("https://picsum.photos/1600/900");
-    font-family: 'OuroborosRegular';
-    font-weight: normal;
-    font-style: normal;
-    margin: 0;
-    color:#ffffff;
-}
-
-
-/*
-* CSS for items
-*/
-content{
-    background-color: rgba(17, 1, 1, 0.8);
-    border-radius: 15px; 
-    margin: 15% auto;   
-}
-
-
-items{
-   margin: auto;
-   display: block;
-   text-align: center
-    /* 
-     * Fragmentos perdidos 
-     * ^(;,;)^
-     */
-    
-}
-
-item{
-        /* 
-     * Fragmentos perdidos 
-     * ^(;,;)^
-     */
-}
-
-/*
-* CSS for body
-*/
-
-button{
-    width: 30%;
-    height: 155%;
-    border-radius: 10px;
-    /* 
-     * Fragmentos perdidos 
-     * ^(;,;)^
-     */
-}
-
-button:hover {
-    
-    /* 
-     * Fragmentos perdidos 
-     * ^(;,;)^
-     */
-}
-
-button:active {
-    
-    /* 
-     * Fragmentos perdidos 
-     * ^(;,;)^
-     */
-}
-
-
-/*
-* CSS for steps
-* - Includes the opacity for the 
-*   animation that makes this more
-*   dinamyc, but is only a simple
-*   GUI.
-*/
-
-steps{
-    margin-top: 5%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 30px;
-    
-    /* 
-     * Fragmentos perdidos 
-     * ^(;,;)^
-     */
-}
-/*
-steplabel{
-
-}
-/*
-* CSS for all the steps
-* with class (estabaEscondido)
-* that turns the element visible
-* with a transition.
-*/
-steps * {
-    transition: 1s;  
-    opacity: 0;
-}
-
-.estabaEscondido{
-    
-    opacity: 1;
+    font-family: neon;
+    src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+  }
+  
+  /*
+  * CSS for body
+  */
+  
+  body{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
       
+      /*background-color:#323232;*/
+      background-image:url("https://picsum.photos/1600/900");
+      font-family: 'OuroborosRegular';
+      font-weight: normal;
+      font-style: normal;
+      margin: 0;
+      color:#ffffff;
+  }
+  
+  
+  /*
+  * CSS for items
+  */
+  content{
+      background-color: rgba(17, 1, 1, 0.8);
+      border-radius: 15px; 
+      margin: 15% auto;   
+  }
+  
+  
+  items{
+     margin: auto;
+     display: block;
+     text-align: center
+      /* 
+       * Fragmentos perdidos 
+       * ^(;,;)^
+       */
+      
+  }
+  
+  item{
+          /* 
+       * Fragmentos perdidos 
+       * ^(;,;)^
+       */
+  }
+  
+  /*
+  * CSS for body
+  */
+  
+  button{
+      width: 30%;
+      height: 155%;
+      border-radius: 10px;
+      background-color: violet;
+      /* 
+       * Fragmentos perdidos 
+       * ^(;,;)^
+       */
+  }
+  
+  button:hover {
+      
+      /* 
+       * Fragmentos perdidos 
+       * ^(;,;)^
+       */
+  }
+  
+  button:active {
+      
+      /* 
+       * Fragmentos perdidos 
+       * ^(;,;)^
+       */
+  }
+  
+  
+  /*
+  * CSS for steps
+  * - Includes the opacity for the 
+  *   animation that makes this more
+  *   dinamyc, but is only a simple
+  *   GUI.
+  */
+  
+  steps{
+      margin-top: 5%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 30px;
+      
+      /* 
+       * Fragmentos perdidos 
+       * ^(;,;)^
+       */
+  }
+  /*
+  steplabel{
+  }
+  /*
+  * CSS for all the steps
+  * with class (estabaEscondido)
+  * that turns the element visible
+  * with a transition.
+  */
+  steps * {
+    transition-property: opacity;
+    transition:opacity 1s linear;
+    opacity:0;
+
+  }
+  
+  .estabaEscondido{
+      
+      opacity: 1;
     
-   
-    /* 
-     * Fragmentos perdidos 
-     * ^(;,;)^
-     */
-}
+      /* 
+       * Fragmentos perdidos 
+       * ^(;,;)^
+       */
+  }
+  
+  
+  /*Progress*/
+  /*
+  * CSS for ProgressBars
+  */
+  progress{
+  
+    border: 2.5px solid white;
+    
+  }
+  
+  
+  
+  finalmsg{
+    animation-name: neon;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  
+  @keyframes neon {
+    0% {
+        color: white;
+       
+    }
+    25% {
+        
+        color: blue;
+    }
+    50% {
+        color: green;
+        
+    }
+    75% {
+       
+        color: red;       
+    }
 
+    100%{
 
-/*Progress*/
-/*
-* CSS for ProgressBars
-*/
-progress{
-
-    /* 
-     * Fragmentos perdidos 
-     * ^(;,;)^
-     */
-}
-
-
-
-finalmsg{
-
-    /* 
-     * Fragmentos perdidos 
-     * ^(;,;)^
-     */
-}
-
-@keyframes neon {
- 
-    /* 
-     * Fragmentos perdidos 
-     * ^(;,;)^
-     */
-}
-
+        color:white
+    }
+  }
+  
