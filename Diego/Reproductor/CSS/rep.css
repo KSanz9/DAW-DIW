@@ -50,42 +50,42 @@ body{
     background-repeat: no-repeat;
 }
 
-
-#play{
+.botonMenu{
     width: 30px;
     height: 30px;
-    background-image: url("../iconosReproductor/Play.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
+}
+.play{
+   
+    background-image: url("../iconosReproductor/Play.png");
+    
+}
+
+.pause{
+    background-image: url("../iconosReproductor/Pause.png");
+    
 }
 #next{
-    width: 30px;
-    height: 30px;
+    
     background-image: url("../iconosReproductor/Next.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+   
 }
 #volUp{
-    width: 30px;
-    height: 30px;
+   
     margin-left: 440px;
     background-image: url("../iconosReproductor/volumen.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat; 
+    
 }
 #volDown{
-    width: 30px;
-    height: 30px;
     margin-left: 445px;
     background-image: url("../iconosReproductor/volumen-.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat; 
+   
 }
 #muteVol{
-    width: 30px;
-    height: 30px;
+   
     margin-left: 450px;
     background-image: url("../iconosReproductor/mute.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat; 
+  
 }
+

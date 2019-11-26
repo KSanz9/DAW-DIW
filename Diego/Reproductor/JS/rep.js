@@ -1,6 +1,7 @@
 window.onload=init;
 let play = false;
 
+
 function init(){
 
     opacidadMenu();
@@ -37,7 +38,7 @@ function funcionalidadesMenu(){
 
         switch (i) {
             case 0://Replay
-
+                
                 break;
             case 2://play
                 var boton = document.getElementById("play");
@@ -63,4 +64,5 @@ function playVideo(){
         video.pause();
         play = false; 
     }
+    boton.classList.toggle("pause")
 }
