@@ -2,6 +2,17 @@ body{
     display: grid;
     grid-template-columns: repeat(2, 2fr);
     grid-gap: 1000px;
+    background-color: rgb(56, 51, 51);
+}
+header{
+    display: grid;
+    grid-template-columns: repeat(2, 180px);
+    position: absolute;
+}
+header input{
+    margin-top: 10px;
+    width: 200px;
+    height: 50px;
 }
 
 
@@ -88,4 +99,28 @@ body{
     background-image: url("../iconosReproductor/mute.png");
   
 }
+.anuncio{
+    position: absolute;
+    margin-top: 3%;
+    margin-left: 8%;
+    width: 80%;
+    height: 80%;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+
+}
+
+.quitarAnuncio{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url("../iconosReproductor/da.png");
+    background-size: 20px;
+    right: 10px;
+    top: 10px;
+    background-repeat:no-repeat;
+    display: none;
+}

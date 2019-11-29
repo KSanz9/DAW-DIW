@@ -1,17 +1,42 @@
 window.onload=init;
 let play = false;
-
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
 function init(){
 
     opacidadMenu();
     funcionalidadesMenu();
-
+    anuncio();
 
 /*cambiar opacidad desde js sobre el atributo style desde el elemento 
     elemento.style.opacity = "1";
 */
 }
+
+async function anuncio(){
+    var tiempo = 3;
+
+    for (let i = tiempo; i <= 0; i--) {
+        await sleep(1000);
+        console.log("asdnas");
+        document.getElementsByClassName("time")[0].value = tiempo;
+        tiempo--;
+    }
+
+    document.getElementsByClassName("quitarAnuncio")[0].style.display = "";
+    document.getElementsByClassName("quitarAnuncio")[0].addEventListener("click", quitarAnuncio);
+
+
+}
+
+function quitarAnuncio(){
+
+    document.getElementsByClassName("anuncio")[0].style.display.none;
+
+}
+
 
 function opacidadMenu(){
     var seccion = document.getElementById("reproduciendo");
