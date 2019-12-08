@@ -18,7 +18,9 @@ function buscarDatos() {
 
             console.log(data.features[0].properties);
             for (let i = 0; i < data.features.length; i++) {
+                
                 cadena = acortarCadena(data.features[i].properties.direccion);
+                
                 if (cadena.substring(0, busqueda.length) == busqueda) {
 
                     table += '<tr><td>';
