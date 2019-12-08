@@ -1,26 +1,28 @@
+
+ let archivoJSON;
+
 function buscarDatos() {
 
     let url = 'http://mapas.valencia.es/lanzadera/opendata/kioscos_once/JSON';
     let cadena;
     let busqueda = this.value.toUpperCase();
-    let contenedorResult = document.getElementById('resultados');
+    let contenedorTabla = document.getElementById('tabla');
     var table = '<table>';
-    
+   
+
     if(busqueda.length == 0){
         
-        contenedorResult.innerHTML = ' ';
+        contenedorTabla.innerHTML = ' ';
 
     }else{
 
-        fetch(request)
+        fetch(url)
         .then(response => response.json())
         .then(data => {
 
             console.log(data.features[0].properties);
             for (let i = 0; i < data.features.length; i++) {
-                
                 cadena = acortarCadena(data.features[i].properties.direccion);
-                
                 if (cadena.substring(0, busqueda.length) == busqueda) {
 
                     table += '<tr><td>';
@@ -34,7 +36,7 @@ function buscarDatos() {
             }
 
             table += '</table>';
-            contenedorResult.innerHTML = table;
+            contenedorTabla.innerHTML = table;
 
         })
     }
@@ -58,15 +60,14 @@ function acortarCadena(cadena) {
 
 
 
-let archivoJSON;
+
 
 window.addEventListener('load', init);
-
 
 
 function init() {
 
 
-    document.getElementById('entrada').addEventListener('keyup', buscarDatos);
+    document.getElementById('buscador').addEventListener('keyup', buscarDatos);
 
 }
