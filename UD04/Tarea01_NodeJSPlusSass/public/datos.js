@@ -4,7 +4,7 @@ function buscarDatos() {
     let cadena;
     let busqueda = this.value.toUpperCase();
     let contenedorResult = document.getElementById('resultados');
-    var table = '<table><tr><th>DIRECCION</th><th>CENTRO</th><th>DISTRITO</th></tr>';
+    var table = '<table>';
     
     if(busqueda.length == 0){
         
