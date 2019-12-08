@@ -1,6 +1,6 @@
 function buscarDatos() {
 
-    let request = 'http://mapas.valencia.es/lanzadera/opendata/kioscos_once/JSON';
+    let url = 'http://mapas.valencia.es/lanzadera/opendata/kioscos_once/JSON';
     let cadena;
     let busqueda = this.value.toUpperCase();
     let contenedorResult = document.getElementById('resultados');
