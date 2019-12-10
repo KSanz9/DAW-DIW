@@ -1,0 +1,17 @@
+body {
+  font: 100% Helvetica, sans-serif;
+  background-color: pink; }
+
+.resultados ul li {
+  border: 1px solid black;
+  border-radius: 10px;
+  color: black;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; }
+
+.resultados h1 {
+  font-family: Georgia, 'Times New Roman', Times, serif; }
+.resultados ul li {
+  list-style: none;
+  width: 50vw; }
+
+/*# sourceMappingURL=busqueda.css.map */

@@ -1,0 +1,23 @@
+{
+  "name": "express-vanilla",
+  "version": "1.0.0",
+  "description": "Un Servidor NodeJS Simple",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass -watch scss -o \"public/css/\""
+  },
+  "keywords": [
+    "Simple",
+    "Server"
+  ],
+  "author": "DAW Para MiniServidores",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.7.13",
+    "mysql": "^2.17.1",
+    "node-geocoder": "^3.25.0",
+    "sass": "^1.23.7"
+  }
+}

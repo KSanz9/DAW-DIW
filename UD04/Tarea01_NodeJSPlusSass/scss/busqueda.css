@@ -1,0 +1,19 @@
+body {
+  font: 100% Helvetica, sans-serif;
+  background-color: pink; }
+
+.resultados coordenadas ul li {
+  border: 1px solid grey;
+  padding: 10px;
+  margin: 15vw;
+  border-radius: 10px;
+  color: #8D8;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; }
+
+.resultados h1 {
+  font-family: Georgia, 'Times New Roman', Times, serif; }
+.resultados coordenadas ul li {
+  list-style: none;
+  width: 50vw; }
+
+/*# sourceMappingURL=busqueda.css.map */
