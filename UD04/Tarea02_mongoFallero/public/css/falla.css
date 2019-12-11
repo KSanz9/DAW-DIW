@@ -1,0 +1,12 @@
+.resultados{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.resultados * {
+    border: 0.5px solid black;
+}
+
+img{
+    
+}

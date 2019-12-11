@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <title>Datos Abiertos con NodeJS</title>
+
+  <meta name="description" content="Nuestro NodeJS">
+  <meta name="keywords" content="html nodejs">
+
+  <script type="module" src="js/falla.js"></script>
+
+  <style>
+    @import url("css/falla.css");
+  </style>
+
+</head>
+
+<body>
+
+  <h1> Fallas de valencia</h1>
+    <h3>Sección</h3>
+    <select name="Seccion" id="seccionFallas">
+    <option value="todas">Todas</option>
+    </select>
+
+    <h3>Año de fundación</h3>
+    <p>
+        <input type="text" placeholder="Desde"> <br>
+        <input type="text" placeholder="Hasta"> <br>
+    </p>
+    <p>
+        <input type="radio" name="tipoFalla" value="male"> Principal<br>
+        <input type="radio" name="tipoFalla" value="female"> Infantil<br>
+    </p>
+  
+    <div class="busqueda">
+    <form id="busquedaform">
+      <input type="text" name="calle">
+      <input type="button" value="Buscar">
+
+    </form>
+  </div>
+
+
+
+
+  <div class="resultados">
+  </div>
+
+
+</body>
+
+</html>
