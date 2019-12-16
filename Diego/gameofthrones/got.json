@@ -1,0 +1,68 @@
+{
+    "got":[
+        {
+            "nombre":"Tyrion", 
+            "apellidos":"Lannister", 
+            "familia":"Casa Lannister", 
+            "padres":"Tyrwing y Joanna", 
+            "titulo":"Mano del rey y consejero de la moneda", 
+            "imagen":"img/tyrion.jpg"
+        }, 
+        {
+            "nombre":"Daenerys", 
+            "apellidos":"Targaryen", 
+            "familia":"Casa Targaryen", 
+            "padres":"Aerys II y Rhaella", 
+            "titulo":"Khaleesi de los Dothraki",
+            "imagen":"img/madrededragones.jpg"
+        }, 
+        {
+            "nombre":"Jon", 
+            "apellidos":"Nieve", 
+            "familia":"Casa Stark", 
+            "padres":"Eddard Stark", 
+            "titulo":"Lord Comandante de la Guardia de la noche",
+            "imagen":"img/jonnieve.jpg"
+        }, 
+        {
+            "nombre":"Ramsay", 
+            "apellidos":"Bolton", 
+            "familia":"Casa Bolton", 
+            "padres":"Roose Bolton", 
+            "titulo":"Señor de Invernalia",
+            "imagen":"img/ramsay.jpg"
+        },
+        {
+            "nombre":"Eddard", 
+            "apellidos":"Stark", 
+            "familia":"Casa Stark", 
+            "padres":"Rickard y Lyarra", 
+            "titulo":"Señor de Invernalia",
+            "imagen":"img/ned.jpg"
+        },
+        {
+            "nombre":"Margaery", 
+            "apellidos":"Tyrell", 
+            "familia":"Casa Tyrell", 
+            "padres":"Mace y Alerie", 
+            "titulo":"Reina de los Siete Reinos",
+            "imagen":"img/margaery.jpg"
+        },
+        {
+            "nombre":"Joffrey", 
+            "apellidos":"Baratheon", 
+            "familia":"Casa Baratheon", 
+            "padres":"Jaime y Cersei", 
+            "titulo":"Señor de los Siete Reinos",
+            "imagen":"img/joffrey.jpg"
+        },
+        {
+            "nombre":"Sandor", 
+            "apellidos":"Clegane", 
+            "familia":"Casa Clegane", 
+            "padres":"Gregor Clegane", 
+            "titulo":"Escudo juramentado de Joffrey Baratheon",
+            "imagen":"img/sandor.jpg"
+        }
+    ]
+}

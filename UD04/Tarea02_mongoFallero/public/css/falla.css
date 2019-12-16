@@ -1,12 +1,26 @@
-.resultados{
+resultados{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 32%);
+}
+img{
+    width: 60%;
+    height: 50%;
 }
 
-.resultados * {
-    border: 0.5px solid black;
+resultados div {
+    border: 3px solid black;
+    margin: auto;
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+button{
+    border: 3px solid black;
+
+    width: 100%;
+    height: 100%;
 }
 
 img{
-    
+    height: 70%;
 }
