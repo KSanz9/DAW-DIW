@@ -1,0 +1,19 @@
+{
+  "name": "mongofallero",
+  "version": "1.0.0",
+  "description": "una app para mongodb y heroku",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "nodemon": "nodemon server.js"
+  },
+  "author": "yo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "install": "^0.13.0",
+    "mongoose": "^5.8.3",
+    "nodemon": "^2.0.2"
+  }
+}
