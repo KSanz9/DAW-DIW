@@ -18,7 +18,7 @@ mongoose.Promise = global.Promise;
 // Conectando en si mismo
 mongoose.connect(dbConfig.url,{
     useNewUrlParser:true}).then(()=>{
-        console.log(" * Cargada y preparada en 2019");
+        console.log(" * Cargada y preparada en 2020 por kevin");
     }).catch(err => {
         console.log(" Algo ha pasado...saliendo : ",err);
         process.exit();
