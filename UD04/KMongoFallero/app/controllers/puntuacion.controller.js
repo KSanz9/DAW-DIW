@@ -45,3 +45,21 @@ exports.create = (req,res)=>{
         });
     });
 };
+
+
+// Obtener una 
+exports.findFallasPuntuaciones = (req,res) => {
+
+    //console.log(" Todas las puntuaciones via API");
+    //console.log(Puntuacion);
+
+    Puntuacion.find( { idFalla : req.params.idFalla }).then(puntuaciones=>{
+        console.log(puntuaciones);
+        res.send(puntuaciones);
+    }).catch(err=>{
+        res.status(500).send({
+            message: err.message || " Algo fue mal mientras los capturabamos a todos"
+        });
+    });
+
+};

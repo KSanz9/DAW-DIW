@@ -36,6 +36,35 @@ function puntuacion() {
         .catch(error => console.error('Error:', error))
         .then(response => console.log('Success:', response));
 
+
+        mostrarPuntuacion(this.dataset.idFalla);
+
+}
+
+function mostrarPuntuacion(falla){
+    let url = '/api/puntuaciones/'+falla;
+    
+    fetch(url, {
+            method: 'GET', // or 'PUT'
+            body: JSON.stringify(), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => {
+        let contadorPuntuacion=0;
+        let mediaPuntuacion=0;
+        console.log(contadorPuntuacion);
+
+        response.forEach( puntuacionMedia =>{
+            mediaPuntuacion+=puntuacionMedia.puntuacion;
+            contadorPuntuacion++;  
+        });
+        
+        console.log(mediaPuntuacion/contadorPuntuacion);
+
+        });
 }
 
 function secciones(tipo) {
@@ -164,7 +193,7 @@ function buscar() {
 
                 let label = document.createElement('label');
                 label.setAttribute('for', 'radio' + x);
-                label.innerHTML = '★';
+                label.innerHTML = y+'★';
                 divClasificacion.appendChild(label);
                 inputEstrellas.addEventListener("click", puntuacion);
             }
