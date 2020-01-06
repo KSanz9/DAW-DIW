@@ -43,7 +43,7 @@ function puntuacion() {
 
 function mostrarPuntuacion(falla){
     let url = '/api/puntuaciones/'+falla;
-    
+    let puntuacionFinal=0;
     fetch(url, {
             method: 'GET', // or 'PUT'
             body: JSON.stringify(), // data can be `string` or {object}!
@@ -62,7 +62,52 @@ function mostrarPuntuacion(falla){
             contadorPuntuacion++;  
         });
         
-        console.log(mediaPuntuacion/contadorPuntuacion);
+        puntuacionFinal = mediaPuntuacion/contadorPuntuacion;
+
+        puntuacionFinal = Math.trunc(puntuacionFinal);
+        let puntu = document.querySelector("puntuacion");
+        let labelP = document.createElement('label');
+        switch (puntuacionFinal) {
+            case 1:
+                if(labelP.innerHTML ==""){
+                    labelP.innerHTML ='★';
+                    puntu.appendChild(labelP);
+                    puntu.classList.add("puntuacion");
+                } 
+                break;
+            case 2:
+                if(labelP.innerHTML ==""){
+                    labelP.innerHTML ='★★';
+                    
+                    puntu.appendChild(labelP);
+                    puntu.classList.add("puntuacion");
+
+                }
+                 break;
+            case 3:
+                if(labelP.innerHTML ==""){
+                    labelP.innerHTML ='★★★';
+                    
+                    puntu.appendChild(labelP);
+                    puntu.classList.add("puntuacion");
+
+                }
+                break;
+            case 4:
+                if(labelP.innerHTML ==""){
+                    labelP.innerHTML ='★★★★';
+                    puntu.appendChild(labelP);
+                    puntu.classList.add("puntuacion");
+                }
+                break;
+            case 5:
+                if(labelP.innerHTML ==""){
+                    labelP.innerHTML ='★★★★★';
+                    puntu.appendChild(labelP);
+                    puntu.classList.add("puntuacion");
+                }
+                break;
+        }
 
         });
 }
@@ -156,6 +201,7 @@ function buscar() {
             let textoFalla = document.createElement("p");
             let imgFalla = document.createElement("img");
             let botonUbi = document.createElement("button")
+            let nDivP = document.createElement("puntuacion");
             let divPuntuacion = document.createElement("div");
             let formPuntuacion = document.createElement("form");
 
@@ -172,7 +218,8 @@ function buscar() {
             if(radio.value == "Principal"){img =falla.properties.boceto;}else{img =falla.properties.boceto_i;}
             imgFalla.src = img;
             textoFalla.innerText = falla.properties.nombre;
-           // console.log(falla.properties);
+
+            // console.log(falla.properties);
             //elementos para el boton
             botonUbi.type = 'button';
             botonUbi.innerText = 'Ubicacion';
@@ -208,6 +255,7 @@ function buscar() {
             fallaValencia.appendChild(textoFalla);
             divPuntuacion.appendChild(formPuntuacion)
             fallaValencia.appendChild(divPuntuacion);
+            fallaValencia.appendChild(nDivP);
             fallaValencia.appendChild(botonUbi);
             botonUbi.addEventListener("click", ubicacion);
 
