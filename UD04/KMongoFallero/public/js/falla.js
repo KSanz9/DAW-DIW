@@ -10,7 +10,8 @@ var json;
 const fuentesUrl = "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON ";
 let sel = document.querySelector("select");
 let idLabelPtos = 0;
-
+var cordX;
+var cordY;
 
 // Esta es la funcion de filtrado para
 // obtener tan solo los elementos que cumplen
@@ -63,49 +64,43 @@ function mostrarPuntuacion(falla){
         });
         
         puntuacionFinal = mediaPuntuacion/contadorPuntuacion;
+        console.log(puntuacionFinal);
 
         puntuacionFinal = Math.trunc(puntuacionFinal);
-        let puntu = document.querySelector("puntuacion");
-        let labelP = document.createElement('label');
+        console.log(puntuacionFinal);
+        let rFalla = document.getElementById("falla"+falla);
+        let puntu = rFalla.querySelector("puntuacion");
+        let labelP = puntu.querySelector('label');
         switch (puntuacionFinal) {
             case 1:
-                if(labelP.innerHTML ==""){
                     labelP.innerHTML ='★';
                     puntu.appendChild(labelP);
                     puntu.classList.add("puntuacion");
-                } 
                 break;
             case 2:
-                if(labelP.innerHTML ==""){
-                    labelP.innerHTML ='★★';
-                    
+                    labelP.innerHTML ='★★';               
                     puntu.appendChild(labelP);
                     puntu.classList.add("puntuacion");
 
-                }
                  break;
             case 3:
-                if(labelP.innerHTML ==""){
-                    labelP.innerHTML ='★★★';
-                    
+                    labelP.innerHTML ='★★★';         
                     puntu.appendChild(labelP);
                     puntu.classList.add("puntuacion");
 
-                }
                 break;
             case 4:
-                if(labelP.innerHTML ==""){
+
                     labelP.innerHTML ='★★★★';
                     puntu.appendChild(labelP);
-                    puntu.classList.add("puntuacion");
-                }
+                    puntu.classList.add("puntuacion")
                 break;
             case 5:
-                if(labelP.innerHTML ==""){
+
                     labelP.innerHTML ='★★★★★';
                     puntu.appendChild(labelP);
                     puntu.classList.add("puntuacion");
-                }
+
                 break;
         }
 
@@ -115,6 +110,7 @@ function mostrarPuntuacion(falla){
 function secciones(tipo) {
         sel.innerHTML="";
         const result = json.features;
+
         let sec = new Set();
 
         sec.add("Todas");
@@ -143,19 +139,17 @@ function ubicacion() {
     const result = json.features;
 
     var ubi = document.createElement("div");
-
+    this.dataset.idFalla;
     ubi.classList.add("ubicacion");
-    document.querySelector("body").appendChild(ubi);
-    result.forEach(section => {
-
-    });
+    document.body.appendChild(ubi);
+    
 
 
 }
 
 function buscar() {
     document.querySelector("resultados").innerHTML = "";
-
+    let cont=0;
     // Obtenemos el JSON que esta definido
     const fetchPromesa = fetch(fuentesUrl);
 
@@ -167,19 +161,22 @@ function buscar() {
     }).then(respuesta => {
         // Filtramos los resultados con el filtro definido anteriormente
         json = respuesta;
+
+
+       
+        /////////////////////////////////////////////////////////////////////
         let filtroSecciones = document.querySelector("select").value;
         let resultado;
         //console.log(filtroSecciones);
         let radio = document.querySelector("input[name=tipoFalla]:checked");
        
-        //filtro para el select
+        //filtro para el select ///mover esto a una función
         if(radio.value == "Principal"){
             if (filtroSecciones == "Todas") {
                 resultado = respuesta.features;
             } else {
                 resultado = respuesta.features.filter(filtroSection);
             }
-            secciones(radio.value);
 
         }else{
             if (filtroSecciones == "Todas") {
@@ -187,10 +184,13 @@ function buscar() {
             } else {
                 resultado = respuesta.features.filter(filtroSectionI);
             }
-            secciones(radio.value);
 
 
         }
+        secciones(radio.value);
+
+
+        ///////////////////////////////////////////////////////////////
         // Una vez tenemos el listado filtrado pasamos a crear
         // cada uno de los  que representan
         var img;
@@ -198,24 +198,28 @@ function buscar() {
         // Por cada uno de ellos 
         resultado.forEach(falla => {
             let fallaValencia = document.createElement("div");
+            fallaValencia.id = "falla"+falla.properties.id;
             let textoFalla = document.createElement("p");
             let imgFalla = document.createElement("img");
             let botonUbi = document.createElement("button")
             let nDivP = document.createElement("puntuacion");
+            let labelP = document.createElement("label");
             let divPuntuacion = document.createElement("div");
             let formPuntuacion = document.createElement("form");
 
             // Insertamos los campos ocultos para pasar el ID
 
-            let inputHiddenIdFalla = document.createElement("input");
+            /* let inputHiddenIdFalla = document.createElement("input");
             inputHiddenIdFalla.type="hidden";
             inputHiddenIdFalla.name="idFalla";
-            inputHiddenIdFalla.value=falla.properties.id;
+            inputHiddenIdFalla.value=falla.properties.id; */
+
+            nDivP.appendChild(labelP);
 
 
             let divClasificacion = document.createElement("p");
             // Creamos un img y el texto de la falla
-            if(radio.value == "Principal"){img =falla.properties.boceto;}else{img =falla.properties.boceto_i;}
+            if(radio.value == "Principal"){img = falla.properties.boceto;}else{img = falla.properties.boceto_i;}
             imgFalla.src = img;
             textoFalla.innerText = falla.properties.nombre;
 
@@ -223,7 +227,10 @@ function buscar() {
             //elementos para el boton
             botonUbi.type = 'button';
             botonUbi.innerText = 'Ubicacion';
+            console.log(botonUbi.dataset.ubiX = json.features[cont].geometry.coordinates[0]);
+            botonUbi.dataset.ubiY = json.features[cont].geometry.coordinates[1]; 
             
+            cont++;            
 
 
             //puntuaciones
@@ -289,10 +296,11 @@ function filtroSection(elemento) {
 }
 
 function init() {
-    document.querySelectorAll("input[type=radio]").forEach(radio => {
+    document.querySelectorAll("input[type=radio]").forEach(radio => {   
         radio.addEventListener("click", buscar); 
     });
- 
+
+    
     // Binding de los eventos correspondientes.
     document.querySelector("select").addEventListener("change", buscar);
     // Click en el boton de buscar
