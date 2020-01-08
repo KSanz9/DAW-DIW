@@ -1,15 +1,17 @@
 .ubicacion{
     position: fixed;
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
     background-color: black;
-    color: white;
-    left: 0;
-    top: 0;
+    left: 10%;
+    top: 10%;
     opacity: 0.5;
 }
 
-
+.imgCerrar{
+    background-image: url("../../img/cerrar.png");
+    background-size: 50% 50%;
+}
 body{
     position: relative;
 }
@@ -17,28 +19,36 @@ body{
 resultados{
     display: grid;
     grid-template-columns: repeat(3, 32%);
+
 }
 img{
     width: 60%;
     height: 50%;
 }
 
+.cajaPrincipal{
+    -webkit-box-shadow: 12px 11px 4px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 12px 11px 4px -3px rgba(0,0,0,0.75);
+    box-shadow: 12px 11px 4px -3px rgba(0,0,0,0.75);
+    margin-bottom: 3%;
+
+}
+
+
 resultados div {
-    border: 3px solid black;
     margin: auto;
-    margin-bottom: 1%;
     text-align: center;
     background-color: burlywood;
+   
 }
 
 button{
-    border: 3px solid black;
-
     width: 100%;
-    height: 100%;
+    
 }
 
 img{
+    margin-top: 2%;
     height: 70%;
 }
 

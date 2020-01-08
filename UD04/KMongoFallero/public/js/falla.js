@@ -139,9 +139,15 @@ function ubicacion() {
     const result = json.features;
 
     var ubi = document.createElement("div");
-    this.dataset.idFalla;
+
     ubi.classList.add("ubicacion");
+    
+    ubi.classList.add("imgCerrar");
     document.body.appendChild(ubi);
+
+    let x = proj4(this.dataset.ubiX);
+    let Y = proj4(this.dataset.ubiY);
+
     
 
 
@@ -227,7 +233,7 @@ function buscar() {
             //elementos para el boton
             botonUbi.type = 'button';
             botonUbi.innerText = 'Ubicacion';
-            console.log(botonUbi.dataset.ubiX = json.features[cont].geometry.coordinates[0]);
+            botonUbi.dataset.ubiX = json.features[cont].geometry.coordinates[0];
             botonUbi.dataset.ubiY = json.features[cont].geometry.coordinates[1]; 
             
             cont++;            
@@ -264,8 +270,8 @@ function buscar() {
             fallaValencia.appendChild(divPuntuacion);
             fallaValencia.appendChild(nDivP);
             fallaValencia.appendChild(botonUbi);
+            fallaValencia.classList.add("cajaPrincipal");
             botonUbi.addEventListener("click", ubicacion);
-
             document.querySelector("resultados").appendChild(fallaValencia);
         });
         // Establecemos el listado en la Web
