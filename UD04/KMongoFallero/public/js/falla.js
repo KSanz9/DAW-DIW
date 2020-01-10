@@ -141,16 +141,36 @@ function ubicacion() {
     var ubi = document.createElement("div");
 
     ubi.classList.add("ubicacion");
-    
-    ubi.classList.add("imgCerrar");
     document.body.appendChild(ubi);
 
-    let x = proj4(this.dataset.ubiX);
-    let Y = proj4(this.dataset.ubiY);
 
+    var firstProjection = '+proj=utm +zone=30 +ellps=GRS80 +units=m +no_defs';
+    var secondProjection = "+proj=longlat +ellps=WGS84 +datum=WGS84 +units=m +no_defs";
+
+    var coordChung = new Array(); 
+    coordChung[0] = parseFloat(this.dataset.ubiX);
+    coordChung[1] = parseFloat(this.dataset.ubiY); 
+    //I'm not going to redefine those two in latter examples.
+    let arrayCoordenadas = proj4(firstProjection,secondProjection,coordChung); 
     
+    var urlMap = "https://www.openstreetmap.org/#map=15/"+arrayCoordenadas[1]+"/"+arrayCoordenadas[0];
+    //console.log("Mapa"+urlMap);
+
+    //iFrame
+    //ubi.innerHTML = '<iframe class="mapa" src="'+urlMap+'"></iframe>';
+    var map = document.createElement("div");
+
+    map.classList.add("mapa");
+    
+    
+    ubi.addEventListener("click", cerrarUbicacion);
 
 
+
+}
+function cerrarUbicacion(){
+    var elemento = document.getElementsByClassName("ubicacion")[0];
+    document.body.removeChild(elemento);
 }
 
 function buscar() {
@@ -275,7 +295,10 @@ function buscar() {
             document.querySelector("resultados").appendChild(fallaValencia);
         });
         // Establecemos el listado en la Web
+
     });
+    console.log(json);
+
 }
 
 function mostrarFallas() {
