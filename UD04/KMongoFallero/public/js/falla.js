@@ -153,16 +153,32 @@ function ubicacion() {
     //I'm not going to redefine those two in latter examples.
     let arrayCoordenadas = proj4(firstProjection,secondProjection,coordChung); 
     
-    var urlMap = "https://www.openstreetmap.org/#map=15/"+arrayCoordenadas[1]+"/"+arrayCoordenadas[0];
+  /*  var urlMap = "https://www.openstreetmap.org/#map=15/"+arrayCoordenadas[1]+"/"+arrayCoordenadas[0];
     //console.log("Mapa"+urlMap);
 
     //iFrame
-    //ubi.innerHTML = '<iframe class="mapa" src="'+urlMap+'"></iframe>';
+    ubi.innerHTML = '<iframe class="mapa" src="'+urlMap+'"></iframe>';*/
+    
     var map = document.createElement("div");
-
     map.classList.add("mapa");
     
-    
+    var mapa = L.map('mapa').
+     setView([arrayCoordenadas[1], arrayCoordenadas[0]],
+     15);
+
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+    maxZoom: 18
+    }).addTo(mapa);
+
+    L.control.scale().addTo(mapa);
+
+    L.marker([arrayCoordenadas[1], arrayCoordenadas[0]],{draggable: true}).addTo(mapa);
+
+
+
+    map.appendChild(mapa);
+    ubi.appendChild(map);
     ubi.addEventListener("click", cerrarUbicacion);
 
 

@@ -1,0 +1,75 @@
+// VARIABLES
+$empresa: ss;
+
+$logo: "";
+$colorPrincipal: "";
+$colorSecundario: "";
+$colorTernario: "";
+
+@if $empresa == evilCorp {
+  $logo: "../img/evilcorp.png";
+  $colorPrincipal: red;
+  $colorSecundario: Brown;
+  $colorTernario: black;
+} @else {
+  $logo: "../img/cthulhu.jpg";
+  $colorPrincipal: green;
+  $colorSecundario: darkgreen;
+  $colorTernario: black;
+}
+
+
+body {
+    position: relative;
+    font-size: medium;
+    background: linear-gradient(90deg, $colorPrincipal 0%, $colorSecundario 8%, $colorTernario 50%, $colorSecundario 92%, $colorPrincipal 100%);
+}
+
+
+#logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100px;
+    height: 100px;
+    content: url($logo);
+}
+
+img{
+    width: 60%;
+    height: 50%;
+}
+resultados{
+    display: grid;
+    grid-template-columns: repeat(3, 32%);
+
+    div {
+        margin: auto;
+        text-align: center;
+        background-color: $colorPrincipal;
+       
+    }
+    .cajaPrincipal{
+        -webkit-box-shadow: 12px 11px 4px -3px rgba(0,0,0,0.75);
+        -moz-box-shadow: 12px 11px 4px -3px rgba(0,0,0,0.75);
+        box-shadow: 12px 11px 4px -3px rgba(0,0,0,0.75);
+        margin-bottom: 3%;
+    
+    }
+
+    button{
+        width: 100%;
+        background-color: $colorSecundario;
+    }
+
+    .puntuacion{
+        margin: auto;
+        margin-bottom: 1%;
+        text-align: center;
+        color: yellow; 
+        font-size: 50px;
+        opacity: 1;
+    }
+}
+
+
