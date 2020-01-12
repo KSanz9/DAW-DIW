@@ -12,10 +12,13 @@ $colorTernario: "";
   $colorSecundario: Brown;
   $colorTernario: black;
 } @else {
-  $logo: "../img/cthulhu.png";
-  $colorPrincipal: green;
-  $colorSecundario: darkgreen;
-  $colorTernario: black;
+    @if $empresa == cthulhu{
+        $logo: "../img/cthulhu.png";
+        $colorPrincipal: green;
+        $colorSecundario: darkgreen;
+        $colorTernario: black;
+    } 
+    $colorPrincipal: burlywood;
 }
 
 
