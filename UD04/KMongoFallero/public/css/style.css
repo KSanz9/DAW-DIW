@@ -1,8 +1,7 @@
 body {
   position: relative;
   font-size: medium;
-  background: linear-gradient(90deg, red 0%, Brown 8%, black 50%, Brown 92%, red 100%);
-}
+  background: linear-gradient(90deg, burlywood 0%, darkgreen 8%, black 50%, darkgreen 92%, burlywood 100%); }
 
 #logo {
   position: absolute;
@@ -10,8 +9,7 @@ body {
   left: 10px;
   width: 200px;
   height: 200px;
-  content: url("../img/evilcorp.png");
-}
+  content: url("../img/cthulhu.png"); }
 
 #form {
   width: 50%;
@@ -20,41 +18,41 @@ body {
   margin: 0px;
   border-radius: 6px;
   text-align: center;
-  margin-left: 25%;
-}
+  margin-left: 25%; }
+
+#mapa {
+  position: fixed;
+  width: 60%;
+  height: 60%;
+  left: 20%;
+  top: 20%; }
 
 resultados {
   display: grid;
   grid-template-columns: repeat(3, 32%);
-  margin-top: 3%;
-}
-resultados div {
-  margin: auto;
-  text-align: center;
-  background-color: red;
-}
-resultados .cajaPrincipal {
-  -webkit-box-shadow: 12px 11px 4px -3px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 12px 11px 4px -3px rgba(0, 0, 0, 0.75);
-  box-shadow: 12px 11px 4px -3px rgba(0, 0, 0, 0.75);
-  margin-bottom: 3%;
-}
-resultados img {
-  margin-top: 10px;
-  width: 60%;
-  height: 50%;
-}
-resultados button {
-  width: 100%;
-  background-color: Brown;
-}
-resultados .puntuacion {
-  margin: auto;
-  margin-bottom: 1%;
-  text-align: center;
-  color: yellow;
-  font-size: 50px;
-  opacity: 1;
-}
+  margin-top: 3%; }
+  resultados div {
+    margin: auto;
+    text-align: center;
+    background-color: burlywood; }
+  resultados .cajaPrincipal {
+    -webkit-box-shadow: 12px 11px 4px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 12px 11px 4px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 12px 11px 4px -3px rgba(0, 0, 0, 0.75);
+    margin-bottom: 3%; }
+  resultados img {
+    margin-top: 10px;
+    width: 60%;
+    height: 50%; }
+  resultados button {
+    width: 100%;
+    background-color: darkgreen; }
+  resultados .puntuacion {
+    margin: auto;
+    margin-bottom: 1%;
+    text-align: center;
+    color: yellow;
+    font-size: 50px;
+    opacity: 1; }
 
 /*# sourceMappingURL=style.css.map */

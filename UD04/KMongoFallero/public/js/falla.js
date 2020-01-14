@@ -160,16 +160,19 @@ function ubicacion() {
     ubi.innerHTML = '<iframe class="mapa" src="'+urlMap+'"></iframe>';*/
     
     var map = document.createElement("div");
-    map.classList.add("mapa");
-    
-    var mapa = L.map('mapa').
-     setView([arrayCoordenadas[1], arrayCoordenadas[0]],
-     15);
+    map.id = "mapa";
 
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    ubi.appendChild(map);
+    ubi.addEventListener("click", cerrarUbicacion);
+
+
+    var mapa = L.map('mapa').setView([arrayCoordenadas[1], arrayCoordenadas[0]],15);
+    console.log(arrayCoordenadas);
+    
+   // map.appendChild(mapa);
+     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-    maxZoom: 18
-    }).addTo(mapa);
+    }).addTo(mapa); 
 
     L.control.scale().addTo(mapa);
 
@@ -177,9 +180,6 @@ function ubicacion() {
 
 
 
-    map.appendChild(mapa);
-    ubi.appendChild(map);
-    ubi.addEventListener("click", cerrarUbicacion);
 
 
 

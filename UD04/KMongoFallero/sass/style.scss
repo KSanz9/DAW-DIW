@@ -1,6 +1,6 @@
 // VARIABLES
-$empresa: evilCorp;
-
+$empresa: cthulhu;
+ 
 $logo: "";
 $colorPrincipal: "";
 $colorSecundario: "";
@@ -46,6 +46,15 @@ body {
     border-radius: 6px;
     text-align: center;
     margin-left: 25%;
+}
+
+#mapa{
+    position: fixed;
+    width: 60%;
+    height: 60%;
+    left: 20%;
+    top: 20%;
+    
 }
 
 resultados{
