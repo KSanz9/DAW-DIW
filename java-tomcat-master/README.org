@@ -1,0 +1,118 @@
+#+TITLE: Java-Tomcat-APP
+#+AUTHOR: Angel Berlanas
+#+latex_header: \hypersetup{colorlinks=true,linkcolor=black}
+
+* Ejemplo de Java-Tomcat app
+
+  Esto es un pequeño /skeleton/ de como poner en marcha una aplicación via
+  ~servlets~ y ~mysql~ en un entorno GNU/LinuX (en el ejemplo Ubuntu 19.10).
+
+* Instalación
+
+  En Ubuntu 19.10 el proceso de instalación es el siguiente:
+
+  Lo primero instalar las diferentes librerias que van a hacer falta para usar
+  todo el proyecto.
+
+  * tomcat 
+  * tomcat-admin (para administrarlo)
+  * mysql-server (base de datos)
+  * json-org-java (para el uso de JSON como mecanismo de intercambio)
+  
+  Para ello en sistemas Ubuntu/Debian podemos instalarlos utilizando cómodamente
+  la línea de comandos. Windows tocará /buscarse la life/.
+
+#+BEGIN_SRC bash
+apt install tomcat9
+apt install tomcat9-admin
+apt install mysql-server
+apt install libandroid-json-org-java
+#+END_SRC
+
+
+  También necesitamos el conector ~JDBC~ para mysql. Lo podemos descargar de la página
+  oficial:
+
+  https://dev.mysql.com/downloads/connector/j/
+
+  En 19.10 la ruta al ~.jar~ (que debe quedar en ~WEB-INF/lib/~ al final) es : 
+ 
+  ~/usr/share/java/mysql-connector-java-8.0.18.jar~
+
+  Todas estas variables estan especificadas en el script de deploy (~maven-cutre.sh~).
+  
+* Configuración
+  
+  El fichero que se encuentra en ~/etc/tomcat9/tomcat-users.xml~, o sea el
+  fichero de configuración de los usuarios de tomcat ha de ser modificado para
+  que podamos acceder al manager de tomcat
+
+  Para ello descomentaremos las líneas relacionadas con ~<tomcat-users>~.
+
+  La idea es dejar al usuario ~tomcat~ el acceso a la web de administración
+  (/manager/).
+
+  ~http://localhost:8080/manager/html~
+
+  Adjunto el trozo /importante/ del fichero:
+
+  #+BEGIN_SRC xml
+  ...
+  <tomcat-users>
+  <--...sigue arriba..-->
+    <role rolename="tomcat"/>
+  <role rolename="role1"/>
+  <role manager="manager-gui"/>
+  <user username="tomcat" password="tomcat" roles="tomcat,manager-gui"/>
+  <user username="both" password="both" roles="tomcat,role1"/>
+  <user username="role1" password="role1" roles="role1"/>
+  </tomcat-users>
+  #+END_SRC
+
+* Scripts de Compilación
+
+  Se han realizado una serie de scripts que permiten la compilación y despliegue
+  rápido de la aplicación en el Tomcat Local.
+
+  El script que se utiliza a lo largo del desarrollo de la aplicación es
+  ~maven-cutre.sh~. En honor al famosérrimo gestor de librerias java ~maven~.
+
+* BBDD
+   
+   En la aplicación hacemos uso de una base de datos /MySQL/.
+   
+   Para el mantenimiento, puesta en marcha y demás pruebas se ha preparado un
+   pequeño script ~sql~ que crea la BD e introduce algunos casos de prueba.
+  
+   Para ejecutar el script basta con ejecutar desde la línea de comandos:
+
+   #+BEGIN_SRC bash
+   sudo mysql -u root -p < crea-db.sql
+   #+END_SRC
+
+** TODO Ampliar BD 
+    
+    Como propuesta de mejora sería añadir una serie de items a la BD:
+
+    * Usuarios para la aplicación.
+    * Pedidos de ejemplo
+   
+* web.xml
+
+  El fichero web.xml que podemos encontrar en ~WEB-INF/web.xml~ contiene los
+  diferentes /bindings/ de las acciones que podemos realizar en nuestro servidor
+  respecto a los métodos que se ejecutarán (al puro estilo ~routes~ de nuestras
+  aplicaciones /node/.
+  
+  Además se han añadido algunos campos para proporcionar una descripción y un
+  nombre más simpáticos en el gestor del tomcat.
+
+* Enlaces
+
+  Algunos enlaces de interés
+  
+  * [[https://stackoverflow.com/questions/2370960/generate-an-html-response-in-a-java-servlet][Tecnologías Actuales....No]]
+
+
+  
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tienda Online Manga</title>
+
+    <style>
+        table {
+            border: 1px solid black;
+        }
+
+        td {
+            border: 1px solid black;
+        }
+        input{
+            background-image: url("carrito.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+
+        }
+        .hidden{
+            color:transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TIENDA ONLINE</h1>
+    <form action="http://localhost:8080/Proyecto1/tienda" method="GET">
+        <table>
+            <th>PRODUCTO</th>
+            <th>PRECIO</th>
+            <tr>
+                <td>
+                    AGUA
+                </td>
+                <td>
+                    0,7
+                </td>
+                <td>
+                    <input type="submit" name="Agua" value="0.70" class="hidden">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    PAN
+                </td>
+                <td>
+                    0,4
+                </td>
+                <td>
+                    <input type="submit" name="Pan" value="0.45" class="hidden">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CARNE
+                </td>
+                <td>
+                    2,55
+                </td>
+                <td>
+                    <input type="submit" name="Carne" value="2.5" class="hidden">
+                </td>
+            </tr>
+        </table>
+        <button>COMPRAR</button>
+    </form>
+</body>
+
+</html>
