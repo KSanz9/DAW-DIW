@@ -61,10 +61,10 @@ function tarta(ctx,lienzo,valorTotal,datosGenerales){
         ctx.fillStyle=dato.color;    
         angulo = (ap + valorFinal) / 1;
 
-        let etiquetaY = Math.sin(angulo) * 1.5 * 100;
-        let etiquetaX = Math.cos(angulo) * 1.5 * 100;
+        let AnguloY = Math.sin(angulo) * 1.5 * 100;
+        let AnguloX = Math.cos(angulo) * 1.5 * 100;
 
-        ctx.fillText(dato.valor, etiquetaX+ctxX, etiquetaY+ctxY);
+        ctx.fillText(dato.valor, AnguloX+ctxX, AnguloY+ctxY);
         ctx.closePath();
 
         ap += valorFinal;
