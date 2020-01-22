@@ -1,7 +1,7 @@
 function buildGrafico(){
       //Seleccionamos el lienzo
-      const lienzo = document.querySelector("canvas");
-    
+      const lienzo = document.querySelectorAll("canvas")[0];
+      
       //Seleccionamos el ctx
       let ctx = lienzo.getContext("2d");
   
@@ -18,27 +18,37 @@ function buildGrafico(){
       valor3 = parseInt(document.querySelectorAll("input")[5].value);
       valor4 = parseInt(document.querySelectorAll("input")[7].value);
   
-      //Datos pasados
-      const datosGenerales = [
+      //datosGeneralesS pasados
+      const datosGeneralesSGenerales = [
           {clave:clave1,valor:valor1,color:"red"},
           {clave:clave2,valor:valor2,color:"blue"},
           {clave:clave3,valor:valor3,color:"green"},
-          {clave:clave4,valor:valor4,color:"yellow"}
+          {clave:clave4,valor:valor4,color:"black"}
       ];
   
       //valor total
-      const valorTotal = datosGenerales.reduce((suma,{valor})=>suma+valor,0);
+      const valorTotal = datosGeneralesSGenerales.reduce((suma,{valor})=>suma+valor,0);
       
   
       //Limpiamos el ctx
       ctx.clearRect(0, 0, 500, 500);
 
-      tarta(ctx,lienzo,valorTotal,datosGenerales);
+      circulo(ctx,lienzo,valorTotal,datosGeneralesSGenerales);
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+      const lienzo2 = document.querySelectorAll("canvas")[1];
+      let ctx2 = lienzo2.getContext("2d");
+      ctx2.clearRect(0, 0, 500, 500);
+
+      barras(ctx2,lienzo2,valorTotal,datosGeneralesSGenerales);
+
+      
 }
 
 
 
-function tarta(ctx,lienzo,valorTotal,datosGenerales){
+function circulo(ctx,lienzo,valorTotal,datosGenerales){
 
     var ctxX = lienzo.width / 2
     var ctxY = lienzo.height / 2;
@@ -54,9 +64,8 @@ function tarta(ctx,lienzo,valorTotal,datosGenerales){
         ctx.fill();
         
 
-        //Añadimos las etiquetas
         ctx.beginPath();
-        ctx.font = "20px Helvetica, Calibri";
+        ctx.font = "20px ";
         ctx.textAlign = "center";
         ctx.fillStyle=dato.color;    
         angulo = (ap + valorFinal) / 1;
@@ -72,6 +81,27 @@ function tarta(ctx,lienzo,valorTotal,datosGenerales){
         
     });
 }
+
+
+function barras(ctx,lienzo,valorTotal,datosGenerales){
+
+    let width = 20;
+    let x = 20;
+
+    datosGenerales.forEach(dato => {
+        //Dibuja la barra
+        ctx.fillStyle = dato.color;
+        let calcuAltura = Math.round(lienzo.width*dato.valor/(valorTotal+20));
+        ctx.fillRect(x,lienzo.height-calcuAltura,width,dato.valor);        
+
+        ctx.font = '20px serif';
+        ctx.fillText(dato.valor,x,lienzo.height-calcuAltura-30);
+        ctx.closePath();
+
+        x += width;
+    });
+}
+
 function loadListeners(){
     document.querySelector("input[name='grafiqueame']").addEventListener("click",buildGrafico);
 }
