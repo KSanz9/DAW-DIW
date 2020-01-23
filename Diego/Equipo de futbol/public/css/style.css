@@ -1,0 +1,32 @@
+body{
+    background-image: url("../img/img_cuanto_mide_un_campo_de_futbol_34969_600.jpg");
+    background-size: 1600px 800px;
+    background-repeat: no-repeat;
+}
+
+body{
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+h1{
+    text-align: center;
+}
+
+#campo, #banquillo{
+    background-color: black;
+    width: 80%;
+    height: 600px;
+    opacity: 0.5;
+    
+
+}
+.jugador{
+    content: "";
+    background-image: url("../img/person_icon-icons.com_50075.png");
+    background-size: 100px 100px;
+    background-repeat: no-repeat;
+}
+#uno{
+    width: 200px;
+    height: 200px;
+}

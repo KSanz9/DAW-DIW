@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <style>
+    @import url("css/style.css");
+    </style>
+     <script>
+        function cargar() {
+        document.getElementById("campo").addEventListener("dragover", allowDrop);
+        document.getElementById("banquillo").addEventListener("dragover", allowDrop);
+        document.getElementById("uno").addEventListener("dragstart", drag);
+        document.getElementById("banquillo").addEventListener("drop",drop);
+        document.getElementById("campo").addEventListener("drop",drop);
+        }
+        
+        function allowDrop(ev) {
+        
+        //Permitir que reciba algún elemento
+        ev.preventDefault();
+        
+        }
+        
+        function drag(ev) {
+        
+        //Indicamos que valor y tipo de información vamos a arrastrar. En este caso texto e ID del elemento.
+        ev.dataTransfer.setData("text", ev.target.id);
+        
+        }
+        
+        function drop(ev) {
+        
+        //Evitamos el comportamiento normal del navegador, que sería abrir el elemento en una nueva pestaña.
+        ev.preventDefault();
+        
+        //Guardamos el elemento, llamado "text" en una variable.
+        var data = ev.dataTransfer.getData("text");
+        
+        //Colgamos el elemeto arrastrado y soltado en el nuevo destino.
+        ev.target.appendChild(document.getElementById(data));
+        
+        }
+        window.addEventListener("load",cargar);
+        </script>
+
+    <title>Team Simulation</title>
+</head>
+<body>
+    <h1>Equipo</h1>
+    <h1>Banquillo</h1>
+    <div id="campo">
+        <div class="jugador" draggable="true" id="uno">
+
+        </div>
+      
+       
+    </div>
+    
+    <div id="banquillo">
+    
+    </div>
+
+
+</body>
+</html>

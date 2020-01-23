@@ -60,11 +60,7 @@ public class DetallesC extends HttpServlet {
 		salida.println("</td>");
 		salida.println("</tr>");
 		//
-		salida.println("<tr>");
-		salida.println("<td>");
-		salida.println("<h2> x " +aux +"</h2>");
-		salida.println("</td>");
-		salida.println("</tr>");
+	
 		}
 	    }
 	    
@@ -102,9 +98,12 @@ public class DetallesC extends HttpServlet {
 	salida.println("</div>");
 	salida.println("<br/>");
 	
+	salida.println("<form action=\"http://localhost:8080/gestion/enviado\">");
+	
 	salida.println("<input type=\"button\" value=\"Confirmar Pedido\">");
-
-	salida.println("<script src=\""+peticion.getContextPath()+"/js/gestion.js\"></script>");
+	salida.println("</form>");
+	
+	//salida.println("<script src=\""+peticion.getContextPath()+"/js/gestion.js\"></script>");
 	salida.println("</body></html>");        
     }
 }

@@ -38,20 +38,6 @@
     </servlet-mapping>
 
 
-     <servlet>
-         <servlet-name>EnviadoS</servlet-name>
-         <servlet-class>Enviado</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-         <servlet-name>EnviadoS</servlet-name>
-         <url-pattern>/enviado</url-pattern>
-    </servlet-mapping>
-
-
-
-
-     
     <!--API-->
      <servlet>
          <servlet-name>APIGestionS</servlet-name>
