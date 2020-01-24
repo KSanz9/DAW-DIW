@@ -9,6 +9,9 @@
     <style>
         @import url("main_CSS/login.css");
     </style>
+    <script type="text/javascript" src="main_JS/main_js.js"></script>
+    <script type="text/javascript" src="main_JS/llamadaAjax.js"></script>
+    
 
 </head>
 <body>
@@ -37,15 +40,53 @@
         <div class="login">
             <div class="logearse">
             <form action="">
-                <input type="text" name="Nick" size="25" placeholder="Nick">
-                <input type="password" name="Contrasenya" size="25" placeholder="Contraseña">
+                <input type="text" name="Nick" size="25" placeholder="Nick" required>
+                <input type="password" name="Contrasenya" size="25" placeholder="Contraseña" required>
                 <button class="logeo">Login</button>
             </form>
         </div>
-
+        <div id="registro">
             <p>No tienes cuenta?</p>
             <button class="registro">Registrate</button>
         </div>
+
+
+        <!--                                                             -->
+            <div id="form">
+                <formulario>
+                    <h1>Registro</h1>
+                    <form id="formulario">
+                        <table>
+                            <tr>
+                                <td> Nombre: </td>
+                                <td> <input type="text"  name="Nick"  required></td>
+                            </tr>
+               
+                            <tr>
+                            <td> e-mail: </td>
+                            <td><input type="text" name="email"  required></td>
+                            </tr>
+                            <tr>
+                                <td> Password: </td>
+                                <td><input type="password" name="contraseña"  required>
+                                </td>
+               
+                            </tr>
+                            <tr>
+                                <td> Repetir password: </td>
+                                <td><input type="password"  name="contraseña2"  required>
+                                </td>
+                            </tr>
+                        </table>
+                            <button class="botonForm">Cancelar</button>
+                            <button class="botonForm">Registrarse</button>
+                        
+                    </form>
+                </formulario>
+            </div>
+
+        </div>
+
     </section>
 </body>
 </html>

@@ -7,11 +7,11 @@ html, body{
 }
 @font-face {
     font-family: manga;
-    src: url('../fonts/manga.ttf');
+    src: url('../../fonts/manga.ttf');
 }
 @font-face {
     font-family: odaiba;
-    src: url('../fonts/Odaiba.otf');
+    src: url('../../fonts/Odaiba.otf');
 }
 
 
@@ -80,6 +80,8 @@ html, body{
 
 }
 
+
+
 .registro{
     height: 50px;
     width: 250px;
@@ -110,3 +112,33 @@ html, body{
 ::-webkit-scrollbar-thumb{
     background: linear-gradient(transparent,cyan);
 }
+
+
+
+
+/* form */
+
+formulario{
+    display: none;
+    padding-bottom:10px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+formulario h1{
+    text-align: center;
+}
+
+formulario table {
+    margin: auto;
+}
+
+
+formulario input{
+    border-radius: 2px;
+    border: 1px solid cyan;
+    box-shadow:inset 3px 3px 1px cyan;
+}
+
