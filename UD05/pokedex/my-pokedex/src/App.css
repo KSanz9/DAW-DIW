@@ -51,7 +51,7 @@
   left: 15.5%;
   width: 25%;
   height: 32%;
-  background-color: black;
+  border: 1px solid black;
 }
 .tipoPokemon{
   position: absolute;
@@ -59,7 +59,7 @@
   left: 57.5%;
   width: 30%;
   height: 6%;
-  background-color: black;
+  border: 1px solid black;
 }
 
 @keyframes App-logo-spin {
