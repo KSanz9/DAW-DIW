@@ -3,16 +3,16 @@ DROP DATABASE IF EXISTS animeDES;
 -- delete from mysql.db where user = 'tomcat';
 -- DROP USER tomcat@localhost;
 FLUSH PRIVILEGES;
-CREATE DATABASE users;
+CREATE DATABASE animeDES;
 
 
 
 
 CREATE USER IF NOT EXISTS admin@localhost IDENTIFIED BY 'admin';
-GRANT ALL PRIVILEGES ON manga.* TO 'admin'@'localhost';
+GRANT ALL PRIVILEGES ON animeDES.* TO 'admin'@'localhost';
 FLUSH PRIVILEGES;
 
-USE users;
+USE animeDES;
 
 CREATE TABLE usuariosRegistrados (
  _idUser INT NOT NULL AUTO_INCREMENT,
@@ -21,6 +21,6 @@ CREATE TABLE usuariosRegistrados (
  password VARCHAR(255) NOT NULL,
  PRIMARY KEY (_idUser));
 
-INSERT INTO usuariosRegistrados VALUES (1, "admin",NULL,"admin");
+INSERT INTO usuariosRegistrados VALUES (1, "admin","","admin");
 
 
