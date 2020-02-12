@@ -1,0 +1,22 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "\"Pokedex nacional de todos los pokemon, utilizando la pokeapi\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KSanz9"
+  },
+  "author": "Kevin Sanz Fernandez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.8.11",
+    "node-sass": "^4.13.1",
+    "sass": "^1.25.0"
+  }
+}
