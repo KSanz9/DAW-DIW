@@ -71,12 +71,14 @@ function conseguirPokedex(){
 
 
   function mostrarPokemon(e){
-      let mostrar = document.getElementById("PokemonMuestra");
+
+    let pokemons = document.getElementById("Pokemon");
+    pokemons.innerHTML="";
         console.log(e.target.innerHTML);
   }
 
   async function mostrarSprites(e){
-    
+
     console.log(e.target.id);
     var img;
    /*  jsonPokemon.results.forEach(element =>{
@@ -114,7 +116,7 @@ function darEventos(){
     document.getElementById("contenedorPrincipal").style.display= "inherit";
 
     let search = document.getElementById("busquedaPokemon");
-    let boton = document.getElementById("botonPokemon");
+   
     search.addEventListener("change",escribeFiltra);
 
     // un ("change", buscar)

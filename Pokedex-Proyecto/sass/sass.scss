@@ -27,12 +27,12 @@ body{
     .buscador{
         text-align: center;
 
-        #botonPokemon{
-            border: none;
-            background: #232833;
-            height:30px;
-            width: 70px;
-            color: white;
+        #busquedaPokemon{
+            border: 3px solid black;
+            background-image:url('../img/lupa.png');
+            background-repeat:no-repeat;
+            background-size: 15px 15px;
+            background-position:right center;outline:0;           
             font-size: 9pt;
         }
     }
