@@ -42,6 +42,10 @@ body{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         text-align: center;
+        p{
+            cursor: pointer;
+           
+        }
     }
 
     #PokemonMuestra{
@@ -68,9 +72,10 @@ body{
 
         }
         p{
+            
             font-size: xx-large;
             font-family: 'Courier New', Courier, monospace;
-            
+           
         }
 
     }

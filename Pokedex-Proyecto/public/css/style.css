@@ -26,6 +26,8 @@ body {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       text-align: center; }
+      body #contenedorPrincipal #Pokemon p {
+        cursor: pointer; }
     body #contenedorPrincipal #PokemonMuestra {
       display: grid;
       grid-template-columns: repeat(1, 1fr);
