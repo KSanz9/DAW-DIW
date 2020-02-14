@@ -25,6 +25,7 @@ body{
 
     }
     .buscador{
+
         text-align: center;
 
         #busquedaPokemon{
@@ -46,15 +47,24 @@ body{
             cursor: pointer;
            
         }
+
+        #PokemonMuestra{
+            width: 100%;
+            height: 100%;
+
+            #imgDiv{
+                left: 25%;
+                width: 50%;
+                height: 50%;
+                position: absolute;
+                background-image: url('../img/pantallaPokedex.jpg');
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+        }
     }
 
-    #PokemonMuestra{
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        text-align: center;
-        width: 60%;
-        height: 60%;
-    }
+    
 
 }
 

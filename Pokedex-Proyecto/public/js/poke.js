@@ -18,6 +18,9 @@ function filtroPokemon(poke){
 
 function escribeFiltra(){
     //console.log(jsonPokemon.results.filter(filtroPokemon));
+
+
+
     cargarPokemons(jsonPokemon.results.filter(filtroPokemon));
 }
 
@@ -74,12 +77,26 @@ function conseguirPokedex(){
 
     let pokemons = document.getElementById("Pokemon");
     pokemons.innerHTML="";
-        console.log(e.target.innerHTML);
+
+    let MostarDatos = document.createElement("div");
+    MostarDatos.id = "PokemonMuestra";
+
+    let imgDatos = document.createElement("div");
+    imgDatos.id = "imgDiv";
+
+    MostarDatos.appendChild(imgDatos);
+
+    document.getElementById("Pokemon").appendChild(MostarDatos);
+
+
+
+
+        //console.log(e.target.innerHTML);
   }
 
   async function mostrarSprites(e){
 
-    console.log(e.target.id);
+    //console.log(e.target.id);
     var img;
    /*  jsonPokemon.results.forEach(element =>{
       if(element.name == e.target.id ){
@@ -109,7 +126,11 @@ function conseguirPokedex(){
 
   function quitarSprites(e){
     console.log(e.target.children[0])
-    e.target.children[0].remove();
+    for (let index = 0; index < e.target.children.length; index++) {
+      e.target.children[index].remove();
+      
+    }
+    //e.target.children[0].remove();
   }
 function darEventos(){
     document.getElementById("cargando").style.display = "none";

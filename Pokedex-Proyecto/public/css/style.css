@@ -29,12 +29,17 @@ body {
       text-align: center; }
       body #contenedorPrincipal #Pokemon p {
         cursor: pointer; }
-    body #contenedorPrincipal #PokemonMuestra {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      text-align: center;
-      width: 60%;
-      height: 60%; }
+      body #contenedorPrincipal #Pokemon #PokemonMuestra {
+        width: 100%;
+        height: 100%; }
+        body #contenedorPrincipal #Pokemon #PokemonMuestra #imgDiv {
+          left: 25%;
+          width: 50%;
+          height: 50%;
+          position: absolute;
+          background-image: url("../img/pantallaPokedex.jpg");
+          background-repeat: no-repeat;
+          background-size: 100% 100%; }
   body #cargando {
     height: 100vh;
     width: 100vw;
