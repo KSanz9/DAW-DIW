@@ -5,145 +5,230 @@ window.onload = init();
 
 
 
-function init(){
-    conseguirPokedex();
-    setTimeout(darEventos,1000);
+function init() {
+  conseguirPokedex();
+  setTimeout(darEventos, 1600);
 }
 
-function filtroPokemon(poke){
-    if(!poke.name) return true;
-    return poke.name.indexOf(document.getElementById("busquedaPokemon").value)!=-1;
+function filtroPokemon(poke) {
+  if (!poke.name) return true;
+  return poke.name.indexOf(document.getElementById("busquedaPokemon").value) != -1;
 
 }
 
-function escribeFiltra(){
-    //console.log(jsonPokemon.results.filter(filtroPokemon));
+function escribeFiltra() {
+  //console.log(jsonPokemon.results.filter(filtroPokemon));
 
 
 
-    cargarPokemons(jsonPokemon.results.filter(filtroPokemon));
+  cargarPokemons(jsonPokemon.results.filter(filtroPokemon));
 }
 
-function conseguirPokedex(){
-    const fetchPokedex = fetch(urlPoke);
-  
-    fetchPokedex.then(respuesta => {
-  
+function conseguirPokedex() {
+  const fetchPokedex = fetch(urlPoke);
+
+  fetchPokedex.then(respuesta => {
+
+    return respuesta.json();
+
+  }).then(resposte => {
+    jsonPokemon = resposte;
+    cargarPokemons(jsonPokemon.results);
+  })
+}
+
+
+
+
+function cargarPokemons(jsonPokes) {
+  console.log(jsonPokes);
+
+  let pokemons = document.getElementById("Pokemon");
+  pokemons.innerHTML = "";
+  var numPokedex = 1;
+  jsonPokes.forEach(element => {
+    var poke = document.createElement("div");
+    poke.classList = "pokes"
+    var pokem = document.createElement("p");
+
+    pokem.textContent = element.name.toUpperCase();
+
+    poke.appendChild(pokem);
+    pokemons.appendChild(poke);
+    mostrarSprites(poke);
+
+    poke.id = poke.innerText.toLowerCase();
+    poke.classList = numPokedex;
+
+    poke.children[0].addEventListener("click", mostrarPokemon);
+  });
+
+}
+
+function cargarSprites(urlSprite) {
+
+  return fetch(urlSprite)
+    .then(respuesta => {
       return respuesta.json();
+    }).then(newRespuesta => {
+      return newRespuesta.sprites.front_default;
+    })
+
+}
+
+
+async function mostrarPokemon(e) {
+
+
+  console.log(e.target.parentNode);
+
+
+  let pokemons = document.getElementById("Pokemon");
+
+
+  let MostarDatos = document.createElement("div");
+  MostarDatos.id = "PokemonMuestra";
+
+  let imgDatos = document.createElement("div");
+  imgDatos.id = "imgDiv";
+
+  pokemons.innerHTML = "";
+
+  document.getElementById("cargando").style.display = "inherit";
+
+  await colocarPokemon(e.target.parentNode, MostarDatos);
+
+  document.getElementById("cargando").style.display = "none";
+
+
+  MostarDatos.appendChild(imgDatos);
+  document.getElementById("Pokemon").appendChild(MostarDatos);
   
-    }).then(resposte => {
-       jsonPokemon = resposte;
-       cargarPokemons(jsonPokemon.results);
-    })  
-  }
+}
+
+async function colocarPokemon(evento, datos) {
+  let imgPokemon;
+  let nombrePokemon;
+  let typesPokemon;
+  let movesPokemon;
+  let numeroPokedex;
+  imgPokemon = document.createElement("img");
+  imgPokemon.id = "imgPokemonColocado";
+
+  nombrePokemon = document.createElement("p");
+  nombrePokemon.id = "nombrePokemonColocado";
+
+  typesPokemon = document.createElement("div");
+  typesPokemon.id = "typePokemonColocado";
+
+  movesPokemon = document.createElement("div");
+  movesPokemon.id = "movesPokemonColocado";
+
+  numeroPokedex = document.createElement("p");
+  numeroPokedex.id = "numeroPokedex";
 
 
+  numeroPokedex.innerText = "#" + evento.classList[0];
+  datos.appendChild(numeroPokedex);
+
+  imgPokemon.src = evento.childNodes[1].src;
+  datos.appendChild(imgPokemon);
+
+  nombrePokemon.innerText = evento.childNodes[0].innerHTML;
+  datos.appendChild(nombrePokemon);
+
+  await datosAdicionales(nombrePokemon.innerText.toLowerCase(),typesPokemon, movesPokemon, datos);
 
 
-  function cargarPokemons(jsonPokes){
-    console.log(jsonPokes);
-            
-    let pokemons = document.getElementById("Pokemon");
-    pokemons.innerHTML="";
+  console.log();
+}
+async function datosAdicionales(nombre, types, moves, dato){
+  var tipos;
+  var movimientos;
+  for (let index = 0; index < jsonPokemon.results.length; index++) {
+    if (jsonPokemon.results[index].name == nombre) {
+      const newUrl = jsonPokemon.results[index].url;
+      tipos = await cargarTypos(newUrl);
+      movimientos = await cargarMovimientos(newUrl);
 
-    jsonPokes.forEach(element => {
-         var poke = document.createElement("p");
-         poke.textContent = element.name.toUpperCase();
-         pokemons.appendChild(poke);
-         
-
-         poke.id = poke.innerText.toLowerCase();
-         poke.addEventListener("click", mostrarPokemon);
-         poke.addEventListener("mouseover", mostrarSprites);
-         poke.addEventListener("mouseout", quitarSprites);
-     });
-
-  }
-
-  function cargarSprites(urlSprite){
-
-      return fetch(urlSprite)
-      .then(respuesta => {
-          return respuesta.json();
-      }).then(newRespuesta =>{
-          //console.log(newRespuesta.sprites.front_default);
-          return newRespuesta.sprites.front_default;
-      })
-
-  }
-
-
-  function mostrarPokemon(e){
-
-    let pokemons = document.getElementById("Pokemon");
-    pokemons.innerHTML="";
-
-    let MostarDatos = document.createElement("div");
-    MostarDatos.id = "PokemonMuestra";
-
-    let imgDatos = document.createElement("div");
-    imgDatos.id = "imgDiv";
-
-    MostarDatos.appendChild(imgDatos);
-
-    document.getElementById("Pokemon").appendChild(MostarDatos);
-
-
-
-
-        //console.log(e.target.innerHTML);
-  }
-
-  async function mostrarSprites(e){
-
-    //console.log(e.target.id);
-    var img;
-   /*  jsonPokemon.results.forEach(element =>{
-      if(element.name == e.target.id ){
-        const newUrl = element.url;
-        img = cargarSprites(newUrl);
-      }
-    }); */
-
-    for (let index = 0; index <  jsonPokemon.results.length; index++) {
-      if(jsonPokemon.results[index].name == e.target.id ){
-        const newUrl = jsonPokemon.results[index].url;
-        img = await cargarSprites(newUrl);
-      }
     }
-      let divSprite = document.createElement("div");
-      divSprite.id = "imgDivhover";
-      let imgSprite = document.createElement("img");
-      imgSprite.src = img;
-
-      divSprite.appendChild(imgSprite);
-
-      e.target.appendChild(divSprite);
-
-
   }
 
+    console.log(tipos,movimientos);
 
-  function quitarSprites(e){
-    console.log(e.target.children[0])
-    for (let index = 0; index < e.target.children.length; index++) {
-      e.target.children[index].remove();
-      
+  for (let index = 0; index < tipos.length; index++) {
+    var t = document.createElement("p");
+    t.innerText = tipos[index].type.name; 
+    types.appendChild(t);
+  }
+  dato.appendChild(types);
+  console.log(types);
+
+}
+
+function cargarTypos(urlTypos){
+
+  return fetch(urlTypos)
+  .then(respuesta => {
+    return respuesta.json();
+  }).then(newRespuesta => {
+
+    return newRespuesta.types;
+
+    /* 
+    return newRespuesta.sprites.front_default;
+   */})
+
+}
+
+
+function cargarMovimientos(urlMove){
+
+  return fetch(urlMove)
+  .then(respuesta => {
+    return respuesta.json();
+  }).then(newRespuesta => {
+    return newRespuesta.moves;
+
+    /* 
+    return newRespuesta.sprites.front_default;
+   */})
+
+}
+
+
+async function mostrarSprites(e) {
+  var img;
+
+  for (let index = 0; index < jsonPokemon.results.length; index++) {
+    if (jsonPokemon.results[index].name == e.innerText.toLowerCase()) {
+      const newUrl = jsonPokemon.results[index].url;
+      img = await cargarSprites(newUrl);
     }
-    //e.target.children[0].remove();
   }
-function darEventos(){
-    document.getElementById("cargando").style.display = "none";
-    document.getElementById("contenedorPrincipal").style.display= "inherit";
+  let imgSprite = document.createElement("img");
+  imgSprite.id = "imgDivhover"
+  imgSprite.src = img;
 
-    let search = document.getElementById("busquedaPokemon");
-   
-    search.addEventListener("change",escribeFiltra);
+  e.appendChild(imgSprite);
 
-    // un ("change", buscar)
-    // en buscar tendria que hacer un filter
-    // let pokemonesMostrando = jsonPokemon.filter((pokemon) => pokemon.name.contains(ev.target.value))
-    // pokemonesMonstrando.forEach()
+
+}
+
+function darEventos() {
+  document.getElementById("cargando").style.display = "none";
+  document.getElementById("contenedorPrincipal").style.display = "inherit";
+  let logo = document.getElementsByClassName("logoTexto")[0];
+  logo.addEventListener("click", init);
+
+  let search = document.getElementById("busquedaPokemon");
+
+  search.addEventListener("change", escribeFiltra);
+
+  // un ("change", buscar)
+  // en buscar tendria que hacer un filter
+  // let pokemonesMostrando = jsonPokemon.filter((pokemon) => pokemon.name.contains(ev.target.value))
+  // pokemonesMonstrando.forEach()
 
 
 }
