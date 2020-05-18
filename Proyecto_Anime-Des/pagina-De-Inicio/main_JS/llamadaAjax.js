@@ -8,14 +8,14 @@ function init(){
 
     insertarUsuario();
 
-    logearse();
+    //logearse();
 
 
 }
 
 
 function insertarUsuario(){
-
+/*
     let formRegistro = new FormData(document.getElementById("formulario"));
 
     petocopm_http = new XMLHttpRequest();
@@ -28,6 +28,6 @@ function insertarUsuario(){
 
     petocopm_http.open("POST","../main_php/registroPHP.php");
     petocopm_http.send(formRegistro);
-
+*/
 
 }
