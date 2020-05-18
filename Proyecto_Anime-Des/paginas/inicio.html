@@ -1,52 +1,24 @@
 <!DOCTYPE html>
 
 <html>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    @import url("../css/init.css");
+  </style>
+<title>Anime-Des</title>
 <head>
 <style>
-#navegation {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #0078AA;
-}
-
-#navegation li {
-    float: left;
-}
-
-#navegation li a {
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-#navegation li a:hover {
-    background-color: #00B4FF;
-}
-
-
-body, html {
-    padding: 0;
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow:hidden;
-}
 
 </style>
 </head>
 <header>
     <ul id="navegation">
         <li><a class="active" href="#home">Inicio</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li style="float:right"><a href="#about">Perfil</a></li>
+        <li><a href="#news">Noticias</a></li>
+        <li><a href="#contact">Contacto</a></li>
+        <li style="float:right"><a href="#profile">Perfil</a></li>
       </ul>
 
 </header>
@@ -58,17 +30,24 @@ body, html {
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-       
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
       </ol>
   
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
         <div class="item active">
           <img src="../img/Kaguya.jpg" alt="Kaguya-sama wa Kokurasetai?: Tensai-tachi no Renai Zunousen" style="width:100%;">
-          <h1>Kaguya-sama wa Kokurasetai?: Tensai-tachi no Renai Zunousen</h1>
+          <h1></h1>
         </div>
   
-       
+        <div class="item">
+          <img src="chicago.jpg" alt="Chicago" style="width:100%;">
+        </div>
+      
+        <div class="item">
+          <img src="ny.jpg" alt="New york" style="width:100%;">
+        </div>
       </div>
   
       <!-- Left and right controls -->
