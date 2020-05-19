@@ -8,7 +8,7 @@
         @import url("css/login.css");
     </style>
 
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/login.js" defer></script>
 </head>
 <header class="cabecera">
     <h1 class="titulo">ANIME-DES</h1>
@@ -26,8 +26,8 @@
         <div class="login">
             <div class="logearse">
             <form action="">
-                <input type="text" name="nombre" size="25" placeholder="Nick" required>
-                <input type="password" name="contrasenya" size="25" placeholder="Contraseña" required>
+                <input type="text" name="loguser" size="25" placeholder="Nick" required>
+                <input type="password" name="logpassword" size="25" placeholder="Password" required>
                 <button id="botLogin" class="logeo">Login</button>
             </form>
         </div>
@@ -51,19 +51,18 @@
                             </tr>
                             <tr>
                                 <td> Password: </td>
-                                <td><input type="password" name="contrasenya"  required>
+                                <td><input type="password" name="password"  required>
                                 </td>
                
                             </tr>
                             <tr>
                                 <td> Repetir password: </td>
-                                <td><input type="password"  name="contrasenya2"  required>
+                                <td><input type="password"  name="password2"  required>
                                 </td>
                             </tr>
                         </table>
                             <button class="botonForm">Cancelar</button>
                             <button id="botRegistro" class="botonForm">Registrarse</button>
-                        
                     </form>
                 </formulario>
             </div>
