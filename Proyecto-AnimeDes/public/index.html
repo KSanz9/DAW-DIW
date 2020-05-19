@@ -5,36 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anime-Des</title>
     <style>
-        @import url("css/login.css");
+        @import url("css/index.css");
     </style>
 
     <script type="text/javascript" src="js/login.js" defer></script>
 </head>
-<header class="cabecera">
-    <h1 class="titulo">ANIME-DES</h1>
-</header>
-<body>
-    <section class="inicio">
-        <div class="noticias">
-            <h3>Atención al cliente</h3>
-                <p>
-        
-                </p>
-          
 
-        </div>
+<body>
+    
+    <section class="inicio">
+        <header class="cabecera">
+            <h1 class="titulo">ANIME-DES</h1>
+        </header>
         <div class="login">
-            <div class="logearse">
             <form action="">
                 <input type="text" name="loguser" size="25" placeholder="Nick" required>
                 <input type="password" name="logpassword" size="25" placeholder="Password" required>
-                <button id="botLogin" class="logeo">Login</button>
+                <button id="botLogin">Login</button>
             </form>
+            <div>
+                <button id="registro">Registrate</button>
+            </div>
         </div>
-        <div id="registro">
-            <p>No tienes cuenta?</p>
-            <button class="registro">Registrate</button>
-        </div>
+
+        
             <div id="form">
                 <formulario>
                     <h1>Registro</h1>
@@ -61,17 +55,12 @@
                                 </td>
                             </tr>
                         </table>
-                            <button class="botonForm">Cancelar</button>
-                            <button id="botRegistro" class="botonForm">Registrarse</button>
+                            <button id="botRegistroC">Cancelar</button>
+                            <button id="botRegistro">Registrarse</button>
                     </form>
                 </formulario>
             </div>
-
-        </div>
         
     </section>
-    <footer>
-        <p>Todos los derechos reservados.</p>
-    </footer>
 </body>
 </html>

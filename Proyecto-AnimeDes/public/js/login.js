@@ -1,5 +1,17 @@
 window.onload=init;
 
+function init(){
+  console.log("sjdnua<db");
+    cargarEventos();    
+}
+function cargarEventos(){
+  //Mostrar el formulario para registrarse
+  document.querySelector("#registro").addEventListener("click", mostrarForm);
+  // Boton de registrar
+  document.querySelector("#botRegistro").addEventListener("click",registraUsuario);
+  
+
+}
 function registraUsuario(ev){
     const nombre = document.querySelector("input[name='nombre']").value;
     const email = document.querySelector("input[name='email']").value;
@@ -26,26 +38,14 @@ function registraUsuario(ev){
 
 }
    
+function mostrarForm(){
+  document.querySelector("#registro").style.display="none";
+  document.querySelector("#form").style.display="inline";
 
 
-function cargarEventos(){
-  // Boton de registrar
-  document.querySelector("#botRegistro").addEventListener("click",registraUsuario);
-}
 
 
-function init(){
-    cargarEventos();
-    registro();    
-}
 
-
-function registro(){
-  let botonRegistro = document.getElementsByClassName("registro")[0];
-   botonRegistro.addEventListener("click", function(){
-       document.getElementById("registro").style.display="none";
-       document.getElementById("form").style.display="inline";
-   });
 
 
 }

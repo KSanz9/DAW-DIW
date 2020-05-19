@@ -1,97 +1,82 @@
-
-
-
-
-body{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 10px;
+@font-face {
+    font-family: manga;
+    src: url('../fonts/manga.ttf');
+}
+@font-face {
+    font-family: odaiba;
+    src: url('../fonts/odaiba-script.zip');
+}
+body, html{
+    padding: 0;
+    margin: 0;
+}
+.cabecera{
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 .cabecera:first-child {
     font-family: manga;
     font-size: 20px;
+    width: 32%;
+    padding: 0% 0% 0% 5%;
+    height: 20px;
 }
+
 .cabecera h1{
     border: 4px solid black;
     border-radius: 6px;
 }
-.cabecera{
-    display: flex;
-    justify-content: center;
-    align-items: initial;
-    width: 100%;
-    height: 150px;
+
+.inicio{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 5px;
     background-image: url("../img/img_cabezera.png");
     background-repeat: no-repeat;
-    background-size: 30% 50px;
+    background-size: 100% 600px;
     background-position: center;
-  
-
 }
-.login{
-    margin-top: 0px;
-    position: absolute;
-    top: 0%;
-    left: 62%;
+.inicio > div{
     text-align: center;
-    justify-content: center;
-    justify-items: center;
+    padding: 20px 0;
+}
+.login{   
+    margin-top: 0px;
     font-family: manga;
-
-
 }
 .login input{
     border-radius: 20px;
     margin-bottom: 5px;
 }
 
-.logeo{
-    height: 40px;
-    width: 60px;
+.login #botLogin{
+    font-family: manga;
     border-radius: 9px;
     box-shadow: 2px 2px 10px rgb(36, 34, 34) inset;
+}
+#registro{
+    margin-top: 0px;
+    border-radius: 9px;
     font-family: manga;
-
-}
-.login p{
-    font-family: odaiba;
-    font-size: 40px;
-    margin-top: -40px;
-
-}
-.registro{
-    position: absolute;
-    top: 35%;
-    left: 105%;
     height: 40px;
     width: 40%;
-    font-size: 16px;
-    border-radius: 9px;
     box-shadow: 2px 2px 10px rgb(36, 34, 34) inset;
-    font-family: manga;
-    margin-top: -90px;
+  
 }
 
-
-
-
-
-
-/* form */
+/*Formulario de registro*/
 #form{
-    display: hide;
+    display: none;
     position: relative;
-    bottom: 0px;
-    left: 50%;
+    left: 165%;
 }
+
 formulario{
-    padding-bottom:10px;
     width: 10%;
     margin-left: auto;
     margin-right: auto;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
 formulario h1{
     text-align: center;
 }
@@ -104,4 +89,3 @@ formulario input{
     border: 1px solid cyan;
     box-shadow:inset 3px 3px 1px cyan;
 }
-
